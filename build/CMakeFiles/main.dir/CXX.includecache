@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hdc/Downloads/project/github/cplus/cmakelean/main.cpp
+iostream
+-
+thread
+-
+cstdlib
+-
+ctime
+-
+future
+-
+
