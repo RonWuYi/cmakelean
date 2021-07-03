@@ -4,17 +4,17 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/hdc/Downloads/project/github/cplus/cmakelean
-BuildDirectory: /home/hdc/Downloads/project/github/cplus/cmakelean/build
+SourceDirectory: /home/hdc/project/github/cmakelean
+BuildDirectory: /home/hdc/project/github/cmakelean/build
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: hdc-ThinkPad-X1-Carbon-4th
+Site: debian02
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Linux-x86_64-linux-gnu-g++-9
+BuildName: Linux-c++
 
 # Subprojects
 LabelsForSubprojects: 
@@ -26,8 +26,8 @@ SubmitURL: http://
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/hdc/Downloads/project/github/cplus/cmakelean"
-MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
+ConfigureCommand: "/usr/local/bin/cmake" "/home/hdc/project/github/cmakelean"
+MakeCommand: /usr/local/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 
 # version control
@@ -62,13 +62,15 @@ UpdateOptions:
 UpdateType: git
 
 # Compiler info
-Compiler: /bin/x86_64-linux-gnu-g++-9
-CompilerVersion: 9.3.0
+Compiler: /bin/c++
+CompilerVersion: 8.3.0
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 
 ValgrindCommand: 
 ValgrindCommandOptions: 
+DrMemoryCommand: 
+DrMemoryCommandOptions: 
 MemoryCheckType: 
 MemoryCheckSanitizerOptions: 
 MemoryCheckCommand: MEMORYCHECK_COMMAND-NOTFOUND

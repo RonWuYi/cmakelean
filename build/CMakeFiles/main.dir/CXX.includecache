@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/hdc/Downloads/project/github/cplus/cmakelean/main.cpp
+/home/hdc/project/github/cmakelean/src/main.cpp
 iostream
 -
 thread

@@ -1,21 +1,22 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
-Change Dir: /home/hdc/Downloads/project/github/cplus/cmakelean/build/CMakeFiles/CMakeTmp
+Change Dir: /home/hdc/project/github/cmakelean/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_c2193/fast && /usr/bin/make -f CMakeFiles/cmTC_c2193.dir/build.make CMakeFiles/cmTC_c2193.dir/build
-make[1]: Entering directory '/home/hdc/Downloads/project/github/cplus/cmakelean/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c2193.dir/src.c.o
-/bin/x86_64-linux-gnu-gcc-9   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_c2193.dir/src.c.o   -c /home/hdc/Downloads/project/github/cplus/cmakelean/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_c2193
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2193.dir/link.txt --verbose=1
-/bin/x86_64-linux-gnu-gcc-9  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_c2193.dir/src.c.o  -o cmTC_c2193 
-/usr/bin/ld: CMakeFiles/cmTC_c2193.dir/src.c.o: in function `main':
-src.c:(.text+0x46): undefined reference to `pthread_create'
-/usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
-/usr/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
+Run Build Command(s):/usr/bin/make cmTC_21441/fast && /usr/bin/make  -f CMakeFiles/cmTC_21441.dir/build.make CMakeFiles/cmTC_21441.dir/build
+make[1]: Entering directory '/home/hdc/project/github/cmakelean/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_21441.dir/src.c.o
+/bin/c99-gcc   -DCMAKE_HAVE_LIBC_PTHREAD -o CMakeFiles/cmTC_21441.dir/src.c.o -c /home/hdc/project/github/cmakelean/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_21441
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_21441.dir/link.txt --verbose=1
+/bin/c99-gcc  -DCMAKE_HAVE_LIBC_PTHREAD -rdynamic CMakeFiles/cmTC_21441.dir/src.c.o -o cmTC_21441 
+/usr/bin/ld: CMakeFiles/cmTC_21441.dir/src.c.o: in function `main':
+src.c:(.text+0x2f): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x3b): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x47): undefined reference to `pthread_cancel'
+/usr/bin/ld: src.c:(.text+0x58): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_c2193.dir/build.make:87: cmTC_c2193] Error 1
-make[1]: Leaving directory '/home/hdc/Downloads/project/github/cplus/cmakelean/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_c2193/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_21441.dir/build.make:106: cmTC_21441] Error 1
+make[1]: Leaving directory '/home/hdc/project/github/cmakelean/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:140: cmTC_21441/fast] Error 2
 
 
 Source file was:
@@ -31,6 +32,7 @@ int main(void)
   pthread_t thread;
   pthread_create(&thread, NULL, test_func, NULL);
   pthread_detach(thread);
+  pthread_cancel(thread);
   pthread_join(thread, NULL);
   pthread_atfork(NULL, NULL, NULL);
   pthread_exit(NULL);

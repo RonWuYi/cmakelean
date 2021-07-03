@@ -1,7 +1,7 @@
 [
 {
-  "directory": "/home/hdc/Downloads/project/github/cplus/cmakelean/build",
-  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -pthread -o CMakeFiles/main.dir/main.cpp.o -c /home/hdc/Downloads/project/github/cplus/cmakelean/main.cpp",
-  "file": "/home/hdc/Downloads/project/github/cplus/cmakelean/main.cpp"
+  "directory": "/home/hdc/project/github/cmakelean/build",
+  "command": "/bin/c++   -g -pthread -o CMakeFiles/main.dir/src/main.cpp.o -c /home/hdc/project/github/cmakelean/src/main.cpp",
+  "file": "/home/hdc/project/github/cmakelean/src/main.cpp"
 }
 ]

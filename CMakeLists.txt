@@ -15,7 +15,7 @@ project(main VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(main main.cpp)
+add_executable(main ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp)
 # target_link_libraries(main PRIVATE tinyxml2::tinyxml2)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
