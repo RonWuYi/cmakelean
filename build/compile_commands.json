@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/hdc/project/github/cmakelean/build",
-  "command": "/bin/c++   -g -pthread -o CMakeFiles/main.dir/src/main.cpp.o -c /home/hdc/project/github/cmakelean/src/main.cpp",
-  "file": "/home/hdc/project/github/cmakelean/src/main.cpp"
-}
-]
