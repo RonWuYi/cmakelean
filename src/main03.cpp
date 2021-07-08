@@ -1,39 +1,113 @@
 #include <iostream>
 #include <cassert>
-
+#include <sstream>         // std::
+#include <string>
+#include <cstring>         // std::
 
 bool f(int &r) { return &r != nullptr; }
 
+class Foo
+{
+public:
+    explicit Foo(int foo) : m_foo(foo)
+    {}
 
+    int GetFoo() const { return m_foo; }
+private:
+    int m_foo;
+};
+
+void DoBar(Foo foo)
+{
+    int i = foo.GetFoo();
+    std::cout << i << std::endl;
+}
+
+class Person
+{
+    // std::string name;
+    char* name;
+    int age;
+
+public:
+    // Person(const std::string &name, int age)
+    //     :name(name), age(age)
+    // {}
+    Person(const char* the_name, int the_age)
+    {
+        name = new char[strlen(the_name) + 1];
+        strcpy(name, the_name);
+        age = the_age;
+    }
+
+    Person(const Person& that)
+    {
+        name = new char[strlen(that.name) + 1];
+        strcpy(name, that.name);
+        age = that.age;
+    }
+
+    // Person& operator=(const Person& that)
+    // {
+    //     if (this != &that)
+    //     {
+    //         /* code */
+    //         delete [] name;
+    //         name = new char[strlen(that.name) + 1];
+    //         strcpy(name, that.name);
+    //     }
+    //     return *this;
+        
+    // }
+    Person& operator=(const Person& that)
+    {
+        char* local_name = new char[strlen(that.name) + 1];
+        strcpy(local_name, that.name);
+
+        delete [] name;
+        name = local_name;
+
+        age = that.age;
+        return *this;
+
+    }
+
+    ~Person()
+    {
+        delete [] name;
+    }
+
+};
 
 int main()
 {
-    int x = 5;
-    int y = 6;
-    int *p;
-    p = &x;
-    p = &y;
-    *p = 10;
-    assert(x == 5);
-    assert(y == 10);
-    int xx = 5;
-    int yy = 6;
+    std::string s = "Somewhere down the road";
 
-    // int &q;
-    int &r = yy;
-    int *pp = &yy;
-    int *p2 = &r;
+    std::istringstream iss(s);
 
-    assert(pp == p2);
-    assert(&pp != &p2);
+    do
+    {
+        std::string subs;
+        iss >> subs;
+        std::cout << subs << std::endl;
+    } while (iss);
+    
+    return 0;
 
-    int &rr = *static_cast<int *>(nullptr);
+    int number = 5;
+    // std::alpha;
+    number |= 1UL << 2;
+    std::cout << std::boolalpha;
+    std::cout << number << std::endl;
 
-    std::cout << (&rr != nullptr ? "not null" : "null") << '\n';
+    char c = 'a';
 
-    // prints "not null" under GCC 10
-    std::cout<< (f(*static_cast<int *>(nullptr))
-        ? "not null" : "null")
-    << std::endl;
+    c |= 1UL << 2;
+    std::cout << c << std::endl;
+
+    Person a("BJ", 5);
+    Person b(a);
+    b = a;
+    // assert(a == b);
     return 0;
 }
