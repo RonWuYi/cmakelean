@@ -26,6 +26,7 @@ struct bank_account
     std::mutex mMutex;
 };
 
+// change something
 void transfer(bank_account &from, bank_account &to, int amount)
 {
     std::unique_lock<std::mutex> lock1(from.mMutex, std::defer_lock);
