@@ -1,19 +1,9 @@
-cmake_minimum_required(VERSION 3.10)
-project(ExampleProject)
+set(BINARY ${CMAKE_PROJECT_NAME})
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+file(GLOB_RECURSE SOURCES LIST_DIRECTORIES true *.h *.cpp)
 
-include_directories(src)
+set(SOURCES ${SOURCES})
 
-add_subdirectory(src)
-add_subdirectory(test)
-add_subdirectory(lib/googletest)
+add_executable(${BINARY}_run ${SOURCES})
 
-# set(THREADS_PREFER_PTHREAD_FLAG ON)
-# find_package(Threads REQUIRED)
-# target_link_libraries(main PRIVATE Threads::Threads)
-
-# set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-# set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-# include(CPack)
+add_library(${BINARY}_lib STATIC ${SOURCES})

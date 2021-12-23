@@ -1,27 +1,11 @@
-cmake_minimum_required(VERSION 3.0.0)
+set(BINARY ${CMAKE_PROJECT_NAME}_test)
 
-# if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-#   set(CMAKE_TOOLCHAIN_FILE "/home/hdc/Downloads/vcpkg/scripts/buildsystems/vcpkg.cmake"
-#       CACHE STRING "")
-# endif()
+file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.h *.cpp)
 
-project(main VERSION 0.1.0)
+set(SOURCES ${TEST_SOURCES})
 
-# find_path(CATCH_INCLUDE_DIR NAMES tinyxml2.h PATH_SUFFIXES tinyxml2)
-# include_directories(${CATCH_INCLUDE_DIR})
+add_executable(${BINARY} ${TEST_SOURCES})
 
-# find_package(tinyxml2 CONFIG REQUIRED)
+add_test(NAME ${BINARY} COMMAND ${BINARY})
 
-include(CTest)
-enable_testing()
-
-add_executable(main ${CMAKE_CURRENT_LIST_DIR}/src/main04.cpp)
-# target_link_libraries(main PRIVATE tinyxml2::tinyxml2)
-
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
-target_link_libraries(main PRIVATE Threads::Threads)
-
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
+target_link_libraries(${BINARY} PUBLIC ${CMAKE_PROJECT_NAME}_lib gtest)
