@@ -5,7 +5,6 @@ void print_vec(const std::vector<int>& vec)
 {
     for (auto x: vec)
     {
-        /* code */
         std::cout << ' ' << x << std::endl;
     }
     

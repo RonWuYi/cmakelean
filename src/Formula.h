@@ -28,8 +28,6 @@ public:
     static int maxSubArray(vector<int>& nums);
     static vector<int> preorderTraversal(TreeNode* root);
     static vector<int> inorderTraversal(TreeNode* root);
-
-    // #postorderTraversal
     static vector<int> postorderTraversal(TreeNode* root);
 };
 
