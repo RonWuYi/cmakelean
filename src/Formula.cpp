@@ -47,6 +47,31 @@ vector<int> EasySolution::preorderTraversal(TreeNode* root) {
     return result;
 }
 
+vector<int> EasySolution::preorderTraversaliterative(TreeNode* root)
+{
+    vector<int> answer;
+    stack<TreeNode*> s;
+    if (root)
+    {
+        s.push(root);
+    }
+    TreeNode* cur;
+    while (!s.empty()){
+        cur = s.top();
+        s.pop();
+        answer.push_back(cur->val);
+        if (cur->right)
+        {
+            s.push(cur->right);
+        }
+        if (cur->left)
+        {
+            s.push(cur->left);
+        }
+    }
+    return answer;
+}
+
 vector<int> EasySolution::inorderTraversal(TreeNode* root) {
     vector<int> result;
     if (root = nullptr)

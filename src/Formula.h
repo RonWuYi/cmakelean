@@ -6,6 +6,7 @@
 #include <iostream>
 #include <algorithm>
 #include <numeric>
+#include <stack>
 
 using namespace std;
 
@@ -27,6 +28,7 @@ class EasySolution {
 public:
     static int maxSubArray(vector<int>& nums);
     static vector<int> preorderTraversal(TreeNode* root);
+    static vector<int> preorderTraversaliterative(TreeNode* root);
     static vector<int> inorderTraversal(TreeNode* root);
     static vector<int> postorderTraversal(TreeNode* root);
 };
