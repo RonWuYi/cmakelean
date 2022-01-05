@@ -33,4 +33,12 @@ public:
     static vector<int> postorderTraversal(TreeNode* root);
 };
 
+
+class MyQueue {
+private:
+    vector<int> data;
+
+};
+
+
 #endif //EXAMPLEPROJECT_FORMULA_H
