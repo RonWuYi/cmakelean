@@ -100,3 +100,13 @@ vector<int> EasySolution::postorderTraversal(TreeNode* root) {
     result.push_back(root->val);
     return result;
 }
+
+bool MyQueue01::enQueue(int x) {
+    data.push_back(x);
+    return true;
+}
+
+bool MyQueue01::deQueue(){ 
+    if (isEmpty()) return false;
+    p_start++;
+    return true;}

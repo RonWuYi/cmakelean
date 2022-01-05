@@ -11,29 +11,16 @@ void print_vec(const std::vector<int>& vec)
 }
 
 int main() {
-    std::vector<int> vec(3, 100);
-    print_vec(vec);
-    std::cout << '\n';
-    auto it = vec.begin();
-    it = vec.insert(it, 200);
-    print_vec(vec);
+    MyQueue q;
+    q.enQueue(5);
+    q.enQueue(2);
+    q.enQueue(17);
+    q.enQueue(3);
 
-    std::cout << '\n';
-    vec.insert(it, 2, 300);
-    print_vec(vec);
-    std::cout << '\n';
-
-    it = vec.begin();
-
-    std::vector<int> vec2(2, 400);
-
-    // print_vec(vec2);
-    std::cout << '\n';
-    vec.insert(it+2,vec2.begin(), vec2.end());
-    print_vec(vec);
-    std::cout << '\n';
-    int arr[] = { 501,502,503 };
-    vec2.insert(vec2.begin(), arr, arr+3);
-    print_vec(vec2);
+    std::cout << q.Front() << std::endl;
+    q.deQueue();
+    std::cout << q.Front() << std::endl;
+    q.enQueue(555);
+    std::cout << q.Front() << std::endl;
     return 0;
 }

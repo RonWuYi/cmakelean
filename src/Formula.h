@@ -34,10 +34,19 @@ public:
 };
 
 
-class MyQueue {
+class MyQueue01 {
 private:
     vector<int> data;
+    int p_start;
 
+
+public:
+    MyQueue01() : p_start(0) {}
+    bool enQueue(int x);
+    bool deQueue();
+
+    int Front() { return data[p_start]; }
+    bool isEmpty() { return p_start >= data.size(); }
 };
 
 
