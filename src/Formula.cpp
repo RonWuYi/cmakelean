@@ -110,3 +110,18 @@ bool MyQueue01::deQueue(){
     if (isEmpty()) return false;
     p_start++;
     return true;}
+
+MovingAverageVector::MovingAverageVector(int size) {
+    data.resize(size);
+    capacity = size;
+    sum = 0;
+}
+
+double MovingAverageVector::next(int val) {
+    for (auto p: data)
+    {
+        sum += p;
+    }
+    
+    return sum/capacity;
+}

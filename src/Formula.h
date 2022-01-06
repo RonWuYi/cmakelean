@@ -134,4 +134,109 @@ private:
     Node* pTail;
 };
 
+class MyCircularQueueVector
+{
+private:
+    vector<int> data;
+    int head;
+    int tail;
+    int size;
+
+public:
+    MyCircularQueueVector(int k) {
+        data.resize(k);
+        head = -1;
+        tail = -1;
+        size = k;
+    }
+
+    bool enQueue(int value) {
+        if (isFull())
+        {
+            return false;
+        }
+
+        if (isEmpty())
+        {
+            head = 0;
+        }
+        
+        tail = (tail + 1) % size;
+        data[tail] = value;
+        return true;
+    }
+
+    bool deQueue() { 
+        if (isEmpty())
+        {
+            return false;
+        }
+        if (head==tail) {
+            head = -1;
+            tail = -1;
+            return true;
+        }
+        head = (head + 1) % size;
+        return true;
+    }
+
+    int Front() {
+        if (isEmpty())
+        {
+            return -1;
+        }
+        return data[head];
+    }
+
+    int Rear() {
+        if (isEmpty())
+        {
+            return -1;
+        }
+        return data[tail];
+    }
+
+    bool isEmpty() {
+        return head == -1;
+    }
+
+    bool isFull() {
+        return ((tail + 1) %size == head);
+    }
+};
+
+class MovingAverageVector {
+public:
+    MovingAverageVector(int size);
+    double next(int val);
+private:
+    vector<int> data;
+    int capacity;
+    int sum;
+};
+
+class MovingAverage01 {
+public:
+    MovingAverage01(int val)
+    {
+        // value = val;
+        Node* node = new Node(0);
+        pHead = node;
+        pNext = nullptr;
+
+        value = 0;
+        capacity = val;
+    }
+
+    double next(int val)
+    {}
+
+private:
+    int value;
+    int capacity;
+    Node* pHead;
+    // int pTail;
+    Node* pNext;
+}
+
 #endif //EXAMPLEPROJECT_FORMULA_H
