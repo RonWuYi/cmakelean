@@ -49,5 +49,89 @@ public:
     bool isEmpty() { return p_start >= data.size(); }
 };
 
+struct Node {
+    int value;
+    Node* pNext;
+    Node(int i) {
+        value = i;
+        pNext = nullptr;
+    }
+};
+
+class MyCircularQueue {
+public:
+    MyCircularQueue(int k) {
+        capacity = k;
+        count = 0;
+        pHead = pTail = nullptr;
+    }
+    
+    bool enQueue(int value) {
+        if (count == capacity) {
+            return false;
+        }
+        Node* newNode = new Node(value);
+        if (count == 0)
+        {
+            pHead = newNode;
+            // pHead->value = value;
+            pTail = pHead;
+        }
+        else {
+            // pTail->value = value;
+            pTail->pNext = newNode;
+            pTail = newNode;
+        }
+        count += 1;
+        return true;
+    }
+    
+    bool deQueue() {
+        if (count == 0)
+        {
+            /* code */
+            return false;
+        }
+        pHead = pHead->pNext;
+        count -= 1;
+        return true;
+    }
+    
+    int Front() {
+        if (count == 0)
+        {
+            return -1;
+        }
+
+        return pHead->value;
+    }
+    
+    int Rear() {
+        if (count == 0)
+        {
+            return -1;
+        }
+
+        return pTail->value;
+    }
+    
+    bool isEmpty() {
+        // if (count == 0)
+        //     return true;
+        // else
+        //     return false;
+        return count == 0;
+    }
+    
+    bool isFull() {
+        return capacity == count;
+    }
+
+private:
+    int capacity;
+    int count;
+    Node* pHead;
+    Node* pTail;
+};
 
 #endif //EXAMPLEPROJECT_FORMULA_H
