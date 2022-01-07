@@ -225,17 +225,21 @@ public:
         pNext = nullptr;
 
         value = 0;
+        pTail = 0;
         capacity = val;
     }
 
     double next(int val)
-    {}
+    {
+        Node* node = new Node(val);
+        pNext = node;
+    }
 
 private:
     int value;
     int capacity;
     Node* pHead;
-    // int pTail;
+    int pTail;
     Node* pNext;
 }
 
