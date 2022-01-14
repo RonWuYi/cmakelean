@@ -241,6 +241,21 @@ private:
     Node* pHead;
     int pTail;
     Node* pNext;
-}
+};
+
+class MyStackLIFO {
+private:
+    vector<int> data;
+public:
+    void push(int x) { data.push_back(x); }
+
+    bool isEmpty() const { return data.empty(); }
+    bool pop() { 
+        if (isEmpty())
+            return false;
+
+        data.pop_back();
+        return true;}
+};
 
 #endif //EXAMPLEPROJECT_FORMULA_H
