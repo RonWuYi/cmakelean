@@ -233,6 +233,7 @@ public:
     {
         Node* node = new Node(val);
         pNext = node;
+        return 1.0;
     }
 
 private:
@@ -257,5 +258,80 @@ public:
         data.pop_back();
         return true;}
 };
+
+// class MiniStack {
+// public:
+//     MiniStack(int val) {
+//         data.resize(val);
+//     };
+
+//     void push(int val) {
+//         data.push_back(val);
+//     }
+
+//     void pop() {
+//         if (isEmpty())
+//             return;
+//         // data.pop_back(); 
+//         // data = data[1:];
+//     }
+
+//     int top() { return data.front(); };
+
+//     int getMin() { 
+//         int sum = data[0];
+//         // return data[1]; 
+//         for (auto i : v)
+//         {
+//             if (v < sum)
+//                 sum = v;
+//             /* code */
+//         }
+//         return sum;
+        
+//     }
+
+//     bool isEmpty() const { return data.isEmpty(); }
+
+// private:
+//     vector<int> data;
+//     stack<int> s1;
+//     stack<int> s2;
+
+
+class Solutionislands {
+public:
+    static void dfs(vector<vector<char>>& grid, int r, int c);
+    // {
+    //     int nr = grid.size();
+    //     int nc = grid[0].size();
+
+    //     grid[r][c] = '0';
+    //     if (r - 1 >= 0 && grid[r - 1][c] == '1') dfs(grid, r - 1, c);
+    //     if (r + 1 < nr && grid[r + 1][c] == '1') dfs(grid, r + 1, c);
+    //     if (c - 1 >= 0 && grid[r][c - 1] == '1') dfs(grid, r, c - 1);
+    //     if (c + 1 < nc && grid[r][c + 1] == '1') dfs(grid, r, c + 1);
+    // }
+
+    static int numIslands(vector<vector<char>>& grid); 
+    // {
+    //     int nr = grid.size();
+    //     if (!nr) return 0;
+    //     int nc = grid[0].size();
+
+    //     int num_islands = 0;
+    //     for (int r = 0; r < nr; ++r) {
+    //         for (int c = 0; c < nc; ++c) {
+    //             if (grid[r][c] == '1') {
+    //                 ++num_islands;
+    //                 dfs(grid, r, c);
+    //             }
+    //         }
+    //     }
+    //     // int i = 0;
+    //     return num_islands;
+    // }
+};
+// };
 
 #endif //EXAMPLEPROJECT_FORMULA_H

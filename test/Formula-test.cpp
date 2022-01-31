@@ -12,3 +12,12 @@ TEST(MaximumSubarray53, test2) {
     std::vector<int> v {-2, 1, -3, 4, -1, 2, 1, -5, 4};
     EXPECT_EQ (EasySolution::maxSubArray (v),  6);
 }
+
+TEST(islands, test3)
+{
+    std::vector<std::vector<char>> v{{"1","1","1","1","0"},
+                                {"1","1","0","1","0"},
+                                {"1","1","0","0","0"},
+                                {"0","0","0","0","0"}};
+    EXPECT_EQ (Solutionislands::numIslands(v), 1);
+}
