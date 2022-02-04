@@ -10,25 +10,34 @@ void print_vec(const std::vector<int>& vec)
     
 }
 
+class S {
+public:
+    S() {printf("default constructor\n");}
+    ~S() {printf("destructor\n");}
+
+    S(const S&) {printf("copy constructor\n");}
+    S(S&&) {printf("move constructor\n");}
+};
+
+void Use()
+{
+    S obj {
+        S{}
+    };
+}
+
+void printReverse(const char *str) {
+    if (!str) return;
+    printReverse(str + 1);
+    putchar(*str);
+    // std::cout << *str << '\n';
+}
+
 int main() {
-    MyQueue01 q;
-    q.enQueue(5);
-    q.enQueue(2);
-    q.enQueue(17);
-    q.enQueue(3);
-
-    std::cout << q.Front() << std::endl;
-    q.deQueue();
-    std::cout << q.Front() << std::endl;
-    q.enQueue(555);
-    std::cout << q.Front() << std::endl;
-
-    MyCircularQueue* obj = new MyCircularQueue(10);
-    bool param_1 = obj->enQueue(11);
-//  * bool param_2 = obj->deQueue();
-//  * int param_3 = obj->Front();
-//  * int param_4 = obj->Rear();
-//  * bool param_5 = obj->isEmpty();
-//  * bool param_6 = obj->isFull();
+    // Use();
+    // std::string str {"hello"};
+    // printReverse(str.c_str());
+    int i = 0;
+    std::cout << i << '\n';
     return 0;
 }
