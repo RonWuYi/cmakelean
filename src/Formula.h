@@ -19,6 +19,8 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// struct ListNode
+
 class Formula {
 public:
     static int bla(int arg1);
@@ -260,5 +262,10 @@ public:
     static void dfs(vector<vector<char>>& grid, int r, int c);
     static int numIslands(vector<vector<char>>& grid); 
 };
+
+// class SolutionswapPairs {
+// public:
+//     static ListNode* swapPairs(ListNode* head);
+// };
 
 #endif //EXAMPLEPROJECT_FORMULA_H
