@@ -20,7 +20,14 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-// struct ListNode
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
 class Formula {
 public:
@@ -264,9 +271,14 @@ public:
     static int numIslands(vector<vector<char>>& grid); 
 };
 
-// class SolutionswapPairs {
-// public:
-//     static ListNode* swapPairs(ListNode* head);
-// };
+class SolutionreverseList {
+public:
+    static ListNode* reverseList(ListNode* head);
+};
+
+class SolutionsearchBST {
+public:
+    static TreeNode* searchBST(TreeNode* root, int val);
+};
 
 #endif //EXAMPLEPROJECT_FORMULA_H

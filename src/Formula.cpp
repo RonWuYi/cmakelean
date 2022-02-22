@@ -156,3 +156,19 @@ int Solutionislands::numIslands(vector<vector<char>>& grid)
     // int i = 0;
     return num_islands;
 }
+
+ListNode*  SolutionreverseList::reverseList(ListNode* head)
+{
+    ListNode* prev = nullptr;
+    ListNode* cur = head;
+    ListNode* n;
+
+    while(cur!=nullptr) {
+        n=cur->next;
+        cur->next=prev;
+        prev=cur;
+        cur=n;
+    }
+    return prev;
+}
+
