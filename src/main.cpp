@@ -43,44 +43,52 @@ void print_container(const std::vector<int>& c)
     std::cout <<'\n'; 
 }
 
-int main() {
-    // Use();
-    // std::string str {"hello"};
-    // printReverse(str.c_str());
-    // int i = 0;
-    // std::cout << i << '\n';
-    // std::vector<int> c{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    // int nine = 9;
-    // for (std::vector<int>::iterator it = c.begin(); it != c.end();)
-    // {
-    //     // std::cout << it << '\n';
-    //     if ( == nine)
-    //     {
-    //         /* code */
-    //     }
-        
-    
-    std::vector<int> c{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    print_container(c);
+struct Baz {
+    // int a;
  
-    c.erase(c.begin());
-    print_container(c);
- 
-    c.erase(c.begin()+2, c.begin()+5);
-    print_container(c);
- 
-    // Erase all even numbers (C++11 and later)
-    for (std::vector<int>::iterator it = c.begin(); it != c.end(); ) {
-        // if (*it % 2 == 0) {
-        //     it = c.erase(it);
-        // } else {
-        //     ++it;
-        // }
-
-        if (*it == 0) {
-            it = c.erase(it);
-        }
+    std::function<void()> foo() {
+        return [=] {
+            std::cout << s << '\n';
+        };
     }
-    print_container(c);
+
+    std::string s;
+};
+
+int main() {
+    struct
+    {
+        void operator()(int x) const
+        {
+            std::cout << x << '\n';
+        }
+    } someInstance;
+    
+    std::vector<int> v;
+    v.push_back(1);
+    v.push_back(2);
+    std::for_each(v.begin(), v.end(), someInstance);
+
+    std::for_each(v.begin(), v.end(), [] (int x){
+        std::cout << x << '\n';
+    });
+
+    auto myLambda = [](int x) mutable {
+        std::cout << x << '\n';
+    };
+
+    int x = 1, y = 2;
+
+    std::cout << x << '\n';
+
+    auto foo = [&x, &y] () {++x;++y; };
+    foo();
+    std::cout << x << " " << y << '\n';
+
+    auto f1 = Baz{"ala"}.foo();
+    auto f2 = Baz{"ula"}.foo();
+
+    f1();
+    f2();
     return 0;
 }

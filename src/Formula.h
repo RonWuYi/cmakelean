@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <numeric>
 #include <stack>
+#include <functional>
 
 using namespace std;
 
