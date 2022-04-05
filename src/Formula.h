@@ -8,6 +8,8 @@
 #include <numeric>
 #include <stack>
 #include <functional>
+#include <random>
+#include <memory>
 
 using namespace std;
 

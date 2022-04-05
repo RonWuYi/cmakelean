@@ -1,94 +1,57 @@
 #include <iostream>
 #include "Formula.h"
 
-void print_vec(const std::vector<int>& vec)
-{
-    for (auto x: vec)
-    {
-        std::cout << ' ' << x << std::endl;
+struct PrintNum {
+    void operator()(int i) const {
+        std::cout << i << '\n';
     }
-    
-}
-
-class S {
-public:
-    S() {printf("default constructor\n");}
-    ~S() {printf("destructor\n");}
-
-    S(const S&) {printf("copy constructor\n");}
-    S(S&&) {printf("move constructor\n");}
 };
 
-void Use()
+void f(int n1, int n2, int n3, const int& n4, int n5)
 {
-    S obj {
-        S{}
-    };
+    std::cout << n1 << ' ' << n2 << ' ' << n3 << ' ' << n4 << ' ' << n5 << '\n';
 }
 
-void printReverse(const char *str) {
-    if (!str) return;
-    printReverse(str + 1);
-    putchar(*str);
-    // std::cout << *str << '\n';
+int g(int n1)
+{
+    return n1;
 }
 
-void print_container(const std::vector<int>& c)
-{
-    for (int i: c)
+struct Foo {
+    void print_sum(int n1, int n2)
     {
-        /* code */
-        std::cout << i << " ";
+        std::cout << n1 + n2 << '\n';
     }
-    std::cout <<'\n'; 
-}
-
-struct Baz {
-    // int a;
- 
-    std::function<void()> foo() {
-        return [=] {
-            std::cout << s << '\n';
-        };
-    }
-
-    std::string s;
+    int data = 10;
 };
 
 int main() {
-    struct
-    {
-        void operator()(int x) const
-        {
-            std::cout << x << '\n';
-        }
-    } someInstance;
-    
-    std::vector<int> v;
-    v.push_back(1);
-    v.push_back(2);
-    std::for_each(v.begin(), v.end(), someInstance);
+      std::vector<std::reference_wrapper<int*>> numbers;
+  
+  int* a = new int{42};
+  numbers.push_back(a);
+  
+  int* b = new int{51};
+  numbers.push_back(b);
+  
+  int* c = new int{66};
+  numbers.push_back(c);
 
-    std::for_each(v.begin(), v.end(), [] (int x){
-        std::cout << x << '\n';
-    });
 
-    auto myLambda = [](int x) mutable {
-        std::cout << x << '\n';
-    };
+  delete b;
+  b = nullptr;
 
-    int x = 1, y = 2;
-
-    std::cout << x << '\n';
-
-    auto foo = [&x, &y] () {++x;++y; };
-    foo();
-    std::cout << x << " " << y << '\n';
-
-    auto f1 = Baz{"ala"}.foo();
-    auto f2 = Baz{"ula"}.foo();
-
-    f1();
-    f2();
-    return 0;
+  for (auto n : numbers) {
+    if (n == nullptr) { 
+        std::cout << "nullptr found \n";
+        continue; 
+    }
+    std::cout << *n.get() << '\n';
+  }
+  std::cout << '\n';
+  std::cout << numbers.size() << '\n';
+  
+  delete numbers[2].get();
+  numbers[2].get() = nullptr;
+  std::cout << "c is " << (c == nullptr ? "nullptr" : std::to_string(*c)) << '\n'; 
 }
