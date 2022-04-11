@@ -18,40 +18,51 @@ int g(int n1)
 }
 
 struct Foo {
-    void print_sum(int n1, int n2)
-    {
-        std::cout << n1 + n2 << '\n';
-    }
-    int data = 10;
+    Foo() {std::cout << "Leak?" << std::endl;}
+    Foo(const Foo &&) {std::cout << "Move constructor?" << std::endl;}
+    ~Foo() {std::cout << "No leak" << std::endl;}
 };
 
+struct IntContainer {
+    IntContainer() : int_ptr(new int(0)) {}
+    ~IntContainer() { delete int_ptr; }
+
+    int* get_ptr() const { return int_ptr;}
+    int* int_ptr;
+};
+
+Foo* make_Foo() {return new Foo();}
+
+void compute(Foo* foo)
+{
+    delete foo;
+}
+
+class NoexceptCopy {
+public:
+    std::array<int, 5> arr{1, 2, 3, 4, 5};
+
+};
+
+class NonNoexceptCopy {
+public:
+    std::vector<int> v{1, 2, 3, 4, 5};
+};
+
+template<typename T>
+T copy(T const& src) noexcept(noexcept(T(src))){
+    return src;
+}
+
 int main() {
-      std::vector<std::reference_wrapper<int*>> numbers;
-  
-  int* a = new int{42};
-  numbers.push_back(a);
-  
-  int* b = new int{51};
-  numbers.push_back(b);
-  
-  int* c = new int{66};
-  numbers.push_back(c);
+    std::unique_ptr<Foo> foo_ptr(make_Foo());
 
-
-  delete b;
-  b = nullptr;
-
-  for (auto n : numbers) {
-    if (n == nullptr) { 
-        std::cout << "nullptr found \n";
-        continue; 
-    }
-    std::cout << *n.get() << '\n';
-  }
-  std::cout << '\n';
-  std::cout << numbers.size() << '\n';
-  
-  delete numbers[2].get();
-  numbers[2].get() = nullptr;
-  std::cout << "c is " << (c == nullptr ? "nullptr" : std::to_string(*c)) << '\n'; 
+    NoexceptCopy noexceptCopy;
+    NonNoexceptCopy nonNoexceptCopy;
+    
+    std::cout << std::boolalpha << std::endl;
+    
+    std::cout << "noexcept(copy(noexceptCopy)): " <<            // (4)
+                  noexcept(copy(noexceptCopy)) << std::endl;
+    return 0;
 }

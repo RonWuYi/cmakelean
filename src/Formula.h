@@ -283,4 +283,9 @@ public:
     static TreeNode* searchBST(TreeNode* root, int val);
 };
 
+class SolutionduplicateZeros {
+public:
+    static void duplicateZeros(vector<int>& arr);
+};
+
 #endif //EXAMPLEPROJECT_FORMULA_H
