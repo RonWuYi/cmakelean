@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Formula.h"
+#include "gtest/gtest.h"
 
 struct PrintNum {
     void operator()(int i) const {
@@ -53,6 +54,21 @@ template<typename T>
 T copy(T const& src) noexcept(noexcept(T(src))){
     return src;
 }
+
+class Car {
+public:
+    virtual ~Car() = default;
+    virtual void startEngine() = 0;
+    virtual int getRunkSize() const = 0;
+    virtual void addFuel(double quantity) = 0;
+};
+
+class MockCar : public Car {
+public:
+    MOCK_METHOD(void, startEngine, (), (override));
+    MOCK_METHOD(int, getTrunkSize, (), (const, override));
+    MOCK_METHOD(void, addFuel, (double quantity), (override));
+};
 
 int main() {
     std::unique_ptr<Foo> foo_ptr(make_Foo());
