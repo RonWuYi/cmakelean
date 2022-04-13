@@ -24,7 +24,7 @@ void putIntQueueBig(intQueue &queue)
 {
     std::lock_guard<std::mutex> guard(g_pages_mutex);
     auto temp = std::make_unique<intData>();
-    auto length = 0;
+    // auto length = 0;
 
     // while (true) {
 
@@ -33,10 +33,17 @@ void putIntQueueBig(intQueue &queue)
     for (int i = 0; i < BIG; i++)
     {
         /* code */
-        temp->at(i) = rand()%100;
-        length++;
+        temp->at(i) = rand()%1000;
+        // length++;
     }
 
+    // while (true) {
+    //     if (temp.get()[0][length] == temp.get()->end()) {
+    //         // temp->at(length) = rand()%1000;
+    //         // length++;
+    //         break;
+    //     }
+    // }
 
     // while (true)
     // {
@@ -57,6 +64,25 @@ void putIntQueueBig(intQueue &queue)
     //     temp->at(0)[0] = rand()%100;
     //     length++;
     // }
-    // queue.push(std::move(temp));
+    queue.push(std::move(temp));
 
+}
+
+void getIntQueueBig(intQueue &queue)
+{
+    std::lock_guard<std::mutex> guard(g_pages_mutex);
+
+    auto p = queue.size();
+    std::cout << "queue size: " << p << std::endl;
+}
+
+void popIntQueueBig(intQueue &queue, intQueueSmall &queueSmall)
+{
+    std::lock_guard<std::mutex> guard(g_pages_mutex);
+
+    if (!queue.empty())
+    {
+        auto temp = queue.front();
+        queue.pop();
+    }
 }

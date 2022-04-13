@@ -10,6 +10,8 @@
 #include <queue>
 #include <stack>
 #include <unordered_map>
+#include <thread>
+#include <mutex>
 
 using namespace std;
 using charQueue = std::queue<std::unique_ptr<std::array<char, 100>>>;
@@ -26,5 +28,7 @@ using intDataSmall = std::array<int, 10>;
 
 void putCharQueueBig(charQueue &queue);
 void putIntQueueBig(intQueue &queue);
+void popIntQueueBig(intQueue &queue, intQueueSmall &queueSmall);
+void getIntQueueBig(intQueue &queue);
 
 #endif /* HEADER_H_ */

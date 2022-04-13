@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Formula.h"
+#include "header.h"
 
 struct PrintNum {
     void operator()(int i) const {
@@ -63,36 +64,20 @@ public:
 };
 
 int main() {
-    // std::unique_ptr<Foo> foo_ptr(make_Foo());
+    // auto pData = std::make_unique<intQueue>();
+    // auto pDataQueue = std::make_unique<intQueue>();
+    auto pDataQueue = intQueue();
+    // auto pDataQueue01 = new intQueue();
+    while (true) {
+        // putIntQueueBig(*pData);
+        auto putIntToQueue = std::thread(&putIntQueueBig, std::ref(pDataQueue));
+        auto getIntQueueSize = std::thread(&getIntQueueBig, std::ref(pDataQueue));
 
-    // NoexceptCopy noexceptCopy;
-    // NonNoexceptCopy nonNoexceptCopy;
-    
-    // std::cout << std::boolalpha << std::endl;
-    
-    // std::cout << "noexcept(copy(noexceptCopy)): " <<            // (4)
-    //               noexcept(copy(noexceptCopy)) << std::endl;
-
-    const int N = 1e3;
-    auto my_arr = std::make_unique<std::array<int, N>>();
-
-    for (int i = 0; i < N; i++) {
-        my_arr->at(i) = i;
+        putIntToQueue.join();
+        getIntQueueSize.join();
     }
-    // auto count = 10; //
-    // for (size_t i = 0; i < count; i++)
     // {
     //     /* code */
-    //     auto cch = 'a' + rand()%26;
-
-    //     std::cout << cch << std::endl;
     // }
-    for (size_t i = 0; i < N; i++)
-    {
-        /* code */
-        std::cout << my_arr->at(i) << std::endl;
-    }
     
-
-    return 0;
 }
