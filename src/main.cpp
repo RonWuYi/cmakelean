@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Formula.h"
-#include "gtest/gtest.h"
 
 struct PrintNum {
     void operator()(int i) const {
@@ -63,22 +62,37 @@ public:
     virtual void addFuel(double quantity) = 0;
 };
 
-class MockCar : public Car {
-public:
-    MOCK_METHOD(void, startEngine, (), (override));
-    MOCK_METHOD(int, getTrunkSize, (), (const, override));
-    MOCK_METHOD(void, addFuel, (double quantity), (override));
-};
-
 int main() {
-    std::unique_ptr<Foo> foo_ptr(make_Foo());
+    // std::unique_ptr<Foo> foo_ptr(make_Foo());
 
-    NoexceptCopy noexceptCopy;
-    NonNoexceptCopy nonNoexceptCopy;
+    // NoexceptCopy noexceptCopy;
+    // NonNoexceptCopy nonNoexceptCopy;
     
-    std::cout << std::boolalpha << std::endl;
+    // std::cout << std::boolalpha << std::endl;
     
-    std::cout << "noexcept(copy(noexceptCopy)): " <<            // (4)
-                  noexcept(copy(noexceptCopy)) << std::endl;
+    // std::cout << "noexcept(copy(noexceptCopy)): " <<            // (4)
+    //               noexcept(copy(noexceptCopy)) << std::endl;
+
+    const int N = 1e3;
+    auto my_arr = std::make_unique<std::array<int, N>>();
+
+    for (int i = 0; i < N; i++) {
+        my_arr->at(i) = i;
+    }
+    // auto count = 10; //
+    // for (size_t i = 0; i < count; i++)
+    // {
+    //     /* code */
+    //     auto cch = 'a' + rand()%26;
+
+    //     std::cout << cch << std::endl;
+    // }
+    for (size_t i = 0; i < N; i++)
+    {
+        /* code */
+        std::cout << my_arr->at(i) << std::endl;
+    }
+    
+
     return 0;
 }

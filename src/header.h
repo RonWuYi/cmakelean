@@ -1,0 +1,30 @@
+#ifndef HEADER_H_
+#define HEADER_H_
+
+#include <array>
+#include <iostream>
+#include <memory>
+#include <vector>
+#include <algorithm>
+#include <functional>
+#include <queue>
+#include <stack>
+#include <unordered_map>
+
+using namespace std;
+using charQueue = std::queue<std::unique_ptr<std::array<char, 100>>>;
+using charQueueSmall = std::queue<std::unique_ptr<std::array<char, 10>>>;
+
+using charData = std::unique_ptr<std::array<char, 100>>;
+using charDataSmall = std::unique_ptr<std::array<char, 10>>;
+
+using intQueue = std::queue<std::unique_ptr<std::array<int, 100>>>;
+using intQueueSmall = std::queue<std::unique_ptr<std::array<int, 10>>>;
+
+using intData = std::array<int, 100>;
+using intDataSmall = std::array<int, 10>;
+
+void putCharQueueBig(charQueue &queue);
+void putIntQueueBig(intQueue &queue);
+
+#endif /* HEADER_H_ */
