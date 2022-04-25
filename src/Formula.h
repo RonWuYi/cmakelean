@@ -10,6 +10,7 @@
 #include <functional>
 #include <random>
 #include <memory>
+#include <ranges>
 
 using namespace std;
 

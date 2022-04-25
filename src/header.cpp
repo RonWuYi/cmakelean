@@ -76,13 +76,13 @@ void getIntQueueBig(intQueue &queue)
     std::cout << "queue size: " << p << std::endl;
 }
 
-void popIntQueueBig(intQueue &queue, intQueueSmall &queueSmall)
-{
-    std::lock_guard<std::mutex> guard(g_pages_mutex);
+// void popIntQueueBig(intQueue &queue, intQueueSmall &queueSmall)
+// {
+//     std::lock_guard<std::mutex> guard(g_pages_mutex);
 
-    if (!queue.empty())
-    {
-        auto temp = queue.front();
-        queue.pop();
-    }
-}
+//     if (!queue.empty())
+//     {
+//         auto temp = queue.front();
+//         queue.pop();
+//     }
+// }

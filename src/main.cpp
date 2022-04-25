@@ -55,29 +55,62 @@ T copy(T const& src) noexcept(noexcept(T(src))){
     return src;
 }
 
-class Car {
-public:
-    virtual ~Car() = default;
-    virtual void startEngine() = 0;
-    virtual int getRunkSize() const = 0;
-    virtual void addFuel(double quantity) = 0;
+struct ParamType;
+
+template<typename T>
+void f(T& param);
+
+struct Product {
+    std::string name_;
+    double value_ {0.0};
 };
 
 int main() {
-    // auto pData = std::make_unique<intQueue>();
-    // auto pDataQueue = std::make_unique<intQueue>();
-    auto pDataQueue = intQueue();
-    // auto pDataQueue01 = new intQueue();
-    while (true) {
-        // putIntQueueBig(*pData);
-        auto putIntToQueue = std::thread(&putIntQueueBig, std::ref(pDataQueue));
-        auto getIntQueueSize = std::thread(&getIntQueueBig, std::ref(pDataQueue));
+        const std::vector<Product> prods {
+        { "box", 10.0 }, {"tv", 100.0}, {"none", -1.0}
+    };
 
-        putIntToQueue.join();
-        getIntQueueSize.join();
+    auto out = [](const auto& v) { std::cout << v << ", "; };
+
+    // standard version:
+    std::cout << "std::for_each: \n";
+    std::for_each(begin(prods), end(prods), [](const Product& p){
+        std::cout << p.name_  << ", " << p.value_ << '\n';
+    });
+
+    std::cout << "std::for_each only names reverse: \n";
+    std::for_each(rbegin(prods), rend(prods), [](const Product& p){
+        std::cout << p.name_  << '\n';
+    });
+
+    // ranges version:
+    std::cout << "std::ranges::for_each: \n";
+    std::ranges::for_each(prods, [](const Product& p) {
+        std::cout << p.name_  << ", " << p.value_ << '\n';
+    });
+
+    std::cout << "std::ranges::for_each only names in reverse: \n";
+    std::ranges::for_each(prods | std::views::reverse, 
+                          out, &Product::name_);
+    {
+        const std::vector<Product> prods {
+        { "box", 10.0 }, {"tv", 100.0}, {"none", -1.0},
+        { "car", 1000.0 }, {"toy", 40.0}, {"none", 0.0}
+    };
+    std::cout << "std::ranges::count_if: \n";
+    // standard version:    
+    auto res = std::count_if(begin(prods), end(prods), [](const Product& p){
+        return p.name_.starts_with("no");
+    });
+    std::cout << "std::count_if: " << res << '\n';
+
+    // ranges version:
+    res = std::ranges::count_if(prods, [](const Product& p) {
+        return p.name_.starts_with("no");
+    });
+    std::cout << "std::ranges::count_if: " << res << '\n';
+
+    res = std::ranges::count(prods, std::string{"none"}, &Product::name_);
+    std::cout << "std::ranges::count: " << res << '\n';
     }
-    // {
-    //     /* code */
-    // }
-    
 }
