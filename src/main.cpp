@@ -65,52 +65,23 @@ struct Product {
     double value_ {0.0};
 };
 
+using var_t = std::variant<int, long, double, std::string>;
+
+template<class> inline constexpr bool always_false_v = false;
+
+template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
+
+template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
+
 int main() {
-        const std::vector<Product> prods {
-        { "box", 10.0 }, {"tv", 100.0}, {"none", -1.0}
-    };
+    std::vector<var_t> vec = {10, 15l, 1.5, "hello"};
+    // std::cout << vec[0] << '\n';
+    // std::cout << std::get<0>(vec) << '\n';
+    for(auto& v : vec) {
+        std::visit([](auto&& arg) {
+            std::cout << arg << '\n';
+        }, v);
 
-    auto out = [](const auto& v) { std::cout << v << ", "; };
-
-    // standard version:
-    std::cout << "std::for_each: \n";
-    std::for_each(begin(prods), end(prods), [](const Product& p){
-        std::cout << p.name_  << ", " << p.value_ << '\n';
-    });
-
-    std::cout << "std::for_each only names reverse: \n";
-    std::for_each(rbegin(prods), rend(prods), [](const Product& p){
-        std::cout << p.name_  << '\n';
-    });
-
-    // ranges version:
-    std::cout << "std::ranges::for_each: \n";
-    std::ranges::for_each(prods, [](const Product& p) {
-        std::cout << p.name_  << ", " << p.value_ << '\n';
-    });
-
-    std::cout << "std::ranges::for_each only names in reverse: \n";
-    std::ranges::for_each(prods | std::views::reverse, 
-                          out, &Product::name_);
-    {
-        const std::vector<Product> prods {
-        { "box", 10.0 }, {"tv", 100.0}, {"none", -1.0},
-        { "car", 1000.0 }, {"toy", 40.0}, {"none", 0.0}
-    };
-    std::cout << "std::ranges::count_if: \n";
-    // standard version:    
-    auto res = std::count_if(begin(prods), end(prods), [](const Product& p){
-        return p.name_.starts_with("no");
-    });
-    std::cout << "std::count_if: " << res << '\n';
-
-    // ranges version:
-    res = std::ranges::count_if(prods, [](const Product& p) {
-        return p.name_.starts_with("no");
-    });
-    std::cout << "std::ranges::count_if: " << res << '\n';
-
-    res = std::ranges::count(prods, std::string{"none"}, &Product::name_);
-    std::cout << "std::ranges::count: " << res << '\n';
+        var_t w = std::visit([](auto&& arg) ->var_t {return arg + arg;}, v);
     }
 }
