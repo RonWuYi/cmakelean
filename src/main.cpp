@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 #include "Formula.h"
 #include "header.h"
 
@@ -73,15 +74,95 @@ template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
 
 template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
 
-int main() {
-    std::vector<var_t> vec = {10, 15l, 1.5, "hello"};
-    // std::cout << vec[0] << '\n';
-    // std::cout << std::get<0>(vec) << '\n';
-    for(auto& v : vec) {
-        std::visit([](auto&& arg) {
-            std::cout << arg << '\n';
-        }, v);
+constexpr bool IsPresent(std::string_view pattern, std::string_view str) {
+    auto it =std::search(str.begin(), str.end(), 
+                         std::default_searcher(pattern.begin(), pattern.end()));
 
-        var_t w = std::visit([](auto&& arg) ->var_t {return arg + arg;}, v);
+    return it != str.end();
+}
+
+void printSting(std::string&& str) {
+    std::cout << str << '\n';
+}
+
+struct President {
+    std::string name;
+    std::string country;
+    int year;
+
+    President(std::string p_name, std::string p_country, int p_year)
+        : name(std::move(p_name)), country(std::move(p_country)), year(std::move(p_year))
+    {
+        std::cout << "President constructor\n";
     }
+
+    President(President&& other)
+        : name(std::move(other.name)), country(std::move(other.country)), year((other.year))
+    {
+        std::cout << "President move constructor\n";
+    }
+    President& operator=(const President& other) = default;
+};
+
+using namespace std::chrono;
+using shared_ptr_t = std::shared_ptr<int>;
+
+void shared_ptr_receiver_by_value(shared_ptr_t ptr) {
+    (void)*ptr;
+}
+
+void shared_ptr_receiver_by_ref(const shared_ptr_t& ptr) {
+    (void)*ptr;
+}
+
+void test_copy_by_value(uint64_t n) {
+    auto ptr = std::make_shared<int>(100);
+    for (uint64_t i = 0u; i < n; ++i) {
+        shared_ptr_receiver_by_value(ptr);
+    }
+}
+
+void test_copy_by_ref(uint64_t n) {
+    auto ptr = std::make_shared<int>(100);
+    for (uint64_t i = 0u; i < n; ++i) {
+        shared_ptr_receiver_by_ref(ptr);
+    }
+}
+
+void test_shared_ptr(size_t n) {
+    std::cout <<__FUNCTION__ << '\n';
+    std::vector<shared_ptr<size_t>> v;
+    // STD::shared_ptr<>
+    v.reserve(n);
+    for (size_t i = 0u; i < n; ++i) {
+        v.push_back(std::shared_ptr<size_t>(new size_t(i)));
+    }
+}
+
+void test_make_shared(size_t n) {
+    std::cout <<__FUNCTION__ << '\n';
+    std::vector<std::shared_ptr<size_t>> v;
+    v.reserve(n);
+    for (size_t i = 0u; i < n; ++i) {
+        v.push_back(std::make_shared<size_t>(i));
+    }
+}
+
+int main(int argc, char const *argv[]) {
+    uint64_t n = (argc == 3) ? std::stoull(argv[2]) : 100;
+    auto t1 = high_resolution_clock::now();
+
+    if (atoi(argv[1]) == 1) {
+        test_copy_by_value(n);
+    }
+    else
+    {
+        test_copy_by_ref(n);
+    }
+
+    auto t2 = high_resolution_clock::now();
+
+    auto time_span = duration_cast<duration<int64_t, std::micro>>(t2 - t1);
+    std::cout << "It take me " << time_span.count() << " microseconds.\n";
+    return 0;
 }
