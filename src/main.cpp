@@ -148,21 +148,113 @@ void test_make_shared(size_t n) {
     }
 }
 
+class thread_guard {
+    std::thread& t;
+public:
+    explicit thread_guard(std::thread& t_) : t(t_) {}
+
+    ~thread_guard() {
+        if (t.joinable()) {
+            t.join();
+        }
+    }
+    thread_guard(thread_guard const&) = delete;
+    thread_guard& operator=(thread_guard const&) = delete;
+};
+
+struct func{
+    int y;
+    func(int x) : y(x) {}
+    void operator()() const {
+        std::cout << "Hello, world from func\n";
+    }
+};
+
+void do_something_in_current_thread() {
+    std::cout << "do something in current thread!\n";
+}
+
+void f() {
+    int some_local_state = 0;
+    func my_func(some_local_state);
+    std::thread t(my_func);
+    thread_guard g(t);
+
+    do_something_in_current_thread();
+
+}
+struct widget_id
+{
+    /* data */
+};
+
+struct widget_data
+{};
+
+void display_status()
+{
+    std::cout << "display_status\n";
+}
+
+void process_widget_data(widget_data data)
+{
+    std::cout << "process_widget_data\n";
+}
+
+struct W
+{
+    W(int&, int&) {}
+};
+
+struct X
+{
+    X(const int&, int&) {}
+};
+
+struct Y
+{
+    Y(int&, const int&) {}
+    /* data */
+};
+
+struct Z
+{
+    /* data */
+    Z(const int&, const int&) {}
+};
+
+template<typename T, typename A1, typename A2>
+T* factory(A1&& a1, A2&& a2)
+{
+    //return new T(std::forward<A1>(a1), std::forward<A2>(a2));
+    return new T(a1, a2);
+}
+
+class MemoryBlock{};
+
+void f(const MemoryBlock&) {
+    std::cout << "f(const MemoryBlock&)\n";
+}
+
+void f(MemoryBlock&&)
+{}
+
+void f123(const std::string &&value)
+{
+    std::cout << "from f()\n";
+    std::cout << "value is " << value << '\n';
+    std::cout << "thread id is "<< std::this_thread::get_id << '\n';
+}
+
 int main(int argc, char const *argv[]) {
-    uint64_t n = (argc == 3) ? std::stoull(argv[2]) : 100;
-    auto t1 = high_resolution_clock::now();
+    std::cout << std::thread::hardware_concurrency() << '\n';
+    std::cout << std::this_thread::get_id() << '\n';
 
-    if (atoi(argv[1]) == 1) {
-        test_copy_by_value(n);
-    }
-    else
-    {
-        test_copy_by_ref(n);
-    }
+    // std::thread t;
+    std::thread t(f123, "hello");
+    std::thread t2(f123, "world");
 
-    auto t2 = high_resolution_clock::now();
-
-    auto time_span = duration_cast<duration<int64_t, std::micro>>(t2 - t1);
-    std::cout << "It take me " << time_span.count() << " microseconds.\n";
+    t.join();
+    t2.join();
     return 0;
 }
