@@ -10,7 +10,7 @@
 #include <functional>
 #include <random>
 #include <memory>
-#include <ranges>
+// #include <ranges>
 
 using namespace std;
 
@@ -287,6 +287,11 @@ public:
 class SolutionduplicateZeros {
 public:
     static void duplicateZeros(vector<int>& arr);
+};
+
+class SolutionmySqrt {
+public:
+    static int mySqrt(int x);
 };
 
 #endif //EXAMPLEPROJECT_FORMULA_H

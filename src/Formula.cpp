@@ -183,22 +183,21 @@ void SolutionduplicateZeros::duplicateZeros(vector<int>& arr) {
         {
             arr[j] = 0;
         }
-        // {
-        //     if (--j < n)
-        //     {
-        //         arr[j] = 0;
-        //     }
-        // }
     }
-    // int i = 0;
-    // while (i < n) {
-    //     if (arr[i] == 0) {
-    //         arr.insert(arr.begin() + i, 0);
-    //         arr.erase(arr.begin() + i + 2);
-    //         i += 2;
-    //     }
-    //     else {
-    //         i++;
-    //     }
-    // }
+}
+
+int SolutionmySqrt::mySqrt(int x) {
+    long long s=0, e=x, ans, mid;
+    while (s<=e) {
+        mid=(s+e)/2;
+        if (mid*mid==x) return mid;
+        else if (mid*mid<x) {
+            s=mid+1;
+            ans=mid;
+        }
+        else {
+            e=mid-1;
+        }
+    }
+    return ans;
 }

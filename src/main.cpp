@@ -74,12 +74,12 @@ template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
 
 template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
 
-constexpr bool IsPresent(std::string_view pattern, std::string_view str) {
-    auto it =std::search(str.begin(), str.end(), 
-                         std::default_searcher(pattern.begin(), pattern.end()));
+// constexpr bool IsPresent(std::string_view pattern, std::string_view str) {
+//     auto it =std::search(str.begin(), str.end(), 
+//                          std::default_searcher(pattern.begin(), pattern.end()));
 
-    return it != str.end();
-}
+//     return it != str.end();
+// }
 
 void printSting(std::string&& str) {
     std::cout << str << '\n';
@@ -247,14 +247,5 @@ void f123(const std::string &&value)
 }
 
 int main(int argc, char const *argv[]) {
-    std::cout << std::thread::hardware_concurrency() << '\n';
-    std::cout << std::this_thread::get_id() << '\n';
-
-    // std::thread t;
-    std::thread t(f123, "hello");
-    std::thread t2(f123, "world");
-
-    t.join();
-    t2.join();
     return 0;
 }
