@@ -74,13 +74,6 @@ template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
 
 template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
 
-// constexpr bool IsPresent(std::string_view pattern, std::string_view str) {
-//     auto it =std::search(str.begin(), str.end(), 
-//                          std::default_searcher(pattern.begin(), pattern.end()));
-
-//     return it != str.end();
-// }
-
 void printSting(std::string&& str) {
     std::cout << str << '\n';
 }
@@ -132,7 +125,6 @@ void test_copy_by_ref(uint64_t n) {
 void test_shared_ptr(size_t n) {
     std::cout <<__FUNCTION__ << '\n';
     std::vector<shared_ptr<size_t>> v;
-    // STD::shared_ptr<>
     v.reserve(n);
     for (size_t i = 0u; i < n; ++i) {
         v.push_back(std::shared_ptr<size_t>(new size_t(i)));
@@ -246,6 +238,23 @@ void f123(const std::string &&value)
     std::cout << "thread id is "<< std::this_thread::get_id << '\n';
 }
 
-int main(int argc, char const *argv[]) {
-    return 0;
+class Box {
+public:
+    Box() = delete;
+    Box(int width, int length, int height)
+        : m_width(width), m_length(length), m_height(height){}
+
+    Box (const Box& other) = delete;
+private:
+    int m_width;
+    int m_length;
+    int m_height;
+
+};
+
+int main(){
+
+    Box box1(1, 2, 3);
+    Box box2{ 2, 3, 4 };
+    // Box box3; // C2512: no appropriate default constructor available
 }
