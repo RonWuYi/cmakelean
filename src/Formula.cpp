@@ -201,3 +201,62 @@ int SolutionmySqrt::mySqrt(int x) {
     }
     return ans;
 }
+
+std::vector<int> SolutionsearchRange::searchRange(std::vector<int>& nums, int target)
+{
+    int lower_bound = findBound(nums, target, true);
+
+    if (lower_bound == -1)
+    {
+        std::vector<int> v{-1, -1};
+        return v;
+    }
+
+    int upper_bound = findBound(nums, target, false);
+
+    std::vector<int> v{lower_bound, upper_bound};
+    return v;
+
+}
+
+int SolutionsearchRange::findBound(std::vector<int>& nums, int target, bool isFirst)
+{
+    int N = nums.size();
+
+    int begin = 0;
+    int end = N - 1;
+
+    while (begin <= end)
+    {
+        int mid = (begin + end) / 2;
+
+        if (nums[mid] == target)
+        {
+            if (isFirst)
+            {
+                if (mid == begin || nums[mid-1] < target)
+                {
+                    return mid;
+                }
+                end = mid -1;
+            }
+            else
+            {
+                if (mid == end || nums[mid +1] > target)
+                {
+                    return mid;
+                }
+                begin = mid + 1;
+            }
+        }
+        else if (nums[mid] > target)
+            end = mid -1;
+        else
+            begin = mid + 1;
+    }
+
+    return -1;
+    
+
+    
+}

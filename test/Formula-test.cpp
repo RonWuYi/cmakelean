@@ -27,3 +27,14 @@ TEST(mySqrt, test4) {
     EXPECT_EQ(SolutionmySqrt::mySqrt(1), 1);
     EXPECT_EQ(SolutionmySqrt::mySqrt(9), 3);
 }
+
+TEST(searchRange, test5)
+{
+    std::vector<int> v1 {5,7,7,8,8,10};
+    std::vector<int> result{3, 4};
+    std::vector<int> result01{-1, -1};
+    std::vector<int> empty{};
+    EXPECT_EQ(SolutionsearchRange::searchRange(v1, 8), result);
+    EXPECT_EQ(SolutionsearchRange::searchRange(v1, 6), result01);
+    EXPECT_EQ(SolutionsearchRange::searchRange(empty, 0), result01);
+}

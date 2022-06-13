@@ -294,4 +294,11 @@ public:
     static int mySqrt(int x);
 };
 
+class SolutionsearchRange {
+public:
+    static std::vector<int> searchRange(std::vector<int>& nums, int target);
+private:
+    static int findBound(std::vector<int>& nums, int target, bool isFirst);
+};
+
 #endif //EXAMPLEPROJECT_FORMULA_H
