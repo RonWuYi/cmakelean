@@ -222,10 +222,8 @@ std::vector<int> SolutionsearchRange::searchRange(std::vector<int>& nums, int ta
 int SolutionsearchRange::findBound(std::vector<int>& nums, int target, bool isFirst)
 {
     int N = nums.size();
-
     int begin = 0;
     int end = N - 1;
-
     while (begin <= end)
     {
         int mid = (begin + end) / 2;
@@ -254,9 +252,23 @@ int SolutionsearchRange::findBound(std::vector<int>& nums, int target, bool isFi
         else
             begin = mid + 1;
     }
-
     return -1;
-    
+}
 
-    
+bool SolutionareNumbersAscending::areNumbersAscending(string s)
+{
+    int prev = 0, cur = 0;
+    for (auto ch: s)
+    {
+        if (isdigit(ch))
+            cur = cur * 10 + (ch - '0');
+        else if (cur != 0)
+        {
+            if (prev >= cur)
+                return false;
+            prev = cur;
+            cur = 0;
+        }
+    }
+    return cur == 0 || prev < cur;
 }

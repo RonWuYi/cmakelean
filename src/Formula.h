@@ -301,4 +301,9 @@ private:
     static int findBound(std::vector<int>& nums, int target, bool isFirst);
 };
 
+class SolutionareNumbersAscending{
+public:
+    bool areNumbersAscending(string s);
+};
+
 #endif //EXAMPLEPROJECT_FORMULA_H

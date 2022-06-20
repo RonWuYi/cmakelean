@@ -38,3 +38,9 @@ TEST(searchRange, test5)
     EXPECT_EQ(SolutionsearchRange::searchRange(v1, 6), result01);
     EXPECT_EQ(SolutionsearchRange::searchRange(empty, 0), result01);
 }
+
+TEST(areNumbersAscending, test6)
+{
+    SolutionareNumbersAscending temp{};
+    EXPECT_EQ(temp.areNumbersAscending("hello world 5 x 5"), false);
+}
