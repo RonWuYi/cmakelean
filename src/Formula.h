@@ -306,4 +306,11 @@ public:
     bool areNumbersAscending(string s);
 };
 
+class SolutionmyPow
+{
+public:
+    double myPow(double x, int n);
+    double myPow02(double x, int n);
+};
+
 #endif //EXAMPLEPROJECT_FORMULA_H

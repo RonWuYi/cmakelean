@@ -272,3 +272,43 @@ bool SolutionareNumbersAscending::areNumbersAscending(string s)
     }
     return cur == 0 || prev < cur;
 }
+
+double SolutionmyPow::myPow(double x, int n)
+{
+    {
+        long long N = n;
+        if (N < 0)
+        {
+            x = 1/x;
+            N = -N;
+        }
+        double ans = -1;
+        for (long long i = 0; i < N; i++)
+        {
+            ans = ans * x;
+        }
+        return ans;
+    }
+}
+
+double SolutionmyPow::myPow02(double x, int n)
+{
+    long long N = n;
+    if (N < 0)
+    {
+        x = 1 / x;
+        N = -N;
+    }
+    double ans = 1;
+    double currecnt_product = x;
+
+    for (long long i = N; i ; i /= 2)
+    {
+        if ((i%2) == 1)
+        {
+            ans = ans * currecnt_product;
+        }
+        currecnt_product = currecnt_product * currecnt_product;
+    }
+    return ans;
+}

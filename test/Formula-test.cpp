@@ -44,3 +44,14 @@ TEST(areNumbersAscending, test6)
     SolutionareNumbersAscending temp{};
     EXPECT_EQ(temp.areNumbersAscending("hello world 5 x 5"), false);
 }
+
+TEST(myPow, test7)
+{
+    SolutionmyPow p{};
+    // EXPECT_EQ(p.myPow(2.00000, 10), 1024.00000);
+    // EXPECT_EQ(p.myPow(2.10000, 3), 9.26100);
+    // EXPECT_EQ(p.myPow(2.00000, -2), 0.25000);
+    EXPECT_EQ(p.myPow02(2.00000, 10), 1024.00000);
+    // EXPECT_EQ(p.myPow02(2.10000, 3), 9.26100);
+    EXPECT_EQ(p.myPow02(2.00000, -2), 0.25000);
+}
