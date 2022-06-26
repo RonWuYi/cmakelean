@@ -312,3 +312,38 @@ double SolutionmyPow::myPow02(double x, int n)
     }
     return ans;
 }
+
+int SolutionlengthOfLongestSubstring::lengthOfLongestSubstring(string s) {
+    int n = s.length();
+    int res = 0;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            if (checkRepetition(s, i, j))
+            {
+                res = max(res, j - i + 1);
+            }
+        }
+    }
+    return res;
+}
+
+bool SolutionlengthOfLongestSubstring::checkRepetition(string& s, int start, int end) {
+    vector<int> chars(128);
+    for (int i = start; i <= end; i++)
+    {
+        char c = s[i];
+        chars[c]++;
+        if (chars[c] > 1)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+// int SolutionsearchInSortedArrayOfUnknownSize::search(ArrayReader& reader, int target)
+// {
+//     if (reader.get(0) == target) return 0;
+// }

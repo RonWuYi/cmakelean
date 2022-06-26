@@ -313,4 +313,23 @@ public:
     double myPow02(double x, int n);
 };
 
+class SolutionlengthOfLongestSubstring
+{
+public:
+    int lengthOfLongestSubstring(string s); 
+    bool checkRepetition(string& s, int start, int end);
+};
+
+// class ArrayReader
+// {
+// public:
+//     int get(int index);
+// };
+
+// class SolutionsearchInSortedArrayOfUnknownSize
+// {
+// public:
+//     int search(ArrayReader& reader, int target);
+// };
+
 #endif //EXAMPLEPROJECT_FORMULA_H

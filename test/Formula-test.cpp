@@ -48,10 +48,19 @@ TEST(areNumbersAscending, test6)
 TEST(myPow, test7)
 {
     SolutionmyPow p{};
-    // EXPECT_EQ(p.myPow(2.00000, 10), 1024.00000);
-    // EXPECT_EQ(p.myPow(2.10000, 3), 9.26100);
-    // EXPECT_EQ(p.myPow(2.00000, -2), 0.25000);
     EXPECT_EQ(p.myPow02(2.00000, 10), 1024.00000);
-    // EXPECT_EQ(p.myPow02(2.10000, 3), 9.26100);
     EXPECT_EQ(p.myPow02(2.00000, -2), 0.25000);
+}
+
+TEST(SolutionlengthOfLongestSubstring, test8)
+{
+    SolutionlengthOfLongestSubstring s{};
+    std::string s1{"abcabcbb"};
+    std::string s2{"dvdf"};
+    std::string s3{"anviaj"};
+    std::string s4{"asjrgapa"};
+    EXPECT_EQ(s.lengthOfLongestSubstring(s1), 3);
+    EXPECT_EQ(s.lengthOfLongestSubstring(s2), 3);
+    EXPECT_EQ(s.lengthOfLongestSubstring(s3), 5);
+    EXPECT_EQ(s.lengthOfLongestSubstring(s4), 6);
 }

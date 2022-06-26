@@ -252,9 +252,23 @@ private:
 
 };
 
+void Endianness()
+{
+    int a = 0x12345678;
+    if (*((char*)&a) == 0x12)
+    {
+        std::cout << "Big Endian" << std::endl;
+    }
+    else
+    {
+        std::cout << "Little Endian" << std::endl;
+    }
+}
+
 int main(){
 
     Box box1(1, 2, 3);
     Box box2{ 2, 3, 4 };
+    Endianness();
     // Box box3; // C2512: no appropriate default constructor available
 }
