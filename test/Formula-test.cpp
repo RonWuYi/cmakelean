@@ -64,3 +64,13 @@ TEST(SolutionlengthOfLongestSubstring, test8)
     EXPECT_EQ(s.lengthOfLongestSubstring(s3), 5);
     EXPECT_EQ(s.lengthOfLongestSubstring(s4), 6);
 }
+
+TEST(SolutionisRobotBounded, test9)
+{
+    SolutionisRobotBounded s{};
+    EXPECT_EQ(s.isRobtBounded("GG"), false);
+    EXPECT_EQ(s.isRobtBounded("GGLLGG"), true);
+    EXPECT_EQ(s.isRobtBounded("GGRRGG"), true);
+    EXPECT_EQ(s.isRobtBounded("GL"), true);
+    EXPECT_EQ(s.isRobtBounded("GR"), true);
+}

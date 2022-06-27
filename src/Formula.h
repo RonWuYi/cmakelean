@@ -332,4 +332,17 @@ public:
 //     int search(ArrayReader& reader, int target);
 // };
 
+class SolutionisRobotBounded
+{
+public:
+    int dx[4]{0, 0, -1, 1};
+    int dy[4]{1, -1, 0, 0};
+
+    int turnLeft(int d);
+    int turnRight(int d);
+
+    bool isRobtBounded(string instructions);
+};
+
+
 #endif //EXAMPLEPROJECT_FORMULA_H
