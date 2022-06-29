@@ -74,3 +74,17 @@ TEST(SolutionisRobotBounded, test9)
     EXPECT_EQ(s.isRobtBounded("GL"), true);
     EXPECT_EQ(s.isRobtBounded("GR"), true);
 }
+
+TEST(SolutionfindDuplicate, test10)
+{
+    SolutionfindDuplicate s{};
+    std::vector<int> v1{1,3,4,2,2};
+    std::vector<int> v2{3,1,3,4,2};
+    EXPECT_EQ(s.findDuplicate(v1), 2);
+    EXPECT_EQ(s.findDuplicate(v2), 3);    
+    EXPECT_EQ(s.findDuplicate02(v1), 2);
+    EXPECT_EQ(s.findDuplicate02(v2), 3);
+    EXPECT_EQ(s.findDuplicate03(v1), 2);
+    EXPECT_EQ(s.findDuplicate03(v2), 3);
+ 
+}

@@ -10,6 +10,7 @@
 #include <functional>
 #include <random>
 #include <memory>
+#include <unordered_set>
 // #include <ranges>
 
 using namespace std;
@@ -342,6 +343,16 @@ public:
     int turnRight(int d);
 
     bool isRobtBounded(string instructions);
+};
+
+class SolutionfindDuplicate
+{
+public:
+    int findDuplicate(vector<int>& nums);
+    int findDuplicate02(vector<int>& nums);
+    int findDuplicate03(vector<int>& nums);
+
+    int store(vector<int>& nums, int cur);
 };
 
 

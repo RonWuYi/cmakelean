@@ -379,3 +379,36 @@ int SolutionisRobotBounded::turnRight(int d) {
     if (d == 1) return 2;
     return 0; 
 }
+
+int SolutionfindDuplicate::findDuplicate(vector<int>& nums) {
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] == nums[i+1]) {
+            return nums[i];
+        }
+    }
+    return -1;
+}
+
+int SolutionfindDuplicate::findDuplicate02(vector<int>& nums) {
+    std::unordered_set<int> seen;
+    for (auto& num: nums) {
+        if (seen.count(num))
+            return num;
+        seen.insert(num);
+    }
+    return -1;
+}
+
+int SolutionfindDuplicate::findDuplicate03(vector<int>& nums) {
+    return store(nums, 0);
+    
+}
+
+int SolutionfindDuplicate::store(vector<int>& nums, int cur) {
+    if (cur == nums[cur])
+        return cur;
+    int nxt = nums[cur];
+    nums[cur] = cur;
+    return store(nums, nxt);
+}
