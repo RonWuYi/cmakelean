@@ -355,5 +355,23 @@ public:
     int store(vector<int>& nums, int cur);
 };
 
+class SolutionlongestPalindrome
+{
+public:
+    string longestPalindrome(string s);
+    int longestPalindrome01(string s);
+    string get_max_len(string s, int left, int right);
+
+    int longestPalindrome02(string s);
+};
+
+// class SolutionlongestPalindrome
+// {
+// public:
+//     string longestPalindrome(string s);
+//     int longestPalindrome01(string s);
+//     string get_max_len(string s, int left, int right);
+
+// };
 
 #endif //EXAMPLEPROJECT_FORMULA_H

@@ -412,3 +412,52 @@ int SolutionfindDuplicate::store(vector<int>& nums, int cur) {
     nums[cur] = cur;
     return store(nums, nxt);
 }
+
+string SolutionlongestPalindrome::get_max_len(string s, int left, int right) {
+    
+    while (left >= 0 and right <= s.length() and s[left] == s[right]) {
+        left -= 1;
+        right += 1;
+    }
+    std:string temp = s.substr(left, right-left);
+    return temp;
+}
+
+string SolutionlongestPalindrome::longestPalindrome(string s) {
+    
+    std::string res{};
+    for (auto i = 0; i < s.length(); i++)
+    {
+        auto temp = get_max_len(s, i, i);
+        if (temp.length() > res.length())
+            res = temp;
+        auto tmp = get_max_len(s, i, i+1);
+        if (tmp.length() > res.length())
+            res = tmp;
+    }
+    return res;
+}
+
+int SolutionlongestPalindrome::longestPalindrome01(string s) {
+    
+    std::string res{};
+    for (auto i = 0; i < s.length(); i++)
+    {
+        std::string temp = get_max_len(s, i, i);
+        if (temp.length() > res.length())
+            res = temp;
+        std::string tmp = get_max_len(s, i, i+1);
+        if (tmp.length() > res.length())
+            res = tmp;
+    }
+    return res.length();
+}
+
+int SolutionlongestPalindrome::longestPalindrome02(string s) {
+    int odds = 0;
+    for (char c='A'; c<='z'; c++)
+    {
+        odds += std::count(s.begin(), s.end(), c) & 1;
+    }
+    return s.size() - odds + (odds > 0);
+}

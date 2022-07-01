@@ -265,10 +265,56 @@ void Endianness()
     }
 }
 
+struct signType;
+
+// class currency
+// {
+// public:
+//     currency(signType theSign = plus,)
+//     ~currency() {}
+//     void setValue(signType, unsigned long, unsigned int);
+//     void setValue(double);
+//     signType getSign() const {return sign;}
+
+//     friend std::ostream& operator<<(std::ostream&, const currency&);
+// private:
+//     signType sign;
+//     unsigned long dollars;
+//     unsigned int cents;
+// };
+
+class illegalParameterValue
+{
+public:
+    illegalParameterValue();
+    illegalParameterValue(char* theMessage)
+    {
+        message = theMessage;
+    }
+    void outputMessage() 
+    {
+        std::cout << message << std::endl;
+    }
+private:
+    std::string message;
+
+};
+
+
 int main(){
 
-    Box box1(1, 2, 3);
-    Box box2{ 2, 3, 4 };
-    Endianness();
+    // Box box1(1, 2, 3);
+    // Box box2{ 2, 3, 4 };
+    // Endianness();
+
+    // SolutionlongestPalindrome s{};
+    // std::string str{"abccccdd"};
+    // std::cout << s.longestPalindrome01(str) << std::endl;
+
     // Box box3; // C2512: no appropriate default constructor available
+    std::string a = "0123456789abcdefghij";
+    std::string sub1 = a.substr(10);
+    std::string sub2 = a.substr(5, 3);
+    std::cout << sub1 << std::endl;
+    std::cout << sub2 << std::endl;
 }

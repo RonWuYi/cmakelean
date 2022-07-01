@@ -86,5 +86,11 @@ TEST(SolutionfindDuplicate, test10)
     EXPECT_EQ(s.findDuplicate02(v2), 3);
     EXPECT_EQ(s.findDuplicate03(v1), 2);
     EXPECT_EQ(s.findDuplicate03(v2), 3);
- 
+}
+
+TEST(SolutionlongestPalindrome, test11)
+{
+    SolutionlongestPalindrome s{};
+    std::string str{"abccccdd"};
+    EXPECT_EQ(s.longestPalindrome02(str), 7);
 }
