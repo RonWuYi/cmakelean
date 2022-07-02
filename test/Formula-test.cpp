@@ -103,3 +103,15 @@ TEST(SolutionrunningSum, test12)
     EXPECT_EQ(s.runningSum01(v1), v2);
     // EXPECT_EQ(s.runningSum02(v1), v2);
 }
+
+TEST(SolutionclimbStairs, test12)
+{
+    SolutionclimbStairs s{};
+    EXPECT_EQ(s.climbStairs02(2), 2);
+    EXPECT_EQ(s.climbStairs02(1), 1);    
+    EXPECT_EQ(s.climbStairs02(10), 89);
+    EXPECT_EQ(s.climbStairs03(2), 2);
+    EXPECT_EQ(s.climbStairs03(1), 1);    
+    EXPECT_EQ(s.climbStairs03(10), 89);
+
+}

@@ -491,3 +491,68 @@ vector<int> SolutionrunningSum::runningSum01(vector<int>& nums) {
 //     }
 //     return result;
 // }
+
+int SolutionclimbStairs::climbStairs(int n) {
+    vector<int> steps(n,0);
+    steps[0] = 1;
+    steps[1] = 2;
+
+    for(int i=2; i<n; i++)
+    {
+        steps[i] = steps[i-1] + steps[i-2];
+    }
+
+    return steps[n-1];
+}
+
+int SolutionclimbStairs::climbStairs02(int n) {
+    
+    long long a = 1, b = 1;
+    while (n--) {
+        a = (b += a) -a;
+    }
+    return a;
+}
+
+
+int SolutionclimbStairs::climbStairs03(int n) {
+    if (cache.find(n) != cache.end())
+        return cache[n];
+    int result = 0;
+    if (n ==  0) result = 0;
+    else if (n == 1) result = 1;
+    else if (n == 2) result = 2;
+    else {
+        result = climbStairs03(n-1) + climbStairs03(n-2);
+    }
+    cache[n] = result;
+    return result;
+}
+
+/*
+You are given an integer array cost where cost[i] is the cost of ith step on a staircase. Once you pay the cost, you can either climb one or two steps.
+
+You can either start from the step with index 0, or the step with index 1.
+
+Return the minimum cost to reach the top of the floor.
+*/
+int SolutionminCostClimbingStairs::minCostClimbingStairs(vector<int>& cost) {
+    std::unordered_map<int, int> cache;
+    if (cache.find(cost.size()) != cache.end())
+        return cache[cost.size()];
+
+    int result = 0;
+    if (cost.size() == 0) result = 0;
+    else if (cost.size() == 1) result = cost[1];
+    else if (cost.size() == 2) result = min(cost[1],cost[2]);
+    else {
+        result = cost[0] + min(cost[1], cost[2]);
+        for (int i = 3; i < cost.size(); i++)
+        {
+            result = cost[i] + min(result, cache[i-1] + cache[i-2]);
+        }
+    }
+    cache[cost.size()] = result;
+    return result;
+    
+}

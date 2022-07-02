@@ -10,6 +10,7 @@
 #include <random>
 #include <memory>
 #include <unordered_set>
+#include <unordered_map>
 // #include <ranges>
 
 using namespace std;
@@ -369,4 +370,19 @@ class SolutionrunningSum
 public:
     vector<int> runningSum01(vector<int>& nums);
     // vector<int> runningSum02(vector<int>& nums);
+};
+
+class SolutionclimbStairs
+{
+public:
+    unordered_map<int, int> cache;
+    int climbStairs(int n);
+    int climbStairs02(int n);
+    int climbStairs03(int n);
+};
+
+class SolutionminCostClimbingStairs
+{
+public:
+    int minCostClimbingStairs(vector<int>& cost);
 };
