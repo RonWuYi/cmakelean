@@ -94,3 +94,12 @@ TEST(SolutionlongestPalindrome, test11)
     std::string str{"abccccdd"};
     EXPECT_EQ(s.longestPalindrome02(str), 7);
 }
+
+TEST(SolutionrunningSum, test12)
+{
+    SolutionrunningSum s{};
+    std::vector<int> v1{1,2,3,4};
+    std::vector<int> v2{1,3,6,10};
+    EXPECT_EQ(s.runningSum01(v1), v2);
+    // EXPECT_EQ(s.runningSum02(v1), v2);
+}

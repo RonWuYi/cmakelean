@@ -1,5 +1,4 @@
-#ifndef HEADER_H_
-#define HEADER_H_
+#pragma once
 
 #include <array>
 #include <iostream>
@@ -35,5 +34,3 @@ void putCharQueueBig(charQueue &queue);
 void putIntQueueBig(intQueue &queue);
 void popIntQueueBig(intQueue &queue, intQueueSmall &queueSmall);
 void getIntQueueBig(intQueue &queue);
-
-#endif /* HEADER_H_ */

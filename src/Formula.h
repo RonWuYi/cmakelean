@@ -1,5 +1,4 @@
-#ifndef EXAMPLEPROJECT_FORMULA_H
-#define EXAMPLEPROJECT_FORMULA_H
+#pragma once
 
 #include <vector>
 #include <string>
@@ -365,13 +364,9 @@ public:
     int longestPalindrome02(string s);
 };
 
-// class SolutionlongestPalindrome
-// {
-// public:
-//     string longestPalindrome(string s);
-//     int longestPalindrome01(string s);
-//     string get_max_len(string s, int left, int right);
-
-// };
-
-#endif //EXAMPLEPROJECT_FORMULA_H
+class SolutionrunningSum
+{
+public:
+    vector<int> runningSum01(vector<int>& nums);
+    // vector<int> runningSum02(vector<int>& nums);
+};

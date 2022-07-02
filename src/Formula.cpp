@@ -461,3 +461,33 @@ int SolutionlongestPalindrome::longestPalindrome02(string s) {
     }
     return s.size() - odds + (odds > 0);
 }
+
+vector<int> SolutionrunningSum::runningSum01(vector<int>& nums) {
+    vector<int> result {};
+    for (auto i = 0; i < nums.size(); i++)
+    {
+        if (i==0)
+        {
+            result.push_back(nums[i]);
+        }
+        else {
+        result.push_back(result[i-1] + nums[i]);
+        }
+    }
+    return result;
+}
+
+// vector<int> SolutionrunningSum::runningSum02(vector<int>& nums) {
+//     vector<int> result {};
+//     for (auto i = 0; i < nums.size(); i++)
+//     {
+//         if (i==0)
+//         {
+//             result[0] = nums[i];
+//         }
+//         else {
+//             result[i] = result[i-1] + nums[i];
+//         }
+//     }
+//     return result;
+// }
