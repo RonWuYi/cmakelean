@@ -91,11 +91,11 @@ int factorial(int n) {
 	else return n * factorial(n - 1);
 }
 
-template <class T>
-T mysum(T a[], int n) {
-	T theSum = 0;
-	for (int i = 0; i < n; i++) {
-		theSum += a[i];
-	}
-	return theSum;
-}
+// template <class T>
+// T mysum(T a[], int n) {
+// 	T theSum = 0;
+// 	for (int i = 0; i < n; i++) {
+// 		theSum += a[i];
+// 	}
+// 	return theSum;
+// }

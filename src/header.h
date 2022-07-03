@@ -37,5 +37,5 @@ void getIntQueueBig(intQueue &queue);
 
 int factorial(int n);
 
-template <class T>
-T mysum(T a[], int n);
+// template <class T>
+// T mysum(T a[], int n);
