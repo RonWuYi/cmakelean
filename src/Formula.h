@@ -72,9 +72,9 @@ struct Node {
     }
 };
 
-class MyCircularQueue {
+class MyCircularQueue01 {
 public:
-    MyCircularQueue(int k) {
+    MyCircularQueue01(int k) {
         capacity = k;
         count = 0;
         pHead = pTail = nullptr;
