@@ -113,5 +113,11 @@ TEST(SolutionclimbStairs, test12)
     EXPECT_EQ(s.climbStairs03(2), 2);
     EXPECT_EQ(s.climbStairs03(1), 1);    
     EXPECT_EQ(s.climbStairs03(10), 89);
+}
 
+TEST(SolutionmaxArea, test12)
+{
+    SolutionmaxArea s{};
+    std::vector<int> v1{1,8,6,2,5,4,8,3,7};
+    EXPECT_EQ(s.maxArea(v1), 49);
 }

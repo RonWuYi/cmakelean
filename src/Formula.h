@@ -386,3 +386,8 @@ class SolutionminCostClimbingStairs
 public:
     int minCostClimbingStairs(vector<int>& cost);
 };
+
+class SolutionmaxArea {
+public:
+    int maxArea(vector<int>& height);
+};
