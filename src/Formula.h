@@ -391,3 +391,9 @@ class SolutionmaxArea {
 public:
     int maxArea(vector<int>& height);
 };
+
+class SolutionMovingAverage {
+public:
+    SolutionMovingAverage(int size);
+    double next(int val);
+};
