@@ -318,9 +318,48 @@ int main(){
     std::cout << sub1 << std::endl;
     std::cout << sub2 << std::endl;
     std::cout << factorial(12) << std::endl;
-    // int* ab = new int[4] {1, 2, 3, 4};
+    int* ab = new int[4] {1, 2, 3, 4};
+    int* abc = new int[6] {1, 2, 3, 4, 3, 3};
 
     // std::cout << mysum(ab, 4) << std::endl;
     // delete[] ab;
+    std::cout << product(ab, 3) << std::endl;
+
+    permutations01(ab, 0, 3);
+    std::cout << "product01\n";
+    std::cout << product01(ab, 1, 3) << std::endl;
+    std::cout << product01(ab, 1, 2) << std::endl;
+
+    std::cout << "count\n";
+    std::cout << count(abc, abc+6, 3) << std::endl;
+    std::cout << "fill" << std::endl; 
+    fill(abc, abc+6, 99);
+    for (size_t i = 0; i <= 6; i++)
+    {
+        /* code */
+        std::cout << abc[i] << " "; 
+    }
+    std::cout << "inner_product\n";
+    std::cout << inner_product(ab, ab+3, abc, 0) << std::endl;
+    
+    std::cout << "selectionSort\n";
+    // selectionSort(abc, 6);
+    for (int i = 0; i <= 6; i++)
+    {
+        /* code */
+        std::cout << abc[i] << " "; 
+    }
+    std::cout << std::endl;
+    MyQueue q;
+    q.enQueue(5);
+    q.enQueue(3);
+    if (!q.isEmpty())
+    {
+        std::cout << "not empty\n";
+        std::cout << q.Front() << std::endl;
+    }
+    
+    delete[] ab;
+    delete[] abc;
 
 }
