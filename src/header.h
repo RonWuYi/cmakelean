@@ -34,3 +34,5 @@ void putCharQueueBig(charQueue &queue);
 void putIntQueueBig(intQueue &queue);
 void popIntQueueBig(intQueue &queue, intQueueSmall &queueSmall);
 void getIntQueueBig(intQueue &queue);
+
+int factorial(int n);

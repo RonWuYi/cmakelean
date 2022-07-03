@@ -317,4 +317,5 @@ int main(){
     std::string sub2 = a.substr(5, 3);
     std::cout << sub1 << std::endl;
     std::cout << sub2 << std::endl;
+    std::cout << factorial(12) << std::endl;
 }
