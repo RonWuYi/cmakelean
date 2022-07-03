@@ -90,3 +90,12 @@ int factorial(int n) {
 	if (n < 1) return 1;
 	else return n * factorial(n - 1);
 }
+
+template <class T>
+T mysum(T a[], int n) {
+	T theSum = 0;
+	for (int i = 0; i < n; i++) {
+		theSum += a[i];
+	}
+	return theSum;
+}
