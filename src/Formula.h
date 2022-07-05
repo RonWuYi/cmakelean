@@ -391,3 +391,35 @@ class SolutionmaxArea {
 public:
     int maxArea(vector<int>& height);
 };
+
+class SolutionisBalanced {
+public:
+    bool isBalanced(TreeNode* root) {
+        if (root == nullptr) return true;
+
+        return abs(height(root->left) - height(root->right)) < 2 &&
+            isBalanced(root->right) && isBalanced(root->left);
+    }
+
+private:
+    int height(TreeNode *root) {
+        if (root == nullptr) return -1;
+        return 1 + max(height(root->left), height(root->right));
+    }
+};
+
+class SolutionmaxProfit {
+public:
+    int maxProfit(vector<int>& prices) {
+        int min_price = INT_MAX;
+        int max_profix = 0;
+
+        for (int i = 0; i < prices.size(); i++) {
+            if (prices[i] < min_price)
+                min_price = prices[i];
+            else if ((prices[i] - min_price) > max_profix)
+                max_profix = prices[i] - min_price;
+        }
+        return max_profix;
+    }
+};
