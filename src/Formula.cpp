@@ -658,6 +658,4 @@ vector<int> SolutiondailyTemperatures::dailyTemperatures02(vector<int>& temperat
             
         }
     }
-    
-
 }

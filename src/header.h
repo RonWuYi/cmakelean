@@ -19,6 +19,7 @@
 #include <variant>
 #include <utility>
 #include <list>
+#include <bitset>
 
 using namespace std;
 using charQueue = std::queue<std::unique_ptr<std::array<char, 100>>>;
@@ -226,4 +227,62 @@ class SolutionwallsAndGatesNew : public SolutionwallsAndGates
 {
 public:
     virtual void wallsAndGates(vector<vector<int>>& rooms);
+};
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+
+        int max = 0;
+        int i = 0;
+        int j = height.size() - 1;
+        while (i < j)
+        {
+            int area = (j - i) * min(height[i], height[j]);
+            if (area > max)
+            {
+                max = area;
+            }
+            if (height[i] < height[j])
+            {
+                i++;
+            }
+            else
+            {
+                j--;
+            }
+        }
+        return max;
+        
+    }
+};
+
+class SolutionfindComplement {
+public:
+    int findComplement(int num) {
+        std::string binary = std::bitset<32>(num).to_string();
+        std::string sub;
+
+        for (auto i = 0; i < binary.size(); i++)
+        {
+            if (binary[i] == '1')
+            {
+                sub = binary.substr(i);
+                break;
+            }
+        }
+
+        for (auto i = 0; i < sub.size(); i++)
+        {
+            if (sub[i] == '1')
+                sub[i] = '0';
+            else
+                sub[i] = '1';
+        }
+
+        auto num2 = stoi(sub, nullptr, 2);
+
+
+        return num2;
+    }
 };
