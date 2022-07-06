@@ -571,3 +571,93 @@ int SolutionmaxArea::maxArea(vector<int>& height) {
     }
     return max;
 }
+
+void SolutionnumIslands::dfs(vector<vector<char>>& grid, int r, int c) {
+    int nr = grid.size();
+    int nc = grid[0].size();
+
+    grid[r][c] = '0';
+    if (r - 1 >= 0 && grid[r - 1][c] == '1') dfs(grid, r - 1, c);
+    if (r + 1 < nr && grid[r + 1][c] == '1') dfs(grid, r + 1, c);
+    if (c - 1 >= 0 && grid[r][c - 1] == '1') dfs(grid, r, c - 1);
+    if (c + 1 < nc && grid[r][c + 1] == '1') dfs(grid, r, c + 1);
+}
+
+int SolutionnumIslands::numIslands(vector<vector<char>>& grid) {
+    int nr = grid.size();
+    if (!nr) return 0;
+    int nc = grid[0].size();
+
+    int num_islands = 0;
+    for (int r = 0; r < nr; ++r) {
+        for (int c = 0; c < nc; ++c) {
+            if (grid[r][c] == '1') {
+                ++num_islands;
+                dfs(grid, r, c);
+            }
+        }
+    }
+    return num_islands;
+}
+
+vector<int> SolutiondailyTemperatures::dailyTemperatures(vector<int>& temperatures) {
+    vector<int> result;
+    int counter = 0;
+
+    for (int i = 0; i < temperatures.size(); ++i) {
+        int flag = 0;
+        for (int j=i+1; j < temperatures.size(); ++j) {
+            if (temperatures[i] < temperatures[j]) {
+                flag += 1;
+                result.push_back(flag);
+                break;
+            }
+            else {
+                flag+=1;
+            }
+        }
+    }
+    while (counter+1 >= 0)
+    {
+        result.push_back(0);
+        counter -= 1;
+    }
+    return result;
+}
+
+vector<int> SolutiondailyTemperatures::dailyTemperatures01(vector<int>& temperatures) {
+    int n = temperatures.size();    
+    vector<int> answer{}; 
+    for (int day=0; day < n; day++) {
+        for ( int future_day=day+1; future_day < n; future_day++) {
+            if (temperatures[future_day] > temperatures[day])
+            {
+                answer[day] = future_day - day;
+                break;
+            }
+        }
+
+    }
+    return answer;
+}
+
+vector<int> SolutiondailyTemperatures::dailyTemperatures02(vector<int>& temperatures) {
+    int n = temperatures.size();    
+    vector<int> answer{};
+    std::fill_n(std::back_inserter(answer), n, 0); 
+    std::stack<int> mystack;
+    std::vector<std::pair<int, int>> p;
+    for (auto i=0; i < temperatures.size(); ++i) {
+        p.emplace_back(i, temperatures[i]);
+        mystack.emplace(i, temperatures[i]);
+    }
+
+    for (auto i = 0; i < mystack.size(); ++i)
+    {
+        while (!mystack.empty() && temperatures[mystack.top()] < temperatures[i]) {
+            
+        }
+    }
+    
+
+}

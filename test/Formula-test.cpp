@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "Formula.h"
+#include "header.h"
 
 TEST(blaTest, test1) {
     //assert
@@ -120,4 +121,25 @@ TEST(SolutionmaxArea, test12)
     SolutionmaxArea s{};
     std::vector<int> v1{1,8,6,2,5,4,8,3,7};
     EXPECT_EQ(s.maxArea(v1), 49);
+}
+
+TEST(SolutionwallsAndGatesNew, test12)
+{
+    SolutionwallsAndGatesNew s{};
+    std::vector<std::vector<int>> v1{{2147483647,-1,0,2147483647},{2147483647,2147483647,2147483647,-1},
+        {2147483647,-1,2147483647,-1},{0,-1,2147483647,2147483647}};
+    std::vector<std::vector<int>> vresult{{3,-1,0,1},{2,2,1,-1},{1,-1,2,-1},{0,-1,3,4}};
+    s.wallsAndGates(v1);
+    EXPECT_EQ(v1, vresult);
+}
+
+TEST(SolutiondailyTemperatures, test12)
+{
+    SolutiondailyTemperatures s{};
+    std::vector<int> v1{55,38,53,81,61,93,97,32,43,78};
+    std::vector<int> v2{73,74,75,71,69,72,76,73};
+    std::vector<int> result1{3,1,1,2,1,1,0,1,1,0};
+    std::vector<int> result2{1,1,4,2,1,1,0,0};
+    EXPECT_EQ(s.dailyTemperatures(v1), result1); 
+    EXPECT_EQ(s.dailyTemperatures(v2), result2); 
 }

@@ -423,3 +423,17 @@ public:
         return max_profix;
     }
 };
+
+class SolutionnumIslands {
+public:
+    void dfs(vector<vector<char>>& grid, int r, int c);
+    int numIslands(vector<vector<char>>& grid); 
+};
+
+
+class SolutiondailyTemperatures {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures);
+    vector<int> dailyTemperatures01(vector<int>& temperatures);
+    vector<int> dailyTemperatures02(vector<int>& temperatures);
+};

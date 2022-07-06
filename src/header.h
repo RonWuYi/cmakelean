@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint> //or <stdint.h>
+#include <limits>
 #include <array>
 #include <iostream>
 #include <memory>
@@ -16,6 +18,7 @@
 #include <type_traits>
 #include <variant>
 #include <utility>
+#include <list>
 
 using namespace std;
 using charQueue = std::queue<std::unique_ptr<std::array<char, 100>>>;
@@ -36,28 +39,6 @@ void popIntQueueBig(intQueue &queue, intQueueSmall &queueSmall);
 void getIntQueueBig(intQueue &queue);
 
 int factorial(int n);
-
-// template <class T>
-// T mysum(T a[], int n);
-
-template <class T>
-void permutations(T list[], int k, int m)
-{
-	if (k == m)
-	{
-		copy(list, list+m+1, ostream_iterator<T>(cout, " "));
-		std::cout << std::endl;
-	}
-	else
-	{
-		for (int i = k; i <= m; i++)
-		{
-			swap(list[k], list[i]);
-			permutations(list, k + 1, m);
-			swap(list[k], list[i]);
-		}
-	}
-}
 
 int Fibonacci(int n);
 
@@ -80,24 +61,6 @@ T product01(T a[], int n, int m)
 {
 	T theSum = 1;
 	return accumulate(a+n, a+m, theSum, multiplies<T>());
-}
-
-template <class T>
-void permutations01(T list[], int k, int m)
-{
-	do {
-		copy(list, list+m+1, ostream_iterator<T>(cout, " "));
-		std::cout << std::endl;
-	} while (next_permutation(list, list+m+1));
-}
-
-template <class T>
-void copy01(T a[], T b[], int n, int m)
-{
-	for (int i = n; i < m; ++i)
-	{
-		b[i] = a[i];
-	}
 }
 
 template <class T>
@@ -124,16 +87,6 @@ void rearrange(T a[], int n, int r[])
 		a[i] = u[i];
 	}
 }
-
-// template <class T>
-// void selectionSort(T a[], int n)
-// {
-// 	for (int size = n; size > 1; size--)
-// 	{
-// 		int j = indexOfMax(a, size);
-// 		swap(a[j], a[size-1]);
-// 	}
-// }
 
 class MyQueue {
 private:
@@ -240,4 +193,37 @@ public:
     bool isFull() {
         return ((tail + 1) % size) == head;
     }
+};
+
+class SolutionwallsAndGates {
+public:
+	// int EMPTY = INT_MAX;
+	// int GATE = 0;
+	// int WALL = -1;
+	// std::list<std::array<int,2>> DIRECTIONS{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    virtual void wallsAndGates(vector<vector<int>>& rooms);
+	// {
+	// 	if (rooms.size() == 0) { return; }
+	// 	for (int row = 0; row < rooms.size(); row++) {
+	// 		for (int col = 0; col < rooms[0].size(); col++) {
+	// 			if (rooms[row][col] == EMPTY) {
+	// 				rooms[row][col] = distanceTonearestGates(rooms, row, col);
+	// 			}
+	// 		}
+	// 	}
+        
+    // }
+private:
+	int distanceTonearestGates(std::vector<std::vector<int>>& rooms, int startRow, int startCol);
+	int EMPTY = INT_MAX;
+	int GATE = 0;
+	int WALL = -1;
+	std::list<std::array<int,2>> DIRECTIONS{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+	// std::list<int[][]>> DIRECTIONS{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+};
+
+class SolutionwallsAndGatesNew : public SolutionwallsAndGates
+{
+public:
+    virtual void wallsAndGates(vector<vector<int>>& rooms);
 };
