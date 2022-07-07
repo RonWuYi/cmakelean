@@ -431,9 +431,9 @@ public:
 };
 
 
-class SolutiondailyTemperatures {
-public:
-    vector<int> dailyTemperatures(vector<int>& temperatures);
-    vector<int> dailyTemperatures01(vector<int>& temperatures);
-    vector<int> dailyTemperatures02(vector<int>& temperatures);
-};
+// class SolutiondailyTemperatures {
+// public:
+//     vector<int> dailyTemperatures(vector<int>& temperatures);
+//     vector<int> dailyTemperatures01(vector<int>& temperatures);
+//     vector<int> dailyTemperatures02(vector<int>& temperatures);
+// };

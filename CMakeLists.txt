@@ -4,6 +4,12 @@ project(gtestProject)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  # using Visual Studio C++
+  message("Using Visual Studio C++")
+  set(gtest_force_shared_crt on)
+endif()
+
 include_directories(src)
 
 add_subdirectory(src)
