@@ -303,28 +303,13 @@ private:
 
 int main(){
 
-    // Box box1(1, 2, 3);
-    // Box box2{ 2, 3, 4 };
-    // Endianness();
+    MyQueueStack qs;
 
-    // SolutionlongestPalindrome s{};
-    // std::string str{"abccccdd"};
-    // std::cout << s.longestPalindrome01(str) << std::endl;
+    qs.push(1);
+    qs.push(2);
 
-    // Box box3; // C2512: no appropriate default constructor available
-    std::string a = "0123456789abcdefghij";
-    std::string sub1 = a.substr(10);
-    std::string sub2 = a.substr(5, 3);
-    std::cout << sub1 << std::endl;
-    std::cout << sub2 << std::endl;
-    std::cout << factorial(12) << std::endl;
-    int* ab = new int[4] {1, 2, 3, 4};
-    int* abc = new int[6] {1, 2, 3, 4, 3, 3};
-
-    // std::cout << mysum(ab, 4) << std::endl;
-    // delete[] ab;
-    std::cout << product(ab, 3) << std::endl;
-    delete[] ab;
-    delete[] abc;
-
+    std::cout << "qs.peek() = " << qs.peek() << std::endl;
+    std::cout << "qs.pop() = " << qs.pop() << std::endl;
+    std::cout << "qs.empty() = " << qs.empty() << std::endl;
+    return 0;
 }

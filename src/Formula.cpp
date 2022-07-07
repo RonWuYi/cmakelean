@@ -661,3 +661,44 @@ int SolutionnumIslands::numIslands(vector<vector<char>>& grid) {
 
 //     return answer;
 // }
+
+string Solution::decodeString(string s) {
+    std::string res{};   
+    int close = 0;
+    char charCarry{};
+    std::queue<char> q;
+    for (unsigned int i = 0; i < s.length(); ++i)
+    {
+        std::string numCarry{};
+        std::string stringCarry{};
+        if (s[i] != ']')
+        {
+            q.push(s[i]);
+        }
+        else{
+            close++;
+            while(!q.empty())
+            {
+                auto temp = q.front();
+                q.pop();
+                if (temp >= 97 && temp <= 122)
+                {
+                    stringCarry += std::string(1, temp);
+                }
+                else if (temp == '[')
+                {
+                    close-=1;
+                    if (close == 0)
+                        break;
+                }
+                else if (temp >= 49 && temp <= 57)
+                    numCarry += std::string(1, temp);
+                // res = 
+            }
+            auto temp = atoi(numCarry.c_str());
+            while (temp--)
+                res += stringCarry;
+        }
+    }
+    return res;
+}

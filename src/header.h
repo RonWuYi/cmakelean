@@ -229,7 +229,7 @@ public:
     virtual void wallsAndGates(vector<vector<int>>& rooms);
 };
 
-class Solution {
+class SolutionmaxArea {
 public:
     int maxArea(vector<int>& height) {
 
@@ -284,5 +284,125 @@ public:
 
 
         return num2;
+    }
+};
+
+
+class MyQueueStack {
+private:
+    std::stack<int> stack1;
+    std::stack<int> stack2;
+    // int index;
+public:
+    MyQueueStack() {
+    }
+    
+    void push(int x) {
+       stack1.push(x); 
+    }
+    
+    int pop() {
+        int res = peek();
+        stack2.pop();
+        return res;
+    }
+    
+    int peek() {
+        if (stack2.empty())
+        {
+            while (!stack1.empty())
+            {
+                stack2.push(stack1.top());
+                stack1.pop();
+            }
+        }
+        int res = stack2.top();
+        return res;
+    }
+    
+    bool empty() {
+        // if (stack1.size() == 0) {
+        //     return true;
+        // }
+        // return false;
+        return stack1.empty() && stack2.empty();
+    }
+};
+
+class MyStackQueue {
+private:
+    std::queue<int> queue1;
+    std::queue<int> queue2;
+public:
+    MyStackQueue() {
+        
+    }
+    
+    void push(int x) {
+        queue1.push(x);
+    }
+    
+    int pop() {
+        int res = top();
+        queue1.pop();
+        return res;
+    }
+    
+    int top() {
+        // if (!queue1.empty())
+        // {
+        //     while (!queue1.empty())
+        //     {
+        //         queue2.push(queue1.front());
+        //         queue1.pop();
+        //     }
+        // }
+        // int res = queue2.front();
+        // return res;
+        if (!queue1.empty())
+        {
+            while (queue1.size() > 1)
+            {
+                queue2.push(queue1.front());
+                queue1.pop();
+            }
+            int res = queue1.back();
+            return res;
+        }
+        int res = queue1.back();
+        return res;
+    }
+    
+    bool empty() {
+        return queue1.empty() && queue2.empty();
+    }
+};
+
+class MyStackQueue01 {
+private:
+    std::queue<int> q;
+
+public:
+    MyStackQueue01(){}
+    void push(int x) {
+        q.push(x);
+        for (int i = 0; i < q.size() - 1; i++)
+        {
+            q.push(q.front());
+            q.pop();
+        }
+    }
+
+    int pop() {
+        int res = top();
+        q.pop();
+        return res;
+    }
+
+    int top() {
+        return q.front();
+    }
+    bool empty() {
+        return q.empty();
     }
 };
