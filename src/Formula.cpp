@@ -663,85 +663,44 @@ int SolutionnumIslands::numIslands(vector<vector<char>>& grid) {
 // }
 
 string SolutiondecodeString::decodeString(string s) {
-    std::stack<char> mystack;
-
-    for (int i = 0; i < s.length(); i++) {
-        if (s[i] != ']')
-        {
-            mystack.push(s[i]);
-        }
-        else {
-            std::string str{};
-            while (mystack.top() != '[')
-            {
-                str += mystack.top();
+    stack<char> mystack;
+    for (size_t i = 0; i < s.length(); i++)
+    {
+        if (s[i] == ']') {
+            string decodeString = "";
+            while (mystack.top() != '[') {
+                decodeString += mystack.top();
                 mystack.pop();
             }
             mystack.pop();
-            int base = 1;
-            int numCarry = 0;
-            while (!mystack.empty() && (mystack.top() >= 47 && mystack.top() <= 57))
+            int base = 1; //
+            int k = 0;
+            // get the number k
+            while (!mystack.empty() && ((mystack.top() >=47) && (mystack.top() <= 57)))
             {
-                numCarry = numCarry + (mystack.top()*base);
+                k = k + (mystack.top() - '0') * base;
                 mystack.pop();
                 base *= 10;
             }
-            int currentLen = mystack.size();
-            while (numCarry != 0 )
-            {
-                for (int j = str.size(); j >= 0; j--)
-                {
-                    mystack.push(str[i]);
-                }
-                numCarry--;
-            }
+            int currenLen = decodeString.size();
+			// while (k != 0)
+			while (k--)
+			{
+				for (int j = decodeString.size() - 1; j >= 0; j--) {
+				// for (int j = decodeString.size(); j > 0; j--) {
+					mystack.push(decodeString[j]);
+				}
+				// k--;
+			}
         }
+		else {
+			mystack.push(s[i]);
+		}
     }
-    string result{};
-    for (size_t i = 0; i < mystack.size(); i++)
-    {
-        result = mystack.top() + result;
-        mystack.pop();
-    }
-    return result;
-
-
-    // std::string res{};   
-    // int close = 0;
-    // char charCarry{};
-    // std::queue<char> q;
-    // for (unsigned int i = 0; i < s.length(); ++i)
-    // {
-    //     std::string numCarry{};
-    //     std::string stringCarry{};
-    //     if (s[i] != ']')
-    //     {
-    //         q.push(s[i]);
-    //     }
-    //     else{
-    //         close++;
-    //         while(!q.empty())
-    //         {
-    //             auto temp = q.front();
-    //             q.pop();
-    //             if (temp >= 97 && temp <= 122)
-    //             {
-    //                 stringCarry += std::string(1, temp);
-    //             }
-    //             else if (temp == '[')
-    //             {
-    //                 close-=1;
-    //                 if (close == 0)
-    //                     break;
-    //             }
-    //             else if (temp >= 49 && temp <= 57)
-    //                 numCarry += std::string(1, temp);
-    //             // res = 
-    //         }
-    //         auto temp = atoi(numCarry.c_str());
-    //         while (temp--)
-    //             res += stringCarry;
-    //     }
-    // }
-    // return res;
+	string result{};
+	for (size_t i = mystack.size(); i > 0; i--) {
+		result = mystack.top() + result;
+		mystack.pop();
+	}
+	return result;
 }

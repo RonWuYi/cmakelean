@@ -133,6 +133,17 @@ TEST(SolutionwallsAndGatesNew, test12)
     EXPECT_EQ(v1, vresult);
 }
 
+TEST(SolutiondecodeString, test12)
+{
+    SolutiondecodeString s{};
+    std::string str1{"3[a]2[bc]"};
+    std::string str2{"3[a2[c]]"};
+    std::string str3{"2[abc]3[cd]ef"};
+    EXPECT_EQ(s.decodeString(str1), "aaabcbc");
+    EXPECT_EQ(s.decodeString(str2), "accaccacc");
+    EXPECT_EQ(s.decodeString(str3), "abcabccdcdcdef");
+}
+
 // TEST(SolutiondailyTemperatures, test12)
 // {
 //     SolutiondailyTemperatures s{};
