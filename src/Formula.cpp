@@ -555,7 +555,7 @@ int SolutionminCostClimbingStairs::minCostClimbingStairs(vector<int>& cost) {
     
 }
 
-int SolutionmaxArea::maxArea(vector<int>& height) {
+int SolutionmaxArea02::maxArea(vector<int>& height) {
     int max = 0;    
     int i = 0;
     int j = height.size()-1;
@@ -662,43 +662,86 @@ int SolutionnumIslands::numIslands(vector<vector<char>>& grid) {
 //     return answer;
 // }
 
-string Solution::decodeString(string s) {
-    std::string res{};   
-    int close = 0;
-    char charCarry{};
-    std::queue<char> q;
-    for (unsigned int i = 0; i < s.length(); ++i)
-    {
-        std::string numCarry{};
-        std::string stringCarry{};
+string SolutiondecodeString::decodeString(string s) {
+    std::stack<char> mystack;
+
+    for (int i = 0; i < s.length(); i++) {
         if (s[i] != ']')
         {
-            q.push(s[i]);
+            mystack.push(s[i]);
         }
-        else{
-            close++;
-            while(!q.empty())
+        else {
+            std::string str{};
+            while (mystack.top() != '[')
             {
-                auto temp = q.front();
-                q.pop();
-                if (temp >= 97 && temp <= 122)
-                {
-                    stringCarry += std::string(1, temp);
-                }
-                else if (temp == '[')
-                {
-                    close-=1;
-                    if (close == 0)
-                        break;
-                }
-                else if (temp >= 49 && temp <= 57)
-                    numCarry += std::string(1, temp);
-                // res = 
+                str += mystack.top();
+                mystack.pop();
             }
-            auto temp = atoi(numCarry.c_str());
-            while (temp--)
-                res += stringCarry;
+            mystack.pop();
+            int base = 1;
+            int numCarry = 0;
+            while (!mystack.empty() && (mystack.top() >= 47 && mystack.top() <= 57))
+            {
+                numCarry = numCarry + (mystack.top()*base);
+                mystack.pop();
+                base *= 10;
+            }
+            int currentLen = mystack.size();
+            while (numCarry != 0 )
+            {
+                for (int j = str.size(); j >= 0; j--)
+                {
+                    mystack.push(str[i]);
+                }
+                numCarry--;
+            }
         }
     }
-    return res;
+    string result{};
+    for (size_t i = 0; i < mystack.size(); i++)
+    {
+        result = mystack.top() + result;
+        mystack.pop();
+    }
+    return result;
+
+
+    // std::string res{};   
+    // int close = 0;
+    // char charCarry{};
+    // std::queue<char> q;
+    // for (unsigned int i = 0; i < s.length(); ++i)
+    // {
+    //     std::string numCarry{};
+    //     std::string stringCarry{};
+    //     if (s[i] != ']')
+    //     {
+    //         q.push(s[i]);
+    //     }
+    //     else{
+    //         close++;
+    //         while(!q.empty())
+    //         {
+    //             auto temp = q.front();
+    //             q.pop();
+    //             if (temp >= 97 && temp <= 122)
+    //             {
+    //                 stringCarry += std::string(1, temp);
+    //             }
+    //             else if (temp == '[')
+    //             {
+    //                 close-=1;
+    //                 if (close == 0)
+    //                     break;
+    //             }
+    //             else if (temp >= 49 && temp <= 57)
+    //                 numCarry += std::string(1, temp);
+    //             // res = 
+    //         }
+    //         auto temp = atoi(numCarry.c_str());
+    //         while (temp--)
+    //             res += stringCarry;
+    //     }
+    // }
+    // return res;
 }

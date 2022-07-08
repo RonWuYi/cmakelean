@@ -389,7 +389,7 @@ public:
     int minCostClimbingStairs(vector<int>& cost);
 };
 
-class SolutionmaxArea {
+class SolutionmaxArea02 {
 public:
     int maxArea(vector<int>& height);
 };
@@ -445,7 +445,7 @@ public:
     bool isInterleave(string s1, string s2, string s3);
 };
 
-class Solution {
+class SolutiondecodeString {
 public:
     string decodeString(string s);
 };
