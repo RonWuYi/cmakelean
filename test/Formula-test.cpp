@@ -142,6 +142,13 @@ TEST(SolutiondecodeString, test12)
     EXPECT_EQ(s.decodeString(str1), "aaabcbc");
     EXPECT_EQ(s.decodeString(str2), "accaccacc");
     EXPECT_EQ(s.decodeString(str3), "abcabccdcdcdef");
+    EXPECT_EQ(s.decodeString02(str1), "aaabcbc");
+    EXPECT_EQ(s.decodeString02(str2), "accaccacc");
+    EXPECT_EQ(s.decodeString02(str3), "abcabccdcdcdef");
+
+    std::vector<int> v{73,74,75,71,69,72,76,73};
+    std::vector<int> r{1,1,4,2,1,1,0,0};
+    EXPECT_EQ(s.dailyTemperatures(v), r);
 }
 
 // TEST(SolutiondailyTemperatures, test12)

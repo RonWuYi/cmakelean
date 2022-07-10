@@ -600,67 +600,22 @@ int SolutionnumIslands::numIslands(vector<vector<char>>& grid) {
     return num_islands;
 }
 
-// vector<int> SolutiondailyTemperatures::dailyTemperatures(vector<int>& temperatures) {
-//     vector<int> result;
-//     int counter = 0;
-
-//     for (int i = 0; i < temperatures.size(); ++i) {
-//         int flag = 0;
-//         for (int j=i+1; j < temperatures.size(); ++j) {
-//             if (temperatures[i] < temperatures[j]) {
-//                 flag += 1;
-//                 result.push_back(flag);
-//                 break;
-//             }
-//             else {
-//                 flag+=1;
-//             }
-//         }
-//     }
-//     while (counter+1 >= 0)
-//     {
-//         result.push_back(0);
-//         counter -= 1;
-//     }
-//     return result;
-// }
-
-// vector<int> SolutiondailyTemperatures::dailyTemperatures01(vector<int>& temperatures) {
-//     int n = temperatures.size();    
-//     vector<int> answer{}; 
-//     for (int day=0; day < n; day++) {
-//         for ( int future_day=day+1; future_day < n; future_day++) {
-//             if (temperatures[future_day] > temperatures[day])
-//             {
-//                 answer[day] = future_day - day;
-//                 break;
-//             }
-//         }
-
-//     }
-//     return answer;
-// }
-
-// vector<int> SolutiondailyTemperatures::dailyTemperatures02(vector<int>& temperatures) {
-//     int n = temperatures.size();    
-//     vector<int> answer{};
-//     std::fill_n(std::back_inserter(answer), n, 0); 
-//     std::stack<int> mystack;
-//     std::vector<std::pair<int, int>> p;
-//     for (auto i=0; i < temperatures.size(); ++i) {
-//         p.emplace_back(i, temperatures[i]);
-//         mystack.emplace(i, temperatures[i]);
-//     }
-
-//     for (auto i = 0; i < mystack.size(); ++i)
-//     {
-//         while (!mystack.empty() && temperatures[mystack.top()] < temperatures[i]) {
-            
-//         }
-//     }
-
-//     return answer;
-// }
+// [73,74,75,71,69,72,76,73]
+vector<int> SolutiondailyTemperatures::dailyTemperatures(vector<int>& temperatures) {
+    vector<int> res(temperatures.size());
+    for (int i = temperatures.size() - 1; i >= 0; --i) {
+        int j = i + 1;
+        while (j < temperatures.size() && temperatures[j] <= temperatures[i]) {
+            if (res[j] > 0)
+                j = res[j] + j;
+            else 
+                j = temperatures.size();
+        }
+        if (j < temperatures.size())
+            res[i] = j - i;
+    }
+    return res; 
+}
 
 string SolutiondecodeString::decodeString(string s) {
     stack<char> mystack;
@@ -703,4 +658,35 @@ string SolutiondecodeString::decodeString(string s) {
 		mystack.pop();
 	}
 	return result;
+}
+
+string SolutiondecodeString::decodeString02(string s) {
+    stack<int> countStack; 
+    stack<string> stringStack; 
+    string currentString;
+    int k = 0;
+
+    for (auto ch: s)
+    {
+        if (isdigit(ch)) {
+            k = k*10 + ch - '0';
+        } else if (ch == '[') {
+            countStack.push(k);
+            stringStack.push(currentString);
+            currentString = "";
+            k = 0;
+        } else if (ch == ']') {
+            string decodeString = stringStack.top();
+            stringStack.pop();
+
+            for (int currentK = countStack.top(); currentK > 0; --currentK) {
+                decodeString = decodeString + currentString;
+            }
+            countStack.pop();
+            currentString = decodeString;
+        } else {
+            currentString = currentString + ch;
+        }
+    }
+    return currentString;
 }

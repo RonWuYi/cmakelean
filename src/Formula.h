@@ -432,20 +432,19 @@ public:
     int numIslands(vector<vector<char>>& grid); 
 };
 
+class SolutiondailyTemperatures {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures);
+};
 
-// class SolutiondailyTemperatures {
-// public:
-//     vector<int> dailyTemperatures(vector<int>& temperatures);
-//     vector<int> dailyTemperatures01(vector<int>& temperatures);
-//     vector<int> dailyTemperatures02(vector<int>& temperatures);
-// };
+class SolutiondecodeString : public SolutiondailyTemperatures{
+public:
+    string decodeString(string s);
+    string decodeString02(string s);
+};
 
 class SolutionisInterleave {
 public:
     bool isInterleave(string s1, string s2, string s3);
 };
 
-class SolutiondecodeString {
-public:
-    string decodeString(string s);
-};
