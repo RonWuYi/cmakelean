@@ -111,20 +111,6 @@ public:
 	int Front() { return data[p_start]; } 
 
 	bool isEmpty() { return p_start >= data.size(); }
-	// void push(int x) {
-	// 	data.push_back(x);
-	// }
-	// int pop() {
-	// 	int ret = data[p_start];
-	// 	p_start++;
-	// 	return ret;
-	// }
-	// int peek() {
-	// 	return data[p_start];
-	// }
-	// bool empty() {
-	// 	return p_start == data.size();
-	// }
 };
 
 class MyCircularQueue {
@@ -321,10 +307,6 @@ public:
     }
     
     bool empty() {
-        // if (stack1.size() == 0) {
-        //     return true;
-        // }
-        // return false;
         return stack1.empty() && stack2.empty();
     }
 };
@@ -349,16 +331,6 @@ public:
     }
     
     int top() {
-        // if (!queue1.empty())
-        // {
-        //     while (!queue1.empty())
-        //     {
-        //         queue2.push(queue1.front());
-        //         queue1.pop();
-        //     }
-        // }
-        // int res = queue2.front();
-        // return res;
         if (!queue1.empty())
         {
             while (queue1.size() > 1)
@@ -405,4 +377,142 @@ public:
     bool empty() {
         return q.empty();
     }
+};
+
+struct PrintNum {
+    void operator()(int i) const {
+        std::cout << i << '\n';
+    }
+};
+
+template<typename T>
+T copy(T const& src) noexcept(noexcept(T(src))){
+    return src;
+}
+
+struct ParamType;
+
+template<typename T>
+void f(T& param);
+
+struct Product {
+    std::string name_;
+    double value_ {0.0};
+};
+
+using var_t = std::variant<int, long, double, std::string>;
+
+template<class> inline constexpr bool always_false_v = false;
+
+template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
+
+template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
+
+struct President {
+    std::string name;
+    std::string country;
+    int year;
+
+    President(std::string p_name, std::string p_country, int p_year)
+        : name(std::move(p_name)), country(std::move(p_country)), year(std::move(p_year))
+    {
+        std::cout << "President constructor\n";
+    }
+
+    President(President&& other)
+        : name(std::move(other.name)), country(std::move(other.country)), year((other.year))
+    {
+        std::cout << "President move constructor\n";
+    }
+    President& operator=(const President& other) = default;
+};
+
+using namespace std::chrono;
+using shared_ptr_t = std::shared_ptr<int>;
+
+class thread_guard {
+    std::thread& t;
+public:
+    explicit thread_guard(std::thread& t_) : t(t_) {}
+
+    ~thread_guard() {
+        if (t.joinable()) {
+            t.join();
+        }
+    }
+    thread_guard(thread_guard const&) = delete;
+    thread_guard& operator=(thread_guard const&) = delete;
+};
+
+class A {
+public:
+    A() {
+        b = std::make_unique<int>(22);
+        std::cout << "A constructor\n";
+    }
+    A(const A& other) {
+        std::cout << "A copy constructor\n";
+    }
+    A(A&& other) {
+        std::cout << "A move constructor\n";
+    }
+    A& operator=(const A& other) {
+        std::cout << "A copy assignment\n";
+        return *this;
+    }
+    A& operator=(A&& other) {
+        std::cout << "A move assignment\n";
+        return *this;
+    }
+
+    void print_ptr() const {
+        std::cout << *(b.get()) << '\n';
+    }
+
+private:
+    int a;
+    std::unique_ptr<int> b;
+};
+
+class B {
+public:
+    B() {
+        std::cout << "B constructor\n";
+    }
+    B(const B& other) {
+        std::cout << "B copy constructor\n";
+    }
+    B(B&& other) {
+        std::cout << "B move constructor\n";
+    }
+    B& operator=(const B& other) {
+        std::cout << "B copy assignment\n";
+        return *this;
+    }
+    B& operator=(B&& other) {
+        std::cout << "B move assignment\n";
+        return *this;
+    }
+
+    void print_ptr() const {
+        aa.print_ptr();
+    }
+private:
+    int a;
+    A aa;
+};
+
+class C
+{
+public:
+    C() {
+        bc = std::make_unique<B>();
+        ba = std::make_unique<A>();
+        std::cout << "C constructor\n";
+    }
+    void print_ptr();
+
+private:
+    std::unique_ptr<B> bc;
+    std::unique_ptr<A> ba;
 };

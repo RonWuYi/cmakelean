@@ -182,3 +182,9 @@ void SolutionwallsAndGatesNew::wallsAndGates(vector<vector<int>>& rooms) {
 
 }
 
+void C::print_ptr()
+{
+    std::cout << "print_ptr" << std::endl;
+    bc->print_ptr();
+    ba->print_ptr();
+}
