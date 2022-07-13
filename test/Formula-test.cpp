@@ -151,6 +151,14 @@ TEST(SolutiondecodeString, test12)
     EXPECT_EQ(s.dailyTemperatures(v), r);
 }
 
+TEST(SolutionfloodFill, teest12)
+{
+    SolutionfloodFill s{};
+    std::vector<std::vector<int>> v{{1,1,1},{1,1,0},{1,0,1}}; 
+    std::vector<std::vector<int>> vr{{2,2,2},{2,2,0},{2,0,1}}; 
+    EXPECT_EQ(s.floodFill02(v, 1, 1, 2), vr);
+}
+
 // TEST(SolutiondailyTemperatures, test12)
 // {
 //     SolutiondailyTemperatures s{};

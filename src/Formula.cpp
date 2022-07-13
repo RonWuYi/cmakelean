@@ -690,3 +690,52 @@ string SolutiondecodeString::decodeString02(string s) {
     }
     return currentString;
 }
+
+// vector<vector<int>> SolutionfloodFill::floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+//     std::vector<std::pair<int, int>> directions = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+//     std::unordered_set<std::pair<int, int>> visited = {{sr, sc}};
+    
+//     auto x = image[0].size();
+//     auto y = image.size();
+
+//     if (image[sr][sc] != color)
+//         image[sr][sc] = color;
+//     // while (true) {
+//     for (auto& p : visited)
+//     {
+//         for (auto& q: directions)
+//         {
+//             auto temp = std::pair<int, int>(sr +q.first, sc +q.second);
+//             if ( (sr + q.first) < x && (sc + q.second < y) && !visited.contains(temp))
+//                 visited.insert(temp);
+//         }
+    
+//     }
+        
+//     for (auto& p: visited)
+//     {
+//         if (image[p.first][p.second] != color)
+//             image[p.first][p.second] = color;
+//     }
+
+//     return image;
+// }
+
+vector<vector<int>> SolutionfloodFill::floodFill02(vector<vector<int>>& image, int sr, int sc, int color) {
+    int val = image[sr][sc];
+    dfs(image,sr,sc,val,color);
+    return image;
+}
+
+void SolutionfloodFill::dfs(vector<vector<int>>& image, int i, int j, int val, int newColor) {
+    if (i <0 || i >= image.size() || j < 0 || j >= image[0].size() 
+    || image[i][j] == newColor || image[i][j] != val) {
+        return;
+    }
+
+    image[i][j] = newColor;
+    dfs(image, i-1, j, val, newColor);
+    dfs(image, i+1, j, val, newColor);
+    dfs(image, i, j-1, val, newColor);
+    dfs(image, i, j+1, val, newColor);
+}

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <vector>
 #include <string>
 #include <iostream>
@@ -12,8 +11,6 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <queue>
-
-// #include <ranges>
 
 using namespace std;
 
@@ -90,11 +87,9 @@ public:
         if (count == 0)
         {
             pHead = newNode;
-            // pHead->value = value;
             pTail = pHead;
         }
         else {
-            // pTail->value = value;
             pTail->pNext = newNode;
             pTail = newNode;
         }
@@ -323,18 +318,6 @@ public:
     bool checkRepetition(string& s, int start, int end);
 };
 
-// class ArrayReader
-// {
-// public:
-//     int get(int index);
-// };
-
-// class SolutionsearchInSortedArrayOfUnknownSize
-// {
-// public:
-//     int search(ArrayReader& reader, int target);
-// };
-
 class SolutionisRobotBounded
 {
 public:
@@ -371,7 +354,6 @@ class SolutionrunningSum
 {
 public:
     vector<int> runningSum01(vector<int>& nums);
-    // vector<int> runningSum02(vector<int>& nums);
 };
 
 class SolutionclimbStairs
@@ -448,3 +430,9 @@ public:
     bool isInterleave(string s1, string s2, string s3);
 };
 
+class SolutionfloodFill {
+public:
+    void dfs(vector<vector<int>>& image, int i, int j, int val, int newColor);
+    // vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color);
+    vector<vector<int>> floodFill02(vector<vector<int>>& image, int sr, int sc, int color);
+};
