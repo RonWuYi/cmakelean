@@ -19,5 +19,20 @@ int main(){
     C ccc;
     ccc.print_ptr();
 
+    std::unordered_map<std::string, std::string> u = {
+        {"RED", "#FF0000"},
+        {"GREEN", "#00FF00"},
+        {"BLUE", "#0000FFF"}
+    };
+
+    auto print_key_value = [](const auto& key, const auto& value) {
+        std::cout <<"key: " <<key << " value: "<< value << std::endl;
+    };
+
+    for (const std::pair<const std::string, std::string>& n : u)
+    {
+        print_key_value(n.first, n.second);
+    }
+    
     return 0;
 }
