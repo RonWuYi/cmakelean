@@ -111,3 +111,39 @@ void C::print_ptr()
     bc->print_ptr();
     ba->print_ptr();
 }
+
+void tree::preOrder(tree::Node *root) {
+    std::cout << root->data;
+    tree::preOrder(root->left);
+    tree::preOrder(root->right);
+}
+
+void tree::preOrderNoRecursive(tree::Node *root) {
+    std::stack<tree::Node*> s; 
+    tree::Node *p = root;
+    while (p != nullptr || !s.empty()) {
+        while (p != nullptr) {
+            std::cout << p->data << " ";
+            s.push(p);
+            p = p->left;
+        }
+        if (!s.empty())
+        {
+            p = s.top();
+            s.pop();
+            p = p->right;
+        }
+    }
+}
+
+void tree::inOrder(tree::Node *root) {
+    tree::preOrder(root->left);
+    std::cout << root->data;
+    tree::preOrder(root->right);
+}
+
+void tree::postOrder(tree::Node *root) {
+    tree::preOrder(root->left);
+    tree::preOrder(root->right);
+    std::cout << root->data;
+}
