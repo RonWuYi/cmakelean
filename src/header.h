@@ -516,3 +516,48 @@ private:
     std::unique_ptr<B> bc;
     std::unique_ptr<A> ba;
 };
+
+
+namespace tree {
+    struct Node {
+        char data;
+        Node* left;
+        Node* right;
+    };
+}
+
+void preOrder(tree::Node *root) {
+    std::cout << root->data;
+    preOrder(root->left);
+    preOrder(root->right);
+}
+
+void preOrderNoRecursive(tree::Node *root) {
+    std::stack<tree::Node*> s; 
+    tree::Node *p = root;
+    while (p != nullptr || !s.empty()) {
+        while (p != nullptr) {
+            std::cout << p->data << " ";
+            s.push(p);
+            p = p->left;
+        }
+        if (!s.empty())
+        {
+            p = s.top();
+            s.pop();
+            p = p->right;
+        }
+    }
+}
+
+void inOrder(tree::Node *root) {
+    preOrder(root->left);
+    std::cout << root->data;
+    preOrder(root->right);
+}
+
+void postOrder(tree::Node *root) {
+    preOrder(root->left);
+    preOrder(root->right);
+    std::cout << root->data;
+}
