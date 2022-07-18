@@ -436,3 +436,39 @@ public:
     // vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color);
     vector<vector<int>> floodFill02(vector<vector<int>>& image, int sr, int sc, int color);
 };
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class SolutionisValidBST {
+public:
+    bool isValidBST(TreeNode* root); 
+    // {
+    //     if (!root) return;
+    //     else if (root->left == nullptr and root->right == nullptr) return true;
+    //     else if (root->left == nullptr and root->right != nullptr) 
+    //         return (root-> val > root->left->val) && (isValidBST(root->left));        
+    //     else if (root->left != nullptr and root->right == nullptr) 
+    //         return (root-> val < root->right->val) && (isValidBST(root->right));
+    //     else return (root->val > root->left->val 
+    //                 && root->val < root->right->val
+    //                 && isValidBST(root->right)
+    //                 && isValidBST(root->left));
+    // }
+    bool isValidBST02(TreeNode* root);
+    bool isValidBSTStack(TreeNode* root);
+
+private:
+    bool validate(TreeNode* root, TreeNode* low, TreeNode* high);
+    void update(TreeNode* root, TreeNode* low, TreeNode* high);
+    std::stack<TreeNode*> stk, lower_limits, upper_limits;
+};
