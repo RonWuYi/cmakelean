@@ -159,6 +159,13 @@ TEST(SolutionfloodFill, teest12)
     EXPECT_EQ(s.floodFill02(v, 1, 1, 2), vr);
 }
 
+TEST(SolutiontwoSum, teest12)
+{
+    SolutiontwoSum s{};
+    std::vector<int> v{2, 7, 11, 15}; 
+    std::vector<int> r{0, 1}; 
+    EXPECT_EQ(s.twoSum01(v, 9), r);
+}
 // TEST(SolutiondailyTemperatures, test12)
 // {
 //     SolutiondailyTemperatures s{};
