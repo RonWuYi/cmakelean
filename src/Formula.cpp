@@ -816,3 +816,40 @@ vector<int> SolutiontwoSum::twoSum01(vector<int>& nums, int target) {
     }
     return v;
 }
+
+vector<int> SolutiontwoSum::twoSum02(vector<int>& nums, int target) {
+    auto temp = std::vector<std::pair<int, int>>();
+    auto final_result = std::vector<int>();
+    for (int i = 0; i < nums.size(); i++)
+    {
+        auto result = target - nums[i];
+        auto result_pair = std::pair<int, int>(result, i);
+        if (!temp.empty())
+        {
+            for (auto& p: temp)
+            {
+                if (p.first == result)
+                {
+                    final_result.push_back(p.second);
+                    final_result.push_back(i);
+                    break;
+                }
+            }
+        }
+        temp.push_back(std::pair<int, int>(nums[i], i));
+    }
+    
+    return final_result;
+    // auto temp = std::vector<std::pair<int, int>>();
+    // for (int i = 0; i < nums.size(); i++)
+    // {
+    //     auto result = target - nums[i];
+    //     auto result_pair = std::pair<int, int>(result, i);
+    //     // if (nums[i] == target)
+    //     if (std::find(temp.begin(), temp.end(), result_pair) != temp.end())
+    //     {
+    //         return std::vector<int>(i, result_pair.second);
+    //     }
+    //     temp.push_back(result_pair);
+    // }
+}

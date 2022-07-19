@@ -165,6 +165,7 @@ TEST(SolutiontwoSum, teest12)
     std::vector<int> v{2, 7, 11, 15}; 
     std::vector<int> r{0, 1}; 
     EXPECT_EQ(s.twoSum01(v, 9), r);
+    EXPECT_EQ(s.twoSum02(v, 9), r);
 }
 // TEST(SolutiondailyTemperatures, test12)
 // {
