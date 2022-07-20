@@ -151,7 +151,7 @@ TEST(SolutiondecodeString, test12)
     EXPECT_EQ(s.dailyTemperatures(v), r);
 }
 
-TEST(SolutionfloodFill, teest12)
+TEST(SolutionfloodFill, test12)
 {
     SolutionfloodFill s{};
     std::vector<std::vector<int>> v{{1,1,1},{1,1,0},{1,0,1}}; 
@@ -159,13 +159,40 @@ TEST(SolutionfloodFill, teest12)
     EXPECT_EQ(s.floodFill02(v, 1, 1, 2), vr);
 }
 
-TEST(SolutiontwoSum, teest12)
+TEST(SolutiontwoSum, test12)
 {
     SolutiontwoSum s{};
     std::vector<int> v{2, 7, 11, 15}; 
     std::vector<int> r{0, 1}; 
     EXPECT_EQ(s.twoSum01(v, 9), r);
     EXPECT_EQ(s.twoSum02(v, 9), r);
+}
+
+TEST(SolutionisPalindrome, test12)
+{
+    SolutionisPalindrome s{};
+    std::string s1{"race a car"};
+    std::string s2{"A man, a plan, a canal: Panama"};
+    EXPECT_EQ(s.isPalindrome(s1), false);
+    EXPECT_EQ(s.isPalindrome(s2), true);
+}
+
+TEST(SolutionmyAtoi, test12)
+{
+    SolutionmyAtoi s{};
+    std::string str{"42"};
+    std::string str1{"4193 with words"};
+
+    // "words and 987"
+
+    std::string str2{"words and 987"};
+    EXPECT_EQ(s.myAtoi(str), 42);
+    EXPECT_EQ(s.myAtoi(str1), 4193);
+    EXPECT_EQ(s.myAtoi(str2), 987);    
+    
+    EXPECT_EQ(s.myAtoi02(str), 42);
+    EXPECT_EQ(s.myAtoi02(str1), 4193);
+    EXPECT_EQ(s.myAtoi02(str2), 0);
 }
 // TEST(SolutiondailyTemperatures, test12)
 // {

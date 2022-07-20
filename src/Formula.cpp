@@ -853,3 +853,200 @@ vector<int> SolutiontwoSum::twoSum02(vector<int>& nums, int target) {
     //     temp.push_back(result_pair);
     // }
 }
+
+bool SolutionisPalindrome::isPalindrome(string s) {
+    if (s.empty() || s.length() == 1) {
+        return true;
+    }
+    // else if (s.length() == 2) {
+    //     if (s[0] == s[1]) || s[0]
+    //         return true;
+    //     else if (s[0] == s[1])
+    // }
+    auto flag = true;
+    std::string temp{};
+    for (auto p: s)
+    {
+        if (p >= 'A' && p <= 'z')
+        {
+            if (p > 'Z')
+                p = p - 32;
+            temp += p;
+        }
+    }
+
+    for (int i = 0; i < temp.length(); i++)
+    {
+        if (i > (temp.length() / 2) -1)
+            break;
+        auto temp1 = temp[i];
+        auto len = temp.length();
+        auto temp2 = temp[temp.length() - 1 - i];
+        // if(temp[i] != temp[temp.length() - i])
+        if(temp1 != temp2)
+        {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+}
+
+bool SolutionisPalindrome::isPalindrome02(string s) {
+    std::string filtered_str, reversed_str;
+
+    for (auto ch :s)
+    {
+        if (isalnum(ch))
+            filtered_str += tolower(ch);
+    }
+
+    reversed_str.resize(filtered_str.size());
+    reverse_copy(filtered_str.begin(), filtered_str.end(),
+                reversed_str.begin());
+    return filtered_str == reversed_str;
+}
+
+int SolutionmyAtoi::myAtoi(string s) {
+    auto temp = std::string();
+    auto flag = true;
+    for (auto ch : s) {
+        if (ch == '-')
+            flag = false;
+        if (ch >= '0' && ch <= '9') 
+        {
+            if (ch == '0' && temp.size() != 0)
+                temp += ch;
+            else if (ch == '0' && temp.size() == 0)
+                continue;
+            else if (ch != '0')
+                temp += ch;
+        }
+    }
+    int result = 0;
+    auto len = temp.size();
+    for (auto ch : temp) {
+        // result += ch;
+        switch (ch) {
+            case '0':
+            break;            
+            case '1':
+                result += 1*std::pow(10, len-1); 
+                len--;
+            break;            
+            case '2':                
+                result += 2*std::pow(10, len-1); 
+                len--;
+            break;                
+            case '3':
+                result += 3*std::pow(10, len-1); 
+                len--;            
+            break;                
+            case '4':                
+                result += 4*std::pow(10, len-1); 
+                len--;
+            break;            
+            case '5':                
+                result += 5*std::pow(10, len-1); 
+                len--;
+            break;            
+            case '6':                
+                result += 6*std::pow(10, len-1); 
+                len--;
+            break;            
+            case '7':                
+                result += 7*std::pow(10, len-1); 
+                len--;
+            break;            
+            case '8':                
+                result += 8*std::pow(10, len-1); 
+                len--;
+            break;            
+            case '9':                
+                result += 9*std::pow(10, len-1); 
+                len--;
+            break;
+        // case final:
+        default:
+            break;
+        }
+    }
+    if (flag)
+        return result;
+    else {
+        result *= -1;
+        return result;
+    }
+};
+
+int SolutionmyAtoi::myAtoi02(string s) {
+    StateMachine Q;
+
+    for (int i = 0; i < s.size() && Q.getState() != qd; ++i) {
+        Q.transition(s[i]);
+    }
+    return Q.getInteger();
+}
+
+StateMachine::StateMachine() {
+    currentState = q0;
+    result = 0;
+    sign = 1;
+}
+
+void StateMachine::transition(char& ch) {
+    if (currentState == q0) {
+        if (ch == ' ') {
+            return;
+        } else if (ch == '-' || ch == '+') {
+            toStateQ1(ch);
+        } else if (isdigit(ch)) {
+            toStateQ2(ch - '0');
+        } else {
+            toStateQd();
+        }
+    } else if (currentState == q1 || currentState == q2) {
+        if (isdigit(ch))
+        {
+            toStateQ2(ch - '0');
+        } else {
+            toStateQd();
+        }
+    }
+}
+
+int StateMachine::getInteger() {
+    return sign * result;
+}
+
+State StateMachine::getState() {
+    return currentState;
+}
+
+void StateMachine::toStateQ1(char& ch) {
+    sign = (ch == '-') ? -1 : 1;
+    currentState = q1;
+}
+
+void StateMachine::toStateQ2(int digit) {
+    currentState = q2;
+    appendDigit(digit);
+}
+
+void StateMachine::toStateQd() {
+    currentState = qd;
+}
+
+void StateMachine::appendDigit(int& digit) {
+    if ((result > INT_MAX / 10) || (result == INT_MIN / 10 && digit > INT_MAX % 10)) {
+        if (sign == 1) {
+            result = INT_MAX;
+        } else {
+            result = INT_MIN;
+            sign = 1;
+        }
+        toStateQd();
+    } else {
+        result = result * 10 + digit;
+    }
+}

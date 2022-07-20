@@ -11,6 +11,10 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <queue>
+#include <cstdint>
+#include <climits>
+#include <limits>
+#include <limits.h>
 
 using namespace std;
 
@@ -473,27 +477,38 @@ private:
     std::stack<TreeNode*> stk, lower_limits, upper_limits;
 };
 
+class SolutionisPalindrome {
+public:
+    bool isPalindrome(string s);
+    bool isPalindrome02(string s);
+};
 
 class SolutiontwoSum {
 public:
     vector<int> twoSum01(vector<int>& nums, int target);
     vector<int> twoSum02(vector<int>& nums, int target);
-    // vector<int> twoSum(vector<int>& nums, int target) {
-    //     std::vector<int> v{};
-    //     for (int i = 0; i < nums.size(); i++)
-    //     {
-    //         for (int j = i + 1; j < nums.size(); j++)
-    //         {
-    //             if (target == nums[i] + nums[j])
-    //             {
-    //                 v.push_back(i);
-    //                 v.push_back(j);
-    //                 // std::vector<int> v{i, j};
-    //                 // return v;
-    //                 break;
-    //             }
-    //         }
-    //     }
-    //     return v;
-    // }
+};
+
+enum State { q0, q1, q2, qd};
+
+class StateMachine {
+public:
+    StateMachine();
+    void transition(char& ch);
+    State currentState;
+    int result;
+    int sign;
+
+    void toStateQ1(char& ch);
+    void toStateQ2(int digit);
+    void toStateQd();
+    void appendDigit(int& digit);
+    int getInteger();
+    State getState();
+};
+
+class SolutionmyAtoi {
+public:
+    int myAtoi(string s);
+    int myAtoi02(string s);
 };
