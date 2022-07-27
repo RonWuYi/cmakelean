@@ -1092,3 +1092,16 @@ void SolutionreverseString::reverseString(vector<char>& s) {
         s[s.size() - 1 - i] = temp;
     }    
 }
+
+void SolutionreverseString::reverseString02(vector<char>& s) {
+    int left = 0;
+    int right = s.size() - 1;
+
+    while (left < right)
+    {
+        auto temp = s[left];
+        s[left++] = s[right];
+        s[right--] = temp;
+    }
+    
+}

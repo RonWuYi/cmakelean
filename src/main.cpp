@@ -4,24 +4,21 @@
 #include "header.h"
 
 int main(){
-    std::string s{"abcdefghTF"};
-    for (auto p: s)
-    {
-        std::cout << p << std::endl;
+
+    std::string s = "scott tiger RON  WU";
+    std::string delimiter = " ";
+    size_t pos = 0;
+
+    while ((pos = s.find(delimiter)) != std::string::npos) {
+
+        std::string token = s.substr(0, pos); // token is "scott"
+
+        s.erase(0, pos + delimiter.length());
+
+        s.append(token);
+        s.append(delimiter);
+        std::cout << token << std::endl;
     }
 
-    std::string s1{"A man, a plan, a canal: Panama"};
-
-    std::string temp{};
-    for (auto p: s1)
-    {
-        if (p >= 'A' && p <= 'z')
-        {
-            if (p > 'Z')
-                p = p - 32;
-            temp += p;
-        }
-    }
-    std::cout << temp << std::endl;
-
+    std::cout << s << std::endl;
 }

@@ -517,4 +517,5 @@ public:
 class SolutionreverseString {
 public:
     void reverseString(vector<char>& s);
+    void reverseString02(vector<char>& s);
 };
