@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include "Formula.h"
 #include "header.h"
+#include "components.h"
 
 TEST(blaTest, test1) {
     //assert
