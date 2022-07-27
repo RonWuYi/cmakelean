@@ -510,5 +510,6 @@ public:
 class SolutionmyAtoi {
 public:
     int myAtoi(string s);
+    int myAtoi01(string s);
     int myAtoi02(string s);
 };
