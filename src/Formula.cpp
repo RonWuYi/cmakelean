@@ -1083,3 +1083,12 @@ int SolutionmyAtoi::myAtoi01(string s) {
     
     return sign * result;
 }
+
+void SolutionreverseString::reverseString(vector<char>& s) {
+    for (size_t i = 0; i < s.size() / 2; i++)
+    {
+        auto temp = s[i];
+        s[i] = s[s.size() - 1 - i];
+        s[s.size() - 1 - i] = temp;
+    }    
+}

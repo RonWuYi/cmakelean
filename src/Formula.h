@@ -513,3 +513,8 @@ public:
     int myAtoi01(string s);
     int myAtoi02(string s);
 };
+
+class SolutionreverseString {
+public:
+    void reverseString(vector<char>& s);
+};
