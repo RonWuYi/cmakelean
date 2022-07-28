@@ -79,3 +79,48 @@ void components::MyLinkedList::deleteAtIndex(int index) {
 // 	}
 // 	return cur;	
 // }
+
+bool node::SolutionhasCycle::hasCycle(ListNode *head) {
+	bool flag = false;
+		int size = 0;
+		std::unordered_set<ListNode*> nodes;
+		while (true) {
+			nodes.insert(head);
+
+			if (size == nodes.size() && flag == false)
+				break;
+			size += 1;
+			head=head->next;
+			if (head != nullptr)
+			{
+				if (nodes.contains(head))
+				{
+					flag = true;
+					break;
+				}
+			}
+			else
+				break;
+		}
+
+		return flag;
+}
+
+bool node::SolutionhasCycle::hasCycleTwoPoint(ListNode *head) {
+	if (head == nullptr)
+		return false;
+
+	ListNode* fast = head;
+	ListNode* slow = head;
+
+	while (fast != nullptr && fast->next != nullptr)
+	{
+		fast = fast->next->next;
+		slow = slow->next;
+
+		if (fast == slow)
+			return true;
+	}
+	
+	return false;
+}

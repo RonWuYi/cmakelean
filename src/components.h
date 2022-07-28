@@ -30,31 +30,33 @@ namespace node {
 
 	class SolutionhasCycle {
 	public:
-		bool hasCycle(ListNode *head) {
-			bool flag = false;
-			int size = 0;
-			std::unordered_set<ListNode*> nodes;
-			while (true) {
-				nodes.insert(head);
+		bool hasCycle(ListNode *head);
+		bool hasCycleTwoPoint(ListNode *head);
+		// {
+		// 	bool flag = false;
+		// 	int size = 0;
+		// 	std::unordered_set<ListNode*> nodes;
+		// 	while (true) {
+		// 		nodes.insert(head);
 
-				if (size == nodes.size() && flag == false)
-					break;
-				size += 1;
-				head=head->next;
-				if (head != nullptr)
-				{
-					if (nodes.contains(head))
-					{
-						flag = true;
-						break;
-					}
-				}
-				else
-					break;
-			}
+		// 		if (size == nodes.size() && flag == false)
+		// 			break;
+		// 		size += 1;
+		// 		head=head->next;
+		// 		if (head != nullptr)
+		// 		{
+		// 			if (nodes.contains(head))
+		// 			{
+		// 				flag = true;
+		// 				break;
+		// 			}
+		// 		}
+		// 		else
+		// 			break;
+		// 	}
 
-			return flag;
-		}
+		// 	return flag;
+		// }
 };
 }
 
