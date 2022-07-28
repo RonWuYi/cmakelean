@@ -19,5 +19,11 @@ int main(){
         std::cout << "has" << std::endl;
     else
         std::cout << "does not have" << std::endl;
+
+    delete ln1;
+    delete ln2;
+    delete ln3;
+    delete shc;
+    
     return 0;
 }
