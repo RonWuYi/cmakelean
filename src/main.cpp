@@ -6,22 +6,18 @@
 
 int main(){
 
-    // std::string s = "scott tiger RON  WU";
-    // std::string delimiter = " ";
-    // size_t pos = 0;
+    node::ListNode* ln1 = new node::ListNode(1);
+    node::ListNode* ln2 = new node::ListNode(2);
+    node::ListNode* ln3 = new node::ListNode(3);
+    ln1->next = ln2;
+    ln2->next = ln3;
+    ln3->next = ln1;
 
-    // while ((pos = s.find(delimiter)) != std::string::npos) {
+    node::SolutionhasCycle* shc = new node::SolutionhasCycle();
 
-    //     std::string token = s.substr(0, pos); // token is "scott"
-
-    //     s.erase(0, pos + delimiter.length());
-
-    //     s.append(token);
-    //     s.append(delimiter);
-    //     std::cout << token << std::endl;
-    // }
-
-    // std::cout << s << std::endl;
-
+    if (shc->hasCycle(ln1))
+        std::cout << "has" << std::endl;
+    else
+        std::cout << "does not have" << std::endl;
     return 0;
 }

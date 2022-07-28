@@ -62,11 +62,20 @@ void components::MyLinkedList::deleteAtIndex(int index) {
 	delete temp1;
 }
 
-SinglyListNodeNew* components::SinglyListNodeNew::getNode(int index) {
-	SinglyListNodeNew* cur = head;
-	for (int i = 0; i < index && cur; i++)
-	{
-		cur = cur->next;
-	}
-	return cur;
-}
+// SinglyListNodeNew* components::SinglyListNodeNew::getNode(int index) {
+// 	SinglyListNodeNew* cur = head;
+// 	for (int i = 0; i < index && cur; i++)
+// 	{
+// 		cur = cur->next;
+// 	}
+// 	return cur;
+// }
+
+// node::SinglyListNodeNew* node::SinglyListNodeNew::getNode(int index) {
+// 	node::SinglyListNodeNew* cur = head;
+// 	for (int i = 0; i < index; ++i)
+// 	{
+// 		cur=cur->next;
+// 	}
+// 	return cur;	
+// }
