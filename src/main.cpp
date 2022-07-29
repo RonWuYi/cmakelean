@@ -1,29 +1,35 @@
 #include <iostream>
 #include <cassert>
+#include <charconv>
 #include "Formula.h"
 #include "header.h"
 #include "components.h"
 
 int main(){
+    for (std::string_view const str : {"1234", "15 foo", "bar", " 42", "43  ", "5000000000"}) {
+        std::cout << "String: " <<std::quoted(str) << ". ";
 
-    node::ListNode* ln1 = new node::ListNode(1);
-    node::ListNode* ln2 = new node::ListNode(2);
-    node::ListNode* ln3 = new node::ListNode(3);
-    ln1->next = ln2;
-    ln2->next = ln3;
-    ln3->next = ln1;
+        int result{};
 
-    node::SolutionhasCycle* shc = new node::SolutionhasCycle();
+        auto [ptr, ec] {std::from_chars(str.data(), str.data() + str.size(), result)};
 
-    if (shc->hasCycle(ln1))
-        std::cout << "has" << std::endl;
-    else
-        std::cout << "does not have" << std::endl;
+        if (ec == std::errc())
+        {
+            // std::cout << "Result: " << result
 
-    delete ln1;
-    delete ln2;
-    delete ln3;
-    delete shc;
-    
+            std::cout << "Result: " << result << ", ptr -> " << std::quoted(ptr) << '\n';
+        }
+        else if (ec == std::errc::invalid_argument)
+        {
+            std::cout << "it is not a number\n";
+        }
+
+        else if (ec == std::errc::result_out_of_range)
+        {
+            std::cout << "this number is larger than an int\n";
+        }
+    }
+
+
     return 0;
 }
