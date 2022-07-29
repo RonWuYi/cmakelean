@@ -124,3 +124,17 @@ bool node::SolutionhasCycle::hasCycleTwoPoint(ListNode *head) {
 	
 	return false;
 }
+
+node::TreeNode* node::SearcheTreeNode::searchBST(TreeNode* root, int val) {
+	if (root == nullptr || root->val == val)
+		return root;
+	if (val > root->val)
+		return searchBST(root->right, val);
+	else
+		return searchBST(root->left, val);
+    
+}
+
+node::TreeNode* node::SearcheTreeNode::searchBSTIteration(TreeNode* root, int val) {
+    
+}

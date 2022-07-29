@@ -2,6 +2,19 @@
 #include <unordered_set>
 
 namespace node {
+	struct TreeNode
+	{
+		int val;
+		TreeNode* left;
+		TreeNode * right;
+		TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+	};
+	
+	class SearcheTreeNode {
+		public:
+			TreeNode* searchBST(TreeNode* root, int val);
+			TreeNode* searchBSTIteration(TreeNode* root, int val);
+	};
 
  	struct ListNode {
       	int val;
