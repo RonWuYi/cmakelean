@@ -136,5 +136,11 @@ node::TreeNode* node::SearcheTreeNode::searchBST(TreeNode* root, int val) {
 }
 
 node::TreeNode* node::SearcheTreeNode::searchBSTIteration(TreeNode* root, int val) {
-    
+	while (root != nullptr && root->val != val) {
+		if (val > root->val)
+			root = root->right;
+		else
+			root = root->left;
+	}
+	return root;
 }

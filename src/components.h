@@ -1,5 +1,8 @@
 #pragma once
+
 #include <unordered_set>
+#include <string>
+#include <functional>
 
 namespace node {
 	struct TreeNode
@@ -119,4 +122,37 @@ namespace components {
 	// 			head = nullptr;
 	// 		}
 	// };
+
+	
 }
+
+namespace cpp17
+{
+	template <typename T>
+	std::string str(T t) {
+		if (std::is_convertible_v<T, std::string>)
+			return t;
+		// else
+			// return std::to_string(t);
+		return "";
+	}
+} // namespace cpp17
+
+namespace cpp20
+{
+	struct Task {
+		std::string desc;
+		unsigned int priority { 0 };
+	};
+
+	template <typename T, typename F>
+	void CallOnRange(T& conainer, F f) {
+		for (auto&& elem: conainer)
+			std::invoke(f, elem);
+	}
+
+	struct GameActor {
+    std::string name;
+    std::string desc;
+};
+} 
