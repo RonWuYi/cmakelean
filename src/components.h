@@ -154,5 +154,11 @@ namespace cpp20
 	struct GameActor {
     std::string name;
     std::string desc;
-};
+	};
 } 
+
+namespace leetcode {
+	class MyHashSet {
+		public:
+	}
+}
