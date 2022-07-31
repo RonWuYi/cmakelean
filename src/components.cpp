@@ -148,3 +148,7 @@ node::TreeNode* node::SearcheTreeNode::searchBSTIteration(TreeNode* root, int va
 leetcode::MyHashSet::MyHashSet() {
     
 }
+
+leetcode::Bucket::Bucket() {
+    
+}
