@@ -144,3 +144,7 @@ node::TreeNode* node::SearcheTreeNode::searchBSTIteration(TreeNode* root, int va
 	}
 	return root;
 }
+
+leetcode::MyHashSet::MyHashSet() {
+    
+}
