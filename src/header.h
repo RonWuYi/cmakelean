@@ -533,6 +533,26 @@ void postOrder(tree::Node *root);
 
 }
 
+namespace interview {
+    class A {
+    private:
+        const int a;  
+    public:
+        A() : a(0) {};
+        A(int x) : a(x) {};
+
+        int getValue();
+        int getValue() const;
+    };
+
+    void function()
+    {
+        A b;
+        const A a;
+        const A *p = &a;
+        const A &q = a;
+    }
+}
 // void preOrder(tree::Node *root);
 // void preOrder(tree::Node *root) {
 //     std::cout << root->data;
