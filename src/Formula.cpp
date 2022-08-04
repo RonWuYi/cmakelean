@@ -1111,10 +1111,12 @@ void SolutionreverseString::reverseString02(vector<char>& s) {
 }
 
 vector<string> SolutionfindMissingRanges::findMissingRanges(vector<int>& nums, int lower, int upper) {
+    vector<string> v;
+    if (nums.size() == upper + 1)
+        return v;
     int left{};
     int right{};
     int pright{};
-    vector<string> v;
     std::string s{"->"};
     for(int i = lower; i <= upper; ++i)
     {
@@ -1139,13 +1141,13 @@ vector<string> SolutionfindMissingRanges::findMissingRanges(vector<int>& nums, i
                 right = i;
                 if (right!=pright)
                 {
-                    v.push_back(to_string(left));
-                    v.push_back(s);
-                    v.push_back(to_string(right));
+                    auto temp = to_string(left);
+                    temp.append(s);
+                    temp.append(to_string(right));
+                    v.push_back(temp);
                     pright = right;
                 }
             }
     }
     return v;
-    
 }
