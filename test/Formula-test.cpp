@@ -195,6 +195,17 @@ TEST(SolutionmyAtoi, test12)
     EXPECT_EQ(s.myAtoi02(str1), 4193);
     EXPECT_EQ(s.myAtoi02(str2), 0);
 }
+
+TEST(SolutionfindMissingRanges, test12)
+{
+    SolutionfindMissingRanges s{};
+    std::vector<int> v{0,1,3,50,75};
+    int lower = 0;
+    int upper = 99;
+    std::vector<string> result{"2","4->49","51->74","76->99"};
+    EXPECT_EQ(s.findMissingRanges(v, lower, upper), result); 
+}
+
 // TEST(SolutiondailyTemperatures, test12)
 // {
 //     SolutiondailyTemperatures s{};

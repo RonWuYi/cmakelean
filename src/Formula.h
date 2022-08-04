@@ -519,3 +519,8 @@ public:
     void reverseString(vector<char>& s);
     void reverseString02(vector<char>& s);
 };
+
+class SolutionfindMissingRanges {
+public:
+    vector<string> findMissingRanges(vector<int>& nums, int lower, int upper);
+};

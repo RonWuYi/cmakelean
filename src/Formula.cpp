@@ -1,4 +1,6 @@
 #include "Formula.h"
+#include <iostream>
+#include <string>
 
 int sum(vector<int> v) {
     int sum = 0;
@@ -74,7 +76,7 @@ vector<int> EasySolution::preorderTraversaliterative(TreeNode* root)
 
 vector<int> EasySolution::inorderTraversal(TreeNode* root) {
     vector<int> result;
-    if (root = nullptr)
+    if (root == nullptr)
     {
         return result;
     }
@@ -123,7 +125,8 @@ double MovingAverageVector::next(int val) {
         sum += p;
     }
     
-    return sum/capacity;
+    // return sum / static_cast<int>(capacity);
+    return sum / capacity;
 }
 
 void Solutionislands::dfs(vector<vector<char>>& grid, int r, int c)
@@ -651,6 +654,7 @@ string SolutiondecodeString::decodeString(string s) {
 		else {
 			mystack.push(s[i]);
 		}
+        // mystack.push(s[i]);
     }
 	string result{};
 	for (size_t i = mystack.size(); i > 0; i--) {
@@ -1103,5 +1107,45 @@ void SolutionreverseString::reverseString02(vector<char>& s) {
         s[left++] = s[right];
         s[right--] = temp;
     }
+    
+}
+
+vector<string> SolutionfindMissingRanges::findMissingRanges(vector<int>& nums, int lower, int upper) {
+    int left{};
+    int right{};
+    int pright{};
+    vector<string> v;
+    std::string s{"->"};
+    for(int i = lower; i <= upper; ++i)
+    {
+        if (std::find(nums.begin(), nums.end(), i-1) != nums.end() &&
+            std::find(nums.begin(), nums.end(), i) == nums.end() && 
+            std::find(nums.begin(), nums.end(), i+1) != nums.end())
+            {
+                v.push_back(std::to_string(i));
+            }        
+        
+        if (std::find(nums.begin(), nums.end(), i-1) != nums.end() &&
+            std::find(nums.begin(), nums.end(), i) == nums.end() && 
+            std::find(nums.begin(), nums.end(), i+1) == nums.end())
+            {
+                left = i;
+            }        
+        
+        if (std::find(nums.begin(), nums.end(), i-1) == nums.end() &&
+            std::find(nums.begin(), nums.end(), i) == nums.end() && 
+            std::find(nums.begin(), nums.end(), i+1) != nums.end())
+            {
+                right = i;
+                if (right!=pright)
+                {
+                    v.push_back(to_string(left));
+                    v.push_back(s);
+                    v.push_back(to_string(right));
+                    pright = right;
+                }
+            }
+    }
+    return v;
     
 }
