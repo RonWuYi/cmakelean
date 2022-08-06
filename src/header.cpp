@@ -147,3 +147,8 @@ void tree::postOrder(tree::Node *root) {
     tree::preOrder(root->right);
     std::cout << root->data;
 }
+
+// void interviewNew02::func01() {
+//     int count = 31;
+//     count = 32;
+// }

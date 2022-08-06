@@ -525,34 +525,49 @@ namespace tree {
         Node* right;
     };
 
-void preOrder(tree::Node *root);
-void preOrderNoRecursive(tree::Node *root);
+    void preOrder(tree::Node *root);
+    void preOrderNoRecursive(tree::Node *root);
 
-void inOrder(tree::Node *root);
-void postOrder(tree::Node *root);
+    void inOrder(tree::Node *root);
+    void postOrder(tree::Node *root);
 
 }
 
-namespace interview {
-    class A {
-    private:
-        const int a;  
-    public:
-        A() : a(0) {};
-        A(int x) : a(x) {};
+// namespace interviewNew {
+//     class A {
+//     private:
+//         const int a;  
+//     public:
+//         A() : a(0) {};
+//         A(int x) : a(x) {};
 
-        int getValue();
-        int getValue() const;
-    };
+//         int getValue();
+//         int getValue() const;
+//     };
 
-    void function()
-    {
-        A b;
-        const A a;
-        const A *p = &a;
-        const A &q = a;
-    }
-}
+//     void function()
+//     {
+//         A b;
+//         const A a;
+//         const A *p = &a;
+//         const A &q = a;
+//     }
+
+//     class Base {
+//     public:
+//         inline virtual void who() {
+//             std::cout << "Base\n";
+//         };
+//         virtual ~Base() {};
+//     };
+
+//     class Derived : public Base {
+//     public:
+//         inline void who() override {
+//             std::cout << "Derived\n";
+//         }
+//     };
+// }
 // void preOrder(tree::Node *root);
 // void preOrder(tree::Node *root) {
 //     std::cout << root->data;
@@ -589,3 +604,92 @@ namespace interview {
 //     preOrder(root->right);
 //     std::cout << root->data;
 // }
+namespace interviewNew01 {
+    class A {
+    private:
+        const int a;  
+    public:
+        A() : a(0) {};
+        A(int x) : a(x) {};
+
+        int getValue();
+        int getValue() const;
+    };
+
+    class Base {
+    public:
+        inline virtual void who() {
+            std::cout << "Base\n";
+        };
+        virtual ~Base() {};
+    };
+
+    class Derived : public Base {
+        public:
+            inline void who() override {
+                std::cout << "Derived\n";
+            }
+    };
+
+    struct AA {
+        AA(int a) {}
+        operator bool() const { return true; }
+    };
+
+    struct BB {
+        explicit BB(int b) {}
+        explicit operator bool() const { return true; }
+    };
+}
+
+namespace interviewNew02 {
+    // int count = 11;
+
+    // class A {
+    // public:
+    //     static int count;
+    // };
+    // int A::count = 21;
+
+    // void func01();
+    template<typename It>
+    auto fcn(It beg, It end) -> decltype(*beg) {
+        return *beg;
+    }
+
+    template<typename It>
+    auto func2(It beg, It end) -> typename remove_reference<decltype(*beg)>::type {
+        return *beg;
+    }
+
+    template<class T>
+    struct S {
+        std::vector<T> v;
+        S(std::initializer_list<T> l) : v(l) {
+            std::cout << "constructed with a " << l.size() << "-element initializer list\n";
+        }
+
+        void append(std::initializer_list<T> l) {
+            v.insert(v.end(), l.begin(), l.end());
+        }
+
+        std::pair<const T*, std::size_t> c_arr() const {
+            return {&v[0], v.size()};
+        }
+    };
+
+    template<typename T>
+    void templated_fn(T) {}
+}
+
+namespace polymorphism {
+    // template<typename T>
+    // void templated_fn(T) {}
+
+
+    class AAA {
+    public:
+        void doabcd(int a);
+        void doabcd(int a, int b);
+    };
+}
