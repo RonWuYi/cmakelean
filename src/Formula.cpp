@@ -1,6 +1,8 @@
 #include "Formula.h"
 #include <iostream>
 #include <string>
+#include <type_traits>
+#include <vector>
 
 int sum(vector<int> v) {
     int sum = 0;
@@ -1111,7 +1113,11 @@ void SolutionreverseString::reverseString02(vector<char>& s) {
 }
 
 vector<string> SolutionfindMissingRanges::findMissingRanges(vector<int>& nums, int lower, int upper) {
-    vector<string> v;
+    std::vector<std::string> v;
+    if (nums.empty())
+    {
+        return v;
+    }
     if (nums.size() == upper + 1)
         return v;
     int left{};
@@ -1150,4 +1156,34 @@ vector<string> SolutionfindMissingRanges::findMissingRanges(vector<int>& nums, i
             }
     }
     return v;
+}
+
+vector<string> SolutionfindMissingRanges::findMissingRanges02(vector<int>& nums, int lower, int upper) {
+    // string get_range(int start, int end)
+    vector<string> result;
+    int pre = lower - 1;
+    
+    for (int i = 0; i <= nums.size(); ++i)
+    {
+        int cur = (i==nums.size()? upper+1:nums[i]);
+        if (cur-pre>=2)
+        {
+            result.push_back(get_range(pre+1, cur-1));
+            // auto temp =[pre, cur](){
+            //     auto start = pre+1;
+            //     auto end = cur - 1;
+            //     return start==end?to_string(start):to_string(start)+"->"+to_string(end);
+            // };
+            // result.push_back(temp);
+            // return temp;
+        }
+            // result.push_back([pre, curl]())
+            // return start==end?to_string(start):to_string(start)+"->"+to_string(end);
+        pre = cur;
+    }
+    return result;
+}
+
+string SolutionfindMissingRanges::get_range(int start, int end) {
+    return start==end?to_string(start):to_string(start)+"->"+to_string(end);
 }

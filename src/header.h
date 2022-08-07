@@ -20,6 +20,7 @@
 #include <utility>
 #include <list>
 #include <bitset>
+#include <cmath>
 
 using namespace std;
 using charQueue = std::queue<std::unique_ptr<std::array<char, 100>>>;
@@ -692,4 +693,15 @@ namespace polymorphism {
         void doabcd(int a);
         void doabcd(int a, int b);
     };
+}
+
+namespace lambda {
+    // void abssort(float* x, unsigned n)
+    // {
+    //     std::sort(x, x + n,
+    //         [](float a, float b){
+    //             return (std::abs(a) < std::abs(b));
+    //     }
+    //     );
+    // }
 }

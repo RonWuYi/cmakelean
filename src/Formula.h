@@ -522,5 +522,7 @@ public:
 
 class SolutionfindMissingRanges {
 public:
+    string get_range(int start, int end);
     vector<string> findMissingRanges(vector<int>& nums, int lower, int upper);
+    vector<string> findMissingRanges02(vector<int>& nums, int lower, int upper);
 };

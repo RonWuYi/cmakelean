@@ -203,7 +203,8 @@ TEST(SolutionfindMissingRanges, test12)
     int lower = 0;
     int upper = 99;
     std::vector<string> result{"2","4->49","51->74","76->99"};
-    EXPECT_EQ(s.findMissingRanges(v, lower, upper), result); 
+    // EXPECT_EQ(s.findMissingRanges(v, lower, upper), result); 
+    EXPECT_EQ(s.findMissingRanges02(v, lower, upper), result); 
 }
 
 // TEST(SolutiondailyTemperatures, test12)
