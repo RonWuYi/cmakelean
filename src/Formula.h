@@ -526,3 +526,14 @@ public:
     vector<string> findMissingRanges(vector<int>& nums, int lower, int upper);
     vector<string> findMissingRanges02(vector<int>& nums, int lower, int upper);
 };
+
+
+class MyHashMap {
+private:
+    std::vector<std::pair<int, int>> p;
+public:
+    MyHashMap();
+    void put(int key, int value);
+    int get(int key);
+    void remove(int key);
+};

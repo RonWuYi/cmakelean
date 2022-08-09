@@ -1,7 +1,9 @@
 #include "Formula.h"
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <type_traits>
+#include <utility>
 #include <vector>
 
 int sum(vector<int> v) {
@@ -1186,4 +1188,36 @@ vector<string> SolutionfindMissingRanges::findMissingRanges02(vector<int>& nums,
 
 string SolutionfindMissingRanges::get_range(int start, int end) {
     return start==end?to_string(start):to_string(start)+"->"+to_string(end);
+}
+
+MyHashMap::MyHashMap() {
+    
+}
+
+void MyHashMap::put(int key, int value) {
+    for (auto& t:p)
+    {
+        if (t.first == key)
+            t.second = value;
+    }
+
+    auto temp = std::make_pair(key ,value);
+    p.push_back(temp);
+}
+
+int MyHashMap::get(int key) {
+    for (auto& t:p)
+    {
+        if (t.first == key)
+            return t.second;
+    }
+    return -1;
+}
+
+void MyHashMap::remove(int key) {
+    for (int i = 0; i< p.size(); ++i)
+    {
+        if (p[i].first == key)
+            p.erase(p.begin() + 1 + i);
+    }
 }
