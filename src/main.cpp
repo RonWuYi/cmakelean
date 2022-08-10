@@ -6,6 +6,7 @@
 #include "components.h"
 
 #include <assert.h>
+#include <vector>
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,25 +18,23 @@ void *memset(void *, int, size_t);
 
 #endif
 int main(){
-    using namespace interviewNew02;
-    S<int> s = {1,2,3,4,5};
-    s.append({6,7,8,9,10});
+    std::vector<int> v{1,2,3,4,5};
+    v.erase(v.begin() + 0);
 
-    std::cout << "the size is now " << s.c_arr().second << " ints:\n";
-    for (int x : {-1, -2, -3})
-        std::cout << x << ' ';
+    for (auto i : v) {
+        std::cout << i << std::endl;
+    }
 
-    auto al = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-    std::cout << std::endl;
-    std::cout << typeid(al).name() << '\n';
+    std::vector<std::pair<int, int>> p;
+    auto temp = std::make_pair(1, 1);
 
-    templated_fn<std::initializer_list<int>>({1,2,3,4,5});
-
-    char *str = (char*) malloc(sizeof(char) * 100);
-    assert(str != nullptr);
-
-    free(str);
-    str = nullptr;
-    
+    p.push_back(temp);
+    auto temp2 = std::make_pair(2, 2);
+    p.push_back(temp2);
+    p.erase(p.begin() + 1);
+    for (auto i : p) {
+        std::cout << i.first << " " << i.second << std::endl;
+    }
     return 0;
+
 }

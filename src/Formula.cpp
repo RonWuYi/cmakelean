@@ -1198,7 +1198,10 @@ void MyHashMap::put(int key, int value) {
     for (auto& t:p)
     {
         if (t.first == key)
+        {
             t.second = value;
+            break;
+        }
     }
 
     auto temp = std::make_pair(key ,value);
@@ -1218,6 +1221,50 @@ void MyHashMap::remove(int key) {
     for (int i = 0; i< p.size(); ++i)
     {
         if (p[i].first == key)
-            p.erase(p.begin() + 1 + i);
+        {
+            p.erase(p.begin() + i);
+            break;
+        }
     }
+}
+
+MyHashMap02::MyHashMap02() {
+    m_data.resize(m_size);
+}
+
+void MyHashMap02::put(int key, int value) {
+    auto& list = m_data[key % m_size];
+    for (auto & val: list)
+    {
+        if (val.first == key)
+        {
+            val.second = value;
+            return;
+        }
+    }
+    list.emplace_back(key, value);
+}
+
+int MyHashMap02::get(int key) {
+    const auto& list = m_data[key % m_size];
+    if (list.empty())
+    {
+        return -1;
+    }
+
+    for (const auto& val: list)
+    {
+        if (val.first == key)
+        {
+            return val.second;
+        }
+    }
+
+    return -1;
+}
+
+void MyHashMap02::remove(int key) {
+    auto& list = m_data[key % m_size];
+    list.remove_if([key](auto n) {return n.first == key;});
+    
 }

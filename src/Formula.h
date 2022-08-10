@@ -15,6 +15,8 @@
 #include <climits>
 #include <limits>
 #include <limits.h>
+#include <list>
+
 
 using namespace std;
 
@@ -533,6 +535,18 @@ private:
     std::vector<std::pair<int, int>> p;
 public:
     MyHashMap();
+    void put(int key, int value);
+    int get(int key);
+    void remove(int key);
+};
+
+class MyHashMap02 {
+private:
+    std::vector<std::list<std::pair<int, int>>> m_data;
+    size_t m_size = 10000;
+
+public:
+    MyHashMap02();
     void put(int key, int value);
     int get(int key);
     void remove(int key);

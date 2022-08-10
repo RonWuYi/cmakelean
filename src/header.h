@@ -705,3 +705,21 @@ namespace lambda {
     //     );
     // }
 }
+
+namespace rvalue {
+    struct W {
+        W(int&, int&) {}
+    };
+
+    struct X {
+        X(const int&, int&) {}
+    };
+
+    struct Y {
+        Y(int&, const int&) {}
+    };
+
+    struct Z {
+        Z(const int&, const int&) {}
+    };
+}
