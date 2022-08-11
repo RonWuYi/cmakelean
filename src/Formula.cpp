@@ -6,6 +6,7 @@
 #include <list>
 #include <string>
 #include <type_traits>
+#include <unordered_set>
 #include <utility>
 #include <vector>
 
@@ -1317,4 +1318,36 @@ int SolutionsingleNumber::singleNumber(vector<int>& nums) {
             return p.first;
     }
     return -1;
+}
+
+vector<int> Solutionintersection::intersection(vector<int>& nums1, vector<int>& nums2) {
+    std::vector<int> v;
+    std::unordered_set<int> my_set1;
+    std::unordered_set<int> my_set2;
+    for (auto& p : nums1)
+    {
+        my_set1.insert(p);
+    }
+
+    for (auto& p: nums2)
+        my_set2.insert(p);
+
+    if (my_set2.size() < my_set1.size())
+    {
+        for(const auto& p: my_set2)
+        {
+            auto search = my_set1.find(p);
+            if (search != my_set1.end())
+                v.push_back(p);
+        }
+    }
+    else {
+        for(const auto& p: my_set1)
+        {
+            auto search = my_set2.find(p);
+            if (search != my_set2.end())
+                v.push_back(p);
+        }
+    }
+    return v;
 }
