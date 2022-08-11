@@ -551,3 +551,14 @@ public:
     int get(int key);
     void remove(int key);
 };
+
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums);
+};
+
+
+class SolutionsingleNumber {
+public:
+    int singleNumber(vector<int>& nums);
+};

@@ -1,6 +1,9 @@
 #include "Formula.h"
 #include <algorithm>
+#include <array>
+#include <cstddef>
 #include <iostream>
+#include <list>
 #include <string>
 #include <type_traits>
 #include <utility>
@@ -1267,4 +1270,62 @@ void MyHashMap02::remove(int key) {
     auto& list = m_data[key % m_size];
     list.remove_if([key](auto n) {return n.first == key;});
     
+}
+
+bool Solution::containsDuplicate(vector<int>& nums) {
+    // const std::size_t size = nums.size();
+    // std::array<int, size> l;
+    std::vector<int> l;
+    std::fill_n(std::back_inserter(l), nums.size(), 0);
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (std::find(nums.begin(), nums.end(), nums[i]) != nums.end())
+        {
+            l[i] += 1;
+        }
+    }
+
+    int sum_of_elems = 0;
+
+    std::for_each(l.begin(), l.end(), [&] (int n) {
+        sum_of_elems += n;
+    });
+
+    if (sum_of_elems > nums.size())
+    {
+        return true;
+    }
+    return false;
+}
+
+int SolutionsingleNumber::singleNumber(vector<int>& nums) {
+    if (nums.size() == 1)
+        return nums[0];
+    vector<std::pair<int, int>> v;
+    for (auto& p : nums)
+    {
+        auto temp = std::make_pair(p, 0);
+        if (std::find(v.begin(), v.end(), temp) != v.end())
+        {
+            for (int i = 0; i<v.size(); ++i)
+            {
+                if (v[i].first == p)
+                {
+                    v[i].second += 1;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            v.push_back(temp);
+        }
+    }
+
+    for (auto& p : v)
+    {
+        if (p.second == 0)
+            return p.first;
+    }
+    return -1;
 }

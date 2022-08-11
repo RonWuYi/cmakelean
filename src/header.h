@@ -21,6 +21,8 @@
 #include <list>
 #include <bitset>
 #include <cmath>
+#include <unordered_set>
+
 
 using namespace std;
 using charQueue = std::queue<std::unique_ptr<std::array<char, 100>>>;
@@ -704,6 +706,17 @@ namespace lambda {
     //     }
     //     );
     // }
+    template<typename T>
+    bool findDuplicates(vector<T>& vec) {
+        std::unordered_set<T> s;
+        for(T key: vec) {
+            if(s.find(key) != s.end()) {
+                return true;
+            }
+            s.insert(key);
+        }
+        return false;
+    }
 }
 
 namespace rvalue {

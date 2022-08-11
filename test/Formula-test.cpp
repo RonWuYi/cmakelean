@@ -207,13 +207,9 @@ TEST(SolutionfindMissingRanges, test12)
     EXPECT_EQ(s.findMissingRanges02(v, lower, upper), result); 
 }
 
-// TEST(SolutiondailyTemperatures, test12)
-// {
-//     SolutiondailyTemperatures s{};
-//     std::vector<int> v1{55,38,53,81,61,93,97,32,43,78};
-//     std::vector<int> v2{73,74,75,71,69,72,76,73};
-//     std::vector<int> result1{3,1,1,2,1,1,0,1,1,0};
-//     std::vector<int> result2{1,1,4,2,1,1,0,0};
-//     EXPECT_EQ(s.dailyTemperatures(v1), result1); 
-//     EXPECT_EQ(s.dailyTemperatures(v2), result2); 
-// }
+TEST(SolutionsingleNumber, test12)
+{
+    SolutionsingleNumber s{};
+    std::vector<int> v{2, 2, 1};
+    EXPECT_EQ(s.singleNumber(v), 1);
+}

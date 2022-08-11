@@ -4,8 +4,8 @@
 #include "Formula.h"
 #include "header.h"
 #include "components.h"
-
 #include <assert.h>
+#include <unordered_set>
 #include <vector>
 
 #ifdef __cplusplus
@@ -18,23 +18,13 @@ void *memset(void *, int, size_t);
 
 #endif
 int main(){
-    std::vector<int> v{1,2,3,4,5};
-    v.erase(v.begin() + 0);
+    std::unordered_set<int> hashset;
 
-    for (auto i : v) {
-        std::cout << i << std::endl;
-    }
+    hashset.insert(1);
+    hashset.insert(2);
+    hashset.insert(3);
 
-    std::vector<std::pair<int, int>> p;
-    auto temp = std::make_pair(1, 1);
+    hashset.insert(3);
 
-    p.push_back(temp);
-    auto temp2 = std::make_pair(2, 2);
-    p.push_back(temp2);
-    p.erase(p.begin() + 1);
-    for (auto i : p) {
-        std::cout << i.first << " " << i.second << std::endl;
-    }
-    return 0;
-
+    std::cout << hashset.size() << std::endl;
 }
