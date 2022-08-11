@@ -686,10 +686,6 @@ namespace interviewNew02 {
 }
 
 namespace polymorphism {
-    // template<typename T>
-    // void templated_fn(T) {}
-
-
     class AAA {
     public:
         void doabcd(int a);
@@ -698,14 +694,6 @@ namespace polymorphism {
 }
 
 namespace lambda {
-    // void abssort(float* x, unsigned n)
-    // {
-    //     std::sort(x, x + n,
-    //         [](float a, float b){
-    //             return (std::abs(a) < std::abs(b));
-    //     }
-    //     );
-    // }
     template<typename T>
     bool findDuplicates(vector<T>& vec) {
         std::unordered_set<T> s;

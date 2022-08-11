@@ -1174,16 +1174,7 @@ vector<string> SolutionfindMissingRanges::findMissingRanges02(vector<int>& nums,
         if (cur-pre>=2)
         {
             result.push_back(get_range(pre+1, cur-1));
-            // auto temp =[pre, cur](){
-            //     auto start = pre+1;
-            //     auto end = cur - 1;
-            //     return start==end?to_string(start):to_string(start)+"->"+to_string(end);
-            // };
-            // result.push_back(temp);
-            // return temp;
         }
-            // result.push_back([pre, curl]())
-            // return start==end?to_string(start):to_string(start)+"->"+to_string(end);
         pre = cur;
     }
     return result;
@@ -1273,8 +1264,6 @@ void MyHashMap02::remove(int key) {
 }
 
 bool Solution::containsDuplicate(vector<int>& nums) {
-    // const std::size_t size = nums.size();
-    // std::array<int, size> l;
     std::vector<int> l;
     std::fill_n(std::back_inserter(l), nums.size(), 0);
     for (int i = 0; i < nums.size(); ++i)
