@@ -562,3 +562,9 @@ class SolutionsingleNumber {
 public:
     int singleNumber(vector<int>& nums);
 };
+
+
+class Solutionintersection {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2);
+};
