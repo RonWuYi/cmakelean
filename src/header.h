@@ -723,4 +723,76 @@ namespace rvalue {
     struct Z {
         Z(const int&, const int&) {}
     };
+
+    struct A {
+        A(int&& n);
+        A(int& n);
+    };
+
+    class B {
+    public:
+        template<class T1, class T2, class T3>
+        B(T1&& t1, T2&& t2, T3&& t3) :
+            a1_{std::forward<T1>(t1)},
+            a2_{std::forward<T2>(t2)},
+            a3_{std::forward<T3>(t3)}
+        {
+        }
+    private:
+        A a1_;
+        A a2_;
+        A a3_;
+    };
+
+    template<class T, class U>
+    std::unique_ptr<T> make_unique1(U&& u) {
+        return std::unique_ptr<T>(new T(std::forward<U>(u)));
+    }
+
+    template<class T, class... U>
+    std::unique_ptr<T> make_unique2(U&&... u) {
+        return std::unique_ptr<T>(new T(std::forward<U>(u)...));
+    }
+
+    class MemoryBlock{};
+
+    void f(const MemoryBlock&);
+    void f(MemoryBlock&&);
+
+    template<typename T> struct S;
+
+    template<typename T> struct S<T&> {
+        static void print(T& t)
+        {
+            cout << "print<T&>: " << t << endl;
+        }
+    };
+
+    template<typename T> struct S<const T&> {
+        static void print(T& t)
+        {
+            cout << "print<csont T&>: " << t << endl;
+        }
+    };
+
+    template<typename T> struct S<T&&> {
+        static void print(T&& t)
+        {
+            cout << "print<T&&>: " << t << endl;
+        }
+    };
+
+    template<typename T> struct S<const T&&> {
+        static void print(T&& t)
+        {
+            cout << "print<const T&&>: " << t << endl;
+        }
+    };
+
+    template <typename T> void print_type_and_value(T&& t) {
+        // S<decltype(t)>::print(std::forward<T>(t));
+        S<T&&>::print(std::forward<T>(t));
+    }
+
+    const string fourth();
 }

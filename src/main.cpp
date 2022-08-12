@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <unordered_set>
 #include <vector>
+#include <memory>
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,14 +18,24 @@ void *memset(void *, int, size_t);
 }
 
 #endif
+
 int main(){
-    std::unordered_set<int> hashset;
+    auto p1 = rvalue::make_unique1<rvalue::A>(2);
+    int i = 1;
+    auto p2 = rvalue::make_unique1<rvalue::A>(i);
 
-    hashset.insert(1);
-    hashset.insert(2);
-    hashset.insert(3);
+    std::cout << "B\n";
 
-    hashset.insert(3);
+    auto t = rvalue::make_unique2<rvalue::B>(2, i, 3);
 
-    std::cout << hashset.size() << std::endl;
+    rvalue::MemoryBlock block;
+    rvalue::f(block);
+    rvalue::f(rvalue::MemoryBlock());
+
+    string s1{"first"};
+
+    rvalue::print_type_and_value(s1);
+    rvalue::print_type_and_value(string("third"));
+    // rvalue::print_type_and_value(rvalue::fourth());
+    return 0;
 }

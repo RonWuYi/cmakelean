@@ -1,4 +1,5 @@
 #include "header.h"
+#include <iostream>
 
 std::mutex g_pages_mutex;
 
@@ -148,7 +149,19 @@ void tree::postOrder(tree::Node *root) {
     std::cout << root->data;
 }
 
-// void interviewNew02::func01() {
-//     int count = 31;
-//     count = 32;
-// }
+rvalue::A::A(int&& n) {std::cout << "rvalue::A::A(int&& n)" << n <<std::endl;}
+rvalue::A::A(int& n) {std::cout << "lvalue::A::A(int& n)" << n <<std::endl;}
+
+void rvalue::f(const rvalue::MemoryBlock&)
+{
+    std::cout << "rvalue::f(const rvalue::MemoryBlock&)" << endl;
+}
+void rvalue::f(rvalue::MemoryBlock&&)
+{
+    std::cout << "rvalue::f(rvalue::MemoryBlock&&)" << endl;
+}
+
+const string rvalue::fourth()
+{
+    return "fourth";
+}
