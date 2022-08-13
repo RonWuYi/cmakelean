@@ -213,3 +213,9 @@ TEST(SolutionsingleNumber, test12)
     std::vector<int> v{2, 2, 1};
     EXPECT_EQ(s.singleNumber(v), 1);
 }
+
+TEST(SolutionisHappy, test12)
+{
+    SolutionisHappy s{};
+    EXPECT_EQ(s.isHappy03(19), true);
+}

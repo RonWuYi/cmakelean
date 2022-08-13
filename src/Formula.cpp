@@ -1351,3 +1351,58 @@ vector<int> Solutionintersection::intersection(vector<int>& nums1, vector<int>& 
     }
     return v;
 }
+
+bool SolutionisHappy::isHappy(int n) {
+    int slow, fast;
+
+    slow = fast = n;
+
+    do {
+        slow = digitSquareSum(slow);
+        fast = digitSquareSum(fast);
+        fast = digitSquareSum(fast);
+    } while (slow != fast);
+
+    if (slow == 1)
+        return true;
+    else return false;
+}
+
+int SolutionisHappy::isHappy02(int n) {
+    auto len = std::to_string(n).size();
+
+    int temp = 0;
+
+    for (int i = len; i >= 0; i--)
+    {
+        if (i-1 != 0)
+            temp += std::pow((n / ((i-1)*10)), 2);
+        // else
+        //     temp += std::pow(n/
+    }
+
+
+    std::cout << "temp = " << temp << std::endl;
+    return temp;
+}
+
+int SolutionisHappy::digitSquareSum(int n) {
+    int sum = 0, tmp;
+
+    while (n){ 
+        tmp = n % 10;
+        sum += tmp*tmp;
+        n /= 10;}
+    return sum;
+}
+
+bool SolutionisHappy::isHappy03(int n) {
+    std::unordered_set<int> temp{};
+    // [n, temp](){ temp.find(n)};
+    // auto search = example.find(2);
+    while (n!=1&&(temp.find(n)!=temp.end())) {
+        temp.insert(n);
+        n = digitSquareSum(n);
+    }
+    return n == 1;
+}

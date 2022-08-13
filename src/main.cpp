@@ -37,5 +37,16 @@ int main(){
     rvalue::print_type_and_value(s1);
     rvalue::print_type_and_value(string("third"));
     // rvalue::print_type_and_value(rvalue::fourth());
+
+    std::cout << 567 / 100 << std::endl;
+    std::cout << 567 / 10 << std::endl;
+    std::cout << 567 / 1 << std::endl;
+    std::cout << 567 % 100 << std::endl;
+
+    SolutionisHappy s{};
+
+    std::cout << s.isHappy02(19) << std::endl;
+
+    // std::expected<int, std::string> e = 43;
     return 0;
 }

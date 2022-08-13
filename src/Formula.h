@@ -568,3 +568,12 @@ class Solutionintersection {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2);
 };
+
+class SolutionisHappy {
+public:
+    bool isHappy(int n);
+    int isHappy02(int n);
+    bool isHappy03(int n);
+private:
+    int digitSquareSum(int n);
+};
