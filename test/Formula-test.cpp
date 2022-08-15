@@ -1,4 +1,6 @@
 #include "gtest/gtest.h"
+#include <string>
+#include <type_traits>
 #include "Formula.h"
 #include "header.h"
 #include "components.h"
@@ -214,8 +216,22 @@ TEST(SolutionsingleNumber, test12)
     EXPECT_EQ(s.singleNumber(v), 1);
 }
 
-TEST(SolutionisHappy, test12)
+// TEST(SolutionisHappy, test12)
+// {
+//     SolutionisHappy s{};
+//     EXPECT_EQ(s.isHappy03(19), true);
+// }
+
+TEST(isIsomorphic, test12)
 {
-    SolutionisHappy s{};
-    EXPECT_EQ(s.isHappy03(19), true);
+    std::string s1{"egg"};
+    std::string s2{"add"};
+    std::string s3{"foo"};
+    std::string s4{"bar"};
+    SolutionisIsomorphic s{};
+    auto result1 = s.isIsomorphic(s1, s2);
+    auto result2 = s.isIsomorphic(s3, s4);
+    EXPECT_EQ(result1, true);
+    EXPECT_EQ(result2, false);
 }
+

@@ -578,3 +578,11 @@ public:
 private:
     int digitSquareSum(int n);
 };
+
+class SolutionisIsomorphic {
+public:
+    bool isIsomorphic(string s, string t);
+
+private:
+    std::unordered_map<char, int> get_map(string t);
+};

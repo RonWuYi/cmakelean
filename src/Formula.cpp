@@ -6,6 +6,7 @@
 #include <list>
 #include <string>
 #include <type_traits>
+#include <unordered_map>
 #include <unordered_set>
 #include <utility>
 #include <vector>
@@ -1403,4 +1404,56 @@ vector<int> Solutionintersection::intersection02(vector<int>& nums1, vector<int>
         }
     }
     return res;
+}
+
+bool SolutionisIsomorphic::isIsomorphic(string s, string t) {
+    auto flag = true;
+    auto temp1 = get_map(s);
+    auto temp2 = get_map(t);
+
+    auto f = [](std::unordered_map<char, int> p) {
+        int result = 0;
+        for (auto& t: p)
+            result += t.second;
+        return result;
+    };
+    if (temp1.size() != temp2.size())
+        // return false;
+        flag = false;
+    else if (f(temp1)!=f(temp2))
+        // return false;
+        flag = false;
+
+    // for (int i = 0; i < temp1.size(); ++i)
+    // {
+    //     if (temp1[i].second )
+
+    // }
+
+    for (auto& ttt: temp1)
+    {
+        if (temp1.count(ttt.first) != temp2.count(ttt.first))
+            flag = false;
+    }
+    return flag;
+}
+
+std::unordered_map<char, int> SolutionisIsomorphic::get_map(string t) {
+    std::unordered_map<char, int> tmp;
+    for (auto& p: t)
+    {
+        if (!tmp.empty())
+        {
+            for (auto& tt: tmp)
+            {
+                if (tt.first == p)
+                {
+                    tt.second += 1;
+                    break;
+                }
+            }
+            tmp.emplace(p, 0);
+        }
+    }
+    return tmp;
 }

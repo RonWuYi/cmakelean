@@ -5,6 +5,9 @@
 #include "header.h"
 #include "components.h"
 #include <assert.h>
+#include <ostream>
+#include <string>
+#include <unordered_map>
 #include <unordered_set>
 #include <vector>
 #include <memory>
@@ -37,4 +40,25 @@ int main(){
         if (set.count(i) == 1)
             std::cout << i << ' ';
     }
+    std::string p{"hello"};
+    
+    std::unordered_map<char, int> tmp;
+    for (auto& t: p)
+        // std::cout << t << std::endl;
+    {
+        if (!tmp.empty())
+        {
+            for (auto& tt: tmp)
+            {
+                if (tt.first == t)
+                {
+                    tt.second += 1;
+                    break;
+                }
+            }
+            tmp.emplace(t, 0);
+        }
+    }
+
+
 }
