@@ -567,6 +567,7 @@ public:
 class Solutionintersection {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2);
+    vector<int> intersection02(vector<int>& nums1, vector<int>& nums2);
 };
 
 class SolutionisHappy {

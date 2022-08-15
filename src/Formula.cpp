@@ -852,29 +852,12 @@ vector<int> SolutiontwoSum::twoSum02(vector<int>& nums, int target) {
     }
     
     return final_result;
-    // auto temp = std::vector<std::pair<int, int>>();
-    // for (int i = 0; i < nums.size(); i++)
-    // {
-    //     auto result = target - nums[i];
-    //     auto result_pair = std::pair<int, int>(result, i);
-    //     // if (nums[i] == target)
-    //     if (std::find(temp.begin(), temp.end(), result_pair) != temp.end())
-    //     {
-    //         return std::vector<int>(i, result_pair.second);
-    //     }
-    //     temp.push_back(result_pair);
-    // }
 }
 
 bool SolutionisPalindrome::isPalindrome(string s) {
     if (s.empty() || s.length() == 1) {
         return true;
     }
-    // else if (s.length() == 2) {
-    //     if (s[0] == s[1]) || s[0]
-    //         return true;
-    //     else if (s[0] == s[1])
-    // }
     auto flag = true;
     std::string temp{};
     for (auto p: s)
@@ -1405,4 +1388,19 @@ bool SolutionisHappy::isHappy03(int n) {
         n = digitSquareSum(n);
     }
     return n == 1;
+}
+
+vector<int> Solutionintersection::intersection02(vector<int>& nums1, vector<int>& nums2) {
+    auto tmp = std::unordered_set<int>(nums1.begin(), nums1.end());
+    vector<int> res;
+
+    for (auto a : nums2)
+    {
+        if (tmp.count(a))
+        {
+            res.push_back(a);
+            tmp.erase(a);
+        }
+    }
+    return res;
 }

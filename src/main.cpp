@@ -20,29 +20,21 @@ void *memset(void *, int, size_t);
 #endif
 
 int main(){
-    auto p1 = rvalue::make_unique1<rvalue::A>(2);
-    int i = 1;
-    auto p2 = rvalue::make_unique1<rvalue::A>(i);
+    std::unordered_set set{2, 7, 1, 8, 2, 8, 1, 8, 2, 8};
+    std::cout << "the set is: ";
 
-    std::cout << "B\n";
+    for (int e: set)
+    {
+        std::cout << e << ' ';
+    }
 
-    auto t = rvalue::make_unique2<rvalue::B>(2, i, 3);
+    const auto [min, max] = std::ranges::minmax(set);
 
-    rvalue::MemoryBlock block;
-    rvalue::f(block);
-    rvalue::f(rvalue::MemoryBlock());
+    std::cout << "min " << min << " to  max " << max << std::endl;
 
-    string s1{"first"};
-
-    rvalue::print_type_and_value(s1);
-    rvalue::print_type_and_value(string("third"));
-    // rvalue::print_type_and_value(rvalue::fourth());
-
-    // std::cout << 567 / 100 << std::endl;
-    std::cout << 567 / 10 << std::endl;
-    std::cout << 567 % 10 << std::endl;
-    std::cout << 567 / 1 << std::endl;
-    // std::cout << 567 % 100 << std::endl;
-
-    return 0;
+    for (int i{min}; i<= max; ++i)
+    {
+        if (set.count(i) == 1)
+            std::cout << i << ' ';
+    }
 }
