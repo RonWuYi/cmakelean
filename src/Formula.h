@@ -595,6 +595,7 @@ public:
 class SolutionfindRestaurant {
 public:
     vector<string> findRestaurant(vector<string>& list1, vector<string>& list2);
+    vector<string> findRestaurant02(vector<string>& list1, vector<string>& list2);
     //     vector<string> result{};
     //     if (list1.size() > list2.size())
     //     {

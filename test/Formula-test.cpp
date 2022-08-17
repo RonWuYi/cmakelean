@@ -257,3 +257,62 @@ TEST(SolutionaddDigits, test12)
     SolutionaddDigits s{};
     EXPECT_EQ(s.addDigits(38), 2); 
 }
+
+// TEST(SolutionfindRestaurant, test1)
+// {
+//     SolutionfindRestaurant s{};
+//     std::vector<std::string> v1{"Shogun", "Tapioca Express", "Burger King", "KFC"};
+//     std::vector<std::string> v2{"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"};
+//     std::vector<std::string> result{"Shogun"};
+//     EXPECT_EQ(s.findRestaurant(v1, v2), result); 
+// }
+
+// TEST(SolutionfindRestaurant, test11)
+// {
+//     SolutionfindRestaurant s{};
+//     std::vector<std::string> v1{"Shogun", "Tapioca Express", "Burger King", "KFC"};
+//     std::vector<std::string> v2{"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"};
+//     std::vector<std::string> result{"Shogun"};
+//     EXPECT_EQ(s.findRestaurant02(v1, v2), result); 
+// }
+
+// TEST(SolutionfindRestaurant, test2)
+// {
+//     SolutionfindRestaurant s{};
+//     std::vector<std::string> v1{"Shogun", "Tapioca Express", "Burger King", "KFC"};
+//     std::vector<std::string> v2{"KFC", "Shogun", "Burger King"};
+//     std::vector<std::string> result{"Shogun"};
+//     EXPECT_EQ(s.findRestaurant(v1, v2), result); 
+// }
+
+TEST(SolutionfindRestaurant, test22)
+{
+    SolutionfindRestaurant s{};
+    std::vector<std::string> v1{"Shogun","Tapioca Express","Burger King","KFC"};
+    std::vector<std::string> v2{"KFC","Shogun","Burger King"};
+    std::vector<std::string> result{"Shogun"};
+    EXPECT_EQ(s.findRestaurant02(v1, v2), result); 
+}
+
+
+// ["cbe","dcb","bbd","ddb","KFC"]
+// ["cbc","bad","bcb","bbd","eda","edc","ddb","KFC"]
+TEST(SolutionfindRestaurant, test23)
+{
+    SolutionfindRestaurant s{};
+    std::vector<std::string> v1{"cbe","dcb","bbd","ddb","KFC"};
+    std::vector<std::string> v2{"cbc","bad","bcb","bbd","eda","edc","ddb","KFC"};
+    std::vector<std::string> result{"bbd"};
+    EXPECT_EQ(s.findRestaurant02(v1, v2), result); 
+}
+
+// ["aac","bab","cca","KFC"]
+// ["ade","dea","cca","KFC"]
+TEST(SolutionfindRestaurant, test24)
+{
+    SolutionfindRestaurant s{};
+    std::vector<std::string> v1{"aac","bab","cca","KFC"};
+    std::vector<std::string> v2{"ade","dea","cca","KFC"};
+    std::vector<std::string> result{"cca"};
+    EXPECT_EQ(s.findRestaurant02(v1, v2), result); 
+}

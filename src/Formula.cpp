@@ -1515,9 +1515,6 @@ vector<string> SolutionfindRestaurant::findRestaurant(vector<string>& list1, vec
     vector<string> result{};
     std::unordered_map<string, int> temp1;
     std::unordered_map<string, int> temp2;
-
-    // for (auto& p: list1)
-    //     temp1.emplace(p, )
     for (int i = 0; i<list1.size(); ++i)
     {
         temp1.emplace(list1[i], i);
@@ -1530,34 +1527,24 @@ vector<string> SolutionfindRestaurant::findRestaurant(vector<string>& list1, vec
     {
         int index = temp1.size() + 1;
 
-        for (auto& p: temp1)
+        for (auto& p1: temp1)
         {
-            if (temp2.find(p.first) != temp2.end())
+            if (temp2.find(p1.first) != temp2.end())
             {
-                if (index > p.second)
-                    index = p.second;
+                if (index > p1.second)
+                    index = p1.second;
             }
         }
-        for (auto& p: temp1)
+        for (auto& p2: temp1)
         {     
-            if (temp2.find(p.first)->second == index)
+            if (temp2.find(p2.first)->second == index)
             {
-                result.push_back(p.first);
+                result.push_back(p2.first);
             }
         }
 
     } else {
-        // for (auto& p: list2)
-        // {
-        //     if (std::find(list1.begin(), list1.end(), p) != list1.end())
-        //     {
-        //         result.push_back(p);
-        //     }
-        // }
-
-
         int index = temp2.size() + 1;
-
         for (auto& p: temp2)
         {
             if (temp1.find(p.first) != temp1.end())
@@ -1575,4 +1562,45 @@ vector<string> SolutionfindRestaurant::findRestaurant(vector<string>& list1, vec
         }
     }
     return result;
+}
+
+vector<string> SolutionfindRestaurant::findRestaurant02(vector<string>& list1, vector<string>& list2) {
+    std::unordered_map<string, int> temp1;
+    std::unordered_map<string, int> temp2;
+
+    for (int i = 0; i < list1.size(); ++i)
+    {
+        if (std::find(list2.begin(), list2.end(), list1[i]) != list2.end())
+        {
+            temp1.emplace(list1[i], i);
+        }
+    }
+    for (int i = 0; i < list2.size(); ++i)
+    {
+        if (std::find(list1.begin(), list1.end(), list2[i]) != list1.end())
+        {
+            temp2.emplace(list2[i], temp1[list2[i]] + i);
+        }
+    }
+
+    std::vector<std::string> final_result;
+    if (temp2.size() == 1)
+    {    
+        for (auto& list : temp2)
+            final_result.push_back(list.first);
+    } else {
+        int lower_index = list1.size() + list2.size() - 1;
+        for (auto& p : temp2)
+        {
+            if (p.second < lower_index)
+                lower_index = p.second;
+        }
+        // std::vector<std::string> final_result;
+        for (auto& p : temp2)
+        {
+            if (p.second == lower_index)
+                final_result.push_back(p.first);
+        }
+    }
+    return final_result;
 }
