@@ -1438,6 +1438,34 @@ bool SolutionisIsomorphic::isIsomorphic(string s, string t) {
     return flag;
 }
 
+bool SolutionisIsomorphic::isIsomorphic02(string s, string t) {
+    if (s.size() != t.size())
+        return false;
+    else {    
+        std::unordered_map<char, char> temp1;
+        std::unordered_map<char, char> temp2;
+        for (size_t i = 0; i < s.size(); ++i)
+        {
+            if (!temp1.empty() && (temp1.find(s[i]) != temp1.end()))
+            {
+                auto a1 = temp1.find(s[i]);
+                if (a1->second != t[i])
+                    return false;
+            }
+            
+            if (!temp2.empty() && (temp2.find(t[i]) != temp2.end()))
+            {
+                auto a1 = temp2.find(t[i]);
+                if (a1->second != s[i])
+                    return false;
+            }
+            temp1.emplace(s[i], t[i]);
+            temp2.emplace(t[i], s[i]);
+        }
+    }
+    return true;
+}
+ 
 std::unordered_map<char, int> SolutionisIsomorphic::get_map(string t) {
     std::unordered_map<char, int> tmp;
     for (auto& p: t)
