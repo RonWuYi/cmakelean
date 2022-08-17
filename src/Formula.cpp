@@ -1505,3 +1505,74 @@ int SolutionaddDigits::addDigits(int num)
     }
     return digital_root;
 }
+
+
+// class SolutionfindRestaurant {
+// public:
+//     vector<string> findRestaurant(vector<string>& list1, vector<string>& list2);
+
+vector<string> SolutionfindRestaurant::findRestaurant(vector<string>& list1, vector<string>& list2) {
+    vector<string> result{};
+    std::unordered_map<string, int> temp1;
+    std::unordered_map<string, int> temp2;
+
+    // for (auto& p: list1)
+    //     temp1.emplace(p, )
+    for (int i = 0; i<list1.size(); ++i)
+    {
+        temp1.emplace(list1[i], i);
+    }
+    for (int i = 0; i<list2.size(); ++i)
+    {
+        temp2.emplace(list2[i], i);
+    }
+    if (temp1.size() > temp2.size())
+    {
+        int index = temp1.size() + 1;
+
+        for (auto& p: temp1)
+        {
+            if (temp2.find(p.first) != temp2.end())
+            {
+                if (index > p.second)
+                    index = p.second;
+            }
+        }
+        for (auto& p: temp1)
+        {     
+            if (temp2.find(p.first)->second == index)
+            {
+                result.push_back(p.first);
+            }
+        }
+
+    } else {
+        // for (auto& p: list2)
+        // {
+        //     if (std::find(list1.begin(), list1.end(), p) != list1.end())
+        //     {
+        //         result.push_back(p);
+        //     }
+        // }
+
+
+        int index = temp2.size() + 1;
+
+        for (auto& p: temp2)
+        {
+            if (temp1.find(p.first) != temp1.end())
+            {
+                if (index > p.second)
+                    index = p.second;
+            }
+        }
+        for (auto& p: temp2)
+        {     
+            if (temp2.find(p.first)->second == index)
+            {
+                result.push_back(p.first);
+            }
+        }
+    }
+    return result;
+}

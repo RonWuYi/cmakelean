@@ -590,18 +590,30 @@ private:
 class SolutionaddDigits {
 public:
     int addDigits(int num);
-    //     int digital_root = 0;
-    //     while (num > 0)
-    //     {
-    //         digital_root += num % 10;
-    //         num = num / 10;
+};
 
-    //         if (num == 0 && digital_root > 9)
+class SolutionfindRestaurant {
+public:
+    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2);
+    //     vector<string> result{};
+    //     if (list1.size() > list2.size())
+    //     {
+    //         for (auto& p: list1)
     //         {
-    //             num = digital_root;
-    //             digital_root = 0;
+    //             if (std::find(list2.begin(), list2.end(), p) != list2.end())
+    //             {
+    //                 result.push_back(p);
+    //             }
+    //         }
+    //     } else {
+    //         for (auto& p: list2)
+    //         {
+    //             if (std::find(list1.begin(), list1.end(), p) != list1.end())
+    //             {
+    //                 result.push_back(p);
+    //             }
     //         }
     //     }
-    //     return digital_root;
+    //     return result;
     // }
 };
