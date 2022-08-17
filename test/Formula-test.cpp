@@ -235,3 +235,8 @@ TEST(isIsomorphic, test12)
     EXPECT_EQ(result2, false);
 }
 
+TEST(SolutionaddDigits, test12)
+{
+    SolutionaddDigits s{};
+    EXPECT_EQ(s.addDigits(38), 2); 
+}
