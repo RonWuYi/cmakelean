@@ -606,4 +606,6 @@ public:
 class SolutionintersectII {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2);
+    vector<int> intersect02(vector<int>& nums1, vector<int>& nums2);
+    vector<int> intersect03(vector<int>& nums1, vector<int>& nums2);
 };

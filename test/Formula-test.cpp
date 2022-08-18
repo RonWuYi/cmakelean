@@ -316,3 +316,22 @@ TEST(SolutionfindRestaurant, test24)
     std::vector<std::string> result{"cca"};
     EXPECT_EQ(s.findRestaurant02(v1, v2), result); 
 }
+
+// using testing::UnorderedElementsAre;
+
+TEST(SolutionintersectII, test1)
+{
+    SolutionintersectII s{};
+    std::vector<int> v1{1, 2, 2, 1};
+    std::vector<int> v3{4, 9, 5};
+    std::vector<int> v4{9, 4, 9, 8, 4};
+    std::vector<int> v2{2, 2 };
+    std::vector<int> result{2, 2};
+    std::vector<int> result2{9, 4};
+    std::vector<int> result3{4, 9};
+    EXPECT_EQ(s.intersect02(v1, v2), result); 
+    EXPECT_EQ(s.intersect02(v3, v4), result2);    
+    EXPECT_EQ(s.intersect03(v1, v2), result); 
+    EXPECT_EQ(s.intersect03(v3, v4), result3); 
+
+}
