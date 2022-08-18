@@ -23,42 +23,13 @@ void *memset(void *, int, size_t);
 #endif
 
 int main(){
-    std::unordered_set set{2, 7, 1, 8, 2, 8, 1, 8, 2, 8};
-    std::cout << "the set is: ";
+    std::unordered_map<char, int> my_map;
+    std::string s{"hello, world"};
 
-    for (int e: set)
-    {
-        std::cout << e << ' ';
+    for (auto c : s) {
+        my_map[c]++;
     }
 
-    const auto [min, max] = std::ranges::minmax(set);
-
-    std::cout << "min " << min << " to  max " << max << std::endl;
-
-    for (int i{min}; i<= max; ++i)
-    {
-        if (set.count(i) == 1)
-            std::cout << i << ' ';
-    }
-    std::string p{"hello"};
-    
-    std::unordered_map<char, int> tmp;
-    for (auto& t: p)
-        // std::cout << t << std::endl;
-    {
-        if (!tmp.empty())
-        {
-            for (auto& tt: tmp)
-            {
-                if (tt.first == t)
-                {
-                    tt.second += 1;
-                    break;
-                }
-            }
-            tmp.emplace(t, 0);
-        }
-    }
-
-
+    std::cout << my_map['l'] << std::endl;
+    std::cout << my_map.size() << std::endl;
 }

@@ -1604,3 +1604,27 @@ vector<string> SolutionfindRestaurant::findRestaurant02(vector<string>& list1, v
     }
     return final_result;
 }
+
+
+// class SolutionfirstUniqChar {
+// public:
+//     int firstUniqChar(string s);
+int SolutionfirstUniqChar::firstUniqChar(string s)
+{
+    std::unordered_map<char, int> temp;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (temp.find(s[i]) != temp.end())
+        {
+            temp[s[i]] += 1;
+        } else {
+            temp.emplace(s[i], 1);
+        }
+    }
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (temp[s[i]] == 1)
+            return i;
+    }
+    return -1;
+}
