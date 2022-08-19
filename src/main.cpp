@@ -11,6 +11,7 @@
 #include <unordered_set>
 #include <vector>
 #include <memory>
+#include <span>
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,13 +24,16 @@ void *memset(void *, int, size_t);
 #endif
 
 int main(){
-    std::unordered_map<char, int> my_map;
-    std::string s{"hello, world"};
+    int a[] = {1,2,3,4,5};
+    std::span<int> s(a);
 
-    for (auto c : s) {
-        my_map[c]++;
-    }
+    std::cout << s.size() << std::endl;
+    std::cout << s.data() << std::endl;
+    std::cout << s.front() << std::endl;
+    std::cout << s.back() << std::endl;
 
-    std::cout << my_map['l'] << std::endl;
-    std::cout << my_map.size() << std::endl;
+    std::span<int>::element_type et = s[3];
+    std::cout << et << std::endl;
+
+    return 0;
 }
