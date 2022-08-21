@@ -24,16 +24,5 @@ void *memset(void *, int, size_t);
 #endif
 
 int main(){
-    int a[] = {1,2,3,4,5};
-    std::span<int> s(a);
-
-    std::cout << s.size() << std::endl;
-    std::cout << s.data() << std::endl;
-    std::cout << s.front() << std::endl;
-    std::cout << s.back() << std::endl;
-
-    std::span<int>::element_type et = s[3];
-    std::cout << et << std::endl;
-
     return 0;
 }
