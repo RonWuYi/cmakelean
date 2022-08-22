@@ -333,5 +333,15 @@ TEST(SolutionintersectII, test1)
     EXPECT_EQ(s.intersect02(v3, v4), result2);    
     EXPECT_EQ(s.intersect03(v1, v2), result); 
     EXPECT_EQ(s.intersect03(v3, v4), result3); 
+}
 
+TEST(SolutioncontainsNearbyDuplicate, test1)
+{
+    SolutioncontainsNearbyDuplicate s{};
+    std::vector<int> v1{1,2,3,1};
+    std::vector<int> v2{1,0,1,1};
+    std::vector<int> v3{1,2,3,1,2,3};
+    EXPECT_EQ(s.containsNearbyDuplicate02(v1, 3), true); 
+    EXPECT_EQ(s.containsNearbyDuplicate02(v2, 1), true); 
+    EXPECT_EQ(s.containsNearbyDuplicate02(v3, 2), false); 
 }

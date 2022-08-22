@@ -11,6 +11,8 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <array>
+
 
 int sum(vector<int> v) {
     int sum = 0;
@@ -1695,4 +1697,50 @@ vector<int> SolutionintersectII::intersect03(vector<int>& nums1, vector<int>& nu
         }
     }
     return vector<int>(begin(nums1), begin(nums1) + k);
+}
+
+// bool SolutioncontainsNearbyDuplicate::containsNearbyDuplicate(vector<int>& nums, int k) {
+//     std::unordered_map<int, int> temp;
+//     // std::
+
+//     for (auto& p : nums)
+//     {
+//         if (temp.find(p) != temp.end())
+//             temp[p] += 1;
+//         else
+//             temp.emplace(p, 0);
+//     }
+
+//     for (auto& p : temp)
+//     {
+//         if (p.second == 1)
+//         {
+//             auto num_index_first = std::find(nums.begin(), nums.end(), p.first);
+//             auto num_index_second = std::find(num_index_first + 1, nums.end(), p.first);
+//             if (std::distance(num_index_second, num_index_first) <= k)
+//                 return true;
+//             else
+//                 return false;
+//         }
+//     }
+//     return false;
+// }
+
+bool SolutioncontainsNearbyDuplicate::containsNearbyDuplicate02(vector<int>& nums, int k) {
+    unordered_set<int> s;
+    if (k <= 0) 
+        return false;
+    if (k >= nums.size()) 
+        k = nums.size() -1;
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (i > k) 
+            s.erase(nums[i - k - 1]);
+        if (s.find(nums[i]) != s.end())
+            return true;
+        s.insert(nums[i]);
+    }
+
+    return false;
 }

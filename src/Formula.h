@@ -609,3 +609,10 @@ public:
     vector<int> intersect02(vector<int>& nums1, vector<int>& nums2);
     vector<int> intersect03(vector<int>& nums1, vector<int>& nums2);
 };
+
+
+class SolutioncontainsNearbyDuplicate {
+public:
+    // bool containsNearbyDuplicate(vector<int>& nums, int k);
+    bool containsNearbyDuplicate02(vector<int>& nums, int k);
+};
