@@ -616,3 +616,9 @@ public:
     // bool containsNearbyDuplicate(vector<int>& nums, int k);
     bool containsNearbyDuplicate02(vector<int>& nums, int k);
 };
+
+class LoggershouldPrintMessage {
+public:
+    LoggershouldPrintMessage();
+    bool shouldPrintMessage(int timestamp, string message);
+};
