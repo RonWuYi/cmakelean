@@ -633,3 +633,8 @@ public:
 private:
     std::unordered_map<std::string, int> temp;
 };
+
+class SolutiongroupAnagrams {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs);
+};
