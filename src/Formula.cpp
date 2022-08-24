@@ -1744,3 +1744,22 @@ bool SolutioncontainsNearbyDuplicate::containsNearbyDuplicate02(vector<int>& num
 
     return false;
 }
+
+Logger::Logger() {
+    temp = {};
+}
+
+bool Logger::shouldPrintMessage(int timestamp, string message) {
+    if (temp.find(message) == temp.end())
+    {
+        temp.emplace(message, timestamp);
+        return true;
+    }
+    auto p = temp[message];
+    if (timestamp - temp[message] >= 10)
+    {
+        temp[message] = timestamp;
+        return true;
+    }
+    return false;
+}

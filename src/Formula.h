@@ -622,3 +622,14 @@ public:
     LoggershouldPrintMessage();
     bool shouldPrintMessage(int timestamp, string message);
 };
+
+
+class Logger {
+public:
+    Logger();
+    
+    bool shouldPrintMessage(int timestamp, string message);
+
+private:
+    std::unordered_map<std::string, int> temp;
+};

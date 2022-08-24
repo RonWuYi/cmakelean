@@ -345,3 +345,14 @@ TEST(SolutioncontainsNearbyDuplicate, test1)
     EXPECT_EQ(s.containsNearbyDuplicate02(v2, 1), true); 
     EXPECT_EQ(s.containsNearbyDuplicate02(v3, 2), false); 
 }
+
+TEST(Logger, test1)
+{
+    Logger s{};
+    EXPECT_EQ(s.shouldPrintMessage(1, "foo"), true);
+    EXPECT_EQ(s.shouldPrintMessage(2, "bar"), true);
+    EXPECT_EQ(s.shouldPrintMessage(3, "foo"), true);
+    EXPECT_EQ(s.shouldPrintMessage(8, "bar"), true);
+    EXPECT_EQ(s.shouldPrintMessage(10, "foo"), true);
+    EXPECT_EQ(s.shouldPrintMessage(11, "foo"), true);
+}
