@@ -351,8 +351,8 @@ TEST(Logger, test1)
     Logger s{};
     EXPECT_EQ(s.shouldPrintMessage(1, "foo"), true);
     EXPECT_EQ(s.shouldPrintMessage(2, "bar"), true);
-    EXPECT_EQ(s.shouldPrintMessage(3, "foo"), true);
-    EXPECT_EQ(s.shouldPrintMessage(8, "bar"), true);
-    EXPECT_EQ(s.shouldPrintMessage(10, "foo"), true);
+    EXPECT_EQ(s.shouldPrintMessage(3, "foo"), false);
+    EXPECT_EQ(s.shouldPrintMessage(8, "bar"), false);
+    EXPECT_EQ(s.shouldPrintMessage(10, "foo"), false);
     EXPECT_EQ(s.shouldPrintMessage(11, "foo"), true);
 }

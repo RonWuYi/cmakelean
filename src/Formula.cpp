@@ -138,7 +138,7 @@ double MovingAverageVector::next(int val) {
     }
     
     // return sum / static_cast<int>(capacity);
-    return sum / capacity;
+    return static_cast<float>(sum) / capacity;
 }
 
 void Solutionislands::dfs(vector<vector<char>>& grid, int r, int c)
@@ -662,8 +662,7 @@ string SolutiondecodeString::decodeString(string s) {
 				}
 				// k--;
 			}
-        }
-		else {
+        } else {
 			mystack.push(s[i]);
 		}
         // mystack.push(s[i]);
