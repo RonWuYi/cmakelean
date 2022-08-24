@@ -1764,5 +1764,66 @@ bool Logger::shouldPrintMessage(int timestamp, string message) {
 }
 
 vector<vector<string>> SolutiongroupAnagrams::groupAnagrams(vector<string>& strs) {
-    
+    if (strs.size() <= 1)
+    {
+        vector<vector<string>> v;
+        v.push_back(strs);
+        return v;
+    }
+
+    vector<vector<string>> v_result{}; 
+    // std::unordered_map
+    std::vector<std::unordered_set<char>> vector_char;
+    for (auto& p : strs)
+    {
+        std::unordered_set<char> inside_set{};
+        for (size_t i = 0; i < p.size(); i++)
+        {
+            inside_set.insert(p[i]);
+        }
+        auto search = std::find(vector_char.begin(), vector_char.end(), inside_set);
+        if (search != vector_char.end())
+            vector_char.push_back(inside_set);
+    }
+
+    v_result.resize(vector_char.size());
+    for (auto& p : strs)
+    {
+        std::unordered_set<char> inside_set{};
+        for (size_t i = 0; i < p.size(); i++)
+        {
+            inside_set.insert(p[i]);
+        }
+        // vector_char.push_back(inside_set);
+
+        for (size_t i = 0; i < vector_char.size(); i++)
+        {
+            if (inside_set == vector_char[i])
+            {
+                v_result[i].push_back(p);
+                break;
+            }
+        }
+        
+    }
+
+    return v_result;
+}
+
+vector<vector<string>> SolutiongroupAnagrams::groupAnagrams02(vector<string>& strs) {
+    unordered_map<string, vector<string>> mp;
+
+        for (string s : strs)
+        {
+            string t = s;
+            sort(t.begin(), t.end());
+            mp[t].push_back(s);
+        }
+
+        vector<vector<string>> result;
+
+        for (auto p : mp)
+            result.push_back(p.second);
+
+        return result;
 }
