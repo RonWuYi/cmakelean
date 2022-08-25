@@ -370,3 +370,16 @@ TEST(SolutiongroupAnagrams, test1)
     EXPECT_EQ(s.groupAnagrams02(v_input), v_result);
     EXPECT_EQ(s.groupAnagrams02(v_input1), v_result1);
 }
+
+TEST(SolutionsortColors, test1)
+{
+    SolutionsortColors s{};
+    vector<int> v_input1{2,0,2,1,1,0};
+    vector<int> v_input2{2,0,1};
+    vector<int> v_result1{0,0,1,1,2,2};
+    vector<int> v_result2{0,1,2};
+    s.sortColors02(v_input1);
+    s.sortColors02(v_input2);
+    EXPECT_EQ(v_input1, v_result1);
+    EXPECT_EQ(v_input2, v_result2);
+}
