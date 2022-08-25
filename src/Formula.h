@@ -646,3 +646,14 @@ public:
     void sortColors(vector<int>& nums);
     void sortColors02(vector<int>& nums);
 };
+
+
+class SolutionheightChecker {
+public:
+    SolutionheightChecker();
+    int heightChecker(vector<int>& heights);
+
+private:
+    void bubble_sort(vector<int>& heights);
+    vector<int> heights_copy;
+};

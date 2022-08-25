@@ -1856,3 +1856,13 @@ void SolutionsortColors::sortColors02(vector<int>& nums) {
         else curr++;
     }
 }
+
+void SolutionheightChecker::bubble_sort(vector<int>& heights) {
+
+    
+}
+
+SolutionheightChecker::SolutionheightChecker() {
+    
+    
+}
