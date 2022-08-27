@@ -383,3 +383,12 @@ TEST(SolutionsortColors, test1)
     EXPECT_EQ(v_input1, v_result1);
     EXPECT_EQ(v_input2, v_result2);
 }
+
+TEST(SolutionheightCheckerII, test1)
+{
+    SolutionheightCheckerII s{};
+    std::vector<int> v{1,1,4,2,1,3};
+    std::vector<int> v2{5,1,2,3,4};
+    EXPECT_EQ(s.heightChecker(v), 3);
+    EXPECT_EQ(s.heightChecker(v2), 5);
+}

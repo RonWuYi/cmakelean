@@ -657,3 +657,33 @@ private:
     void bubble_sort(vector<int>& heights);
     vector<int> heights_copy;
 };
+
+
+class SolutionheightCheckerII {
+public:
+    int heightChecker(vector<int>& heights);
+    // int heightChecker(vector<int>& heights) {
+
+    //     std::vector<int> v_temp{heights};
+    //     bool changed = false;
+
+    //     while (!changed)
+    //     {
+    //         // changed = true;
+    //         for (size_t i = 0; i < heights.size(); i++)
+    //         {
+    //             if (heights[i] > heights[i+1])
+    //                 std::swap(heights[i+1], heights[i]);
+    //                 changed = true;
+    //         }
+    //     }
+    //     int result = 0;
+    //     for (size_t i = 0; i < heights.size(); i++)
+    //     {
+    //         if (v_temp[i] != heights[i])
+    //             result += 1;
+    //     }
+    //     // for ()
+    //     return result;
+    // }
+};

@@ -1866,3 +1866,28 @@ SolutionheightChecker::SolutionheightChecker() {
     
     
 }
+
+int SolutionheightCheckerII::heightChecker(vector<int>& heights) {
+    std::vector<int> v_temp{heights};
+    bool changed = false;
+
+    while (!changed)
+    {
+        changed = true;
+        for (size_t i = 0; i < heights.size(); i++)
+        {
+            if (heights[i] > heights[i+1])
+            {
+                std::swap(heights[i+1], heights[i]);
+                changed = false;
+            }
+        }
+    }
+    int result = 0;
+    for (size_t i = 0; i < heights.size(); i++)
+    {
+        if (v_temp[i] != heights[i])
+            result += 1;
+    }
+    return result;
+}
