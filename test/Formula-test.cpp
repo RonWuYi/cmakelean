@@ -392,3 +392,16 @@ TEST(SolutionheightCheckerII, test1)
     EXPECT_EQ(s.heightChecker(v), 3);
     EXPECT_EQ(s.heightChecker(v2), 5);
 }
+
+TEST(Solutioninsertionsort, test1)
+{
+    Solutioninsertionsort s{};
+    std::vector<int> v{1,1,4,2,1,3};
+    std::vector<int> v2{5,1,2,3,4};
+    s.insertion_sort(v);
+    s.insertion_sort(v2);
+    std::vector<int> v_result{1,1,1,2,3,4};
+    std::vector<int> v2_result{1,2,3,4,5};
+    EXPECT_EQ(v, v_result);
+    EXPECT_EQ(v2, v2_result);
+}

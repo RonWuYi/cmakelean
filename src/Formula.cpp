@@ -1891,3 +1891,15 @@ int SolutionheightCheckerII::heightChecker(vector<int>& heights) {
     }
     return result;
 }
+
+void Solutioninsertionsort::insertion_sort(vector<int>& heights) {
+    for (auto i = 1; i < heights.size(); i++)
+    {
+        int current_index = i;
+        while (current_index > 0 && heights[current_index-1] > heights[current_index])
+        {
+            std::swap(heights[current_index], heights[current_index-1]);
+            current_index -= 1;
+        }
+    }
+}
