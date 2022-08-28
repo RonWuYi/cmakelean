@@ -13,6 +13,8 @@
 #include <memory>
 #include <span>
 #include <condition_variable>
+#include <atomic>
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,31 +45,60 @@ void worker_thread()
 
     std::cout << "Worker thread signals data processing completed\n";
     lk.unlock();    
-
     cv.notify_one();
-
 }
+
+void worker_thread_no_cv()
+{
+    std::unique_lock lk(m);
+    // cv.wait(lk, []{return ready;});
+
+    std::cout << "worker thread no cv is processing data\n";
+
+    string_data += "after processing no cv ";
+    processed = true;
+
+    std::cout << "Worker thread no cv signals data processing completed\n";
+    lk.unlock();    
+    // cv.notify_one();
+}
+
+struct S {
+    char a;
+    int b : 5;
+    int e;
+    double f;
+    std::string g;
+};
+
+class Spinlock {
+    std::atomic_flag flag = ATOMIC_FLAG_INIT;
+
+public:
+    void lock() {
+        while (flag.test_and_set());
+    }
+
+    void unlock() {
+        flag.clear();
+    }
+};
+
+Spinlock spin;
+
+void workOnResource() {
+    spin.lock();
+    spin.unlock();
+}
+
 
 int main(){
 
-    std::thread worker(worker_thread);
+    std::thread t(workOnResource);
+    std::thread t2(workOnResource);
 
-    string_data = "example data";
-
-    {
-        std::lock_guard lk(m);
-        ready = true;
-        std::cout << "main() signals data ready for processing\n";
-    }
-
-    cv.notify_one();
-
-
-    {
-        std::unique_lock lk(m);
-        cv.wait(lk, []{return processed;});
-    }
-    std::cout << "Back in main(), data = " << string_data << '\n';
-    worker.join();
-    return 0;
+    t.join();
+    t2.join();
 }
+
+
