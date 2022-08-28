@@ -1942,10 +1942,19 @@ ListNode* SolutioninsertionSortList::insertionSortListII(ListNode* head) {
         pre = &dummy;
         if (head && head->next && head->val > head->next->val)
         {
-            /* code */
+            while (pre && pre->next && pre->next->val < head->next->val)
+            {
+                pre = pre->next;
+            }
+
+            next = pre->next;
+            pre->next = head->next;
+            head->next = head->next->next;
+            pre->next->next = next; 
+            
+        } else {
+            head = head->next;
         }
-        
     }
-    
-    
+    return dummy.next;
 }
