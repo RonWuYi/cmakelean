@@ -17,8 +17,13 @@
 #include <limits.h>
 #include <list>
 
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 
 using namespace std;
+
+// namespace formula {
+
 
 struct TreeNode {
     int val;
@@ -693,3 +698,12 @@ public:
     ListNode* insertionSortList(ListNode* head);
     ListNode* insertionSortListII(ListNode* head);
 };
+
+
+class SolutionpivotIndex {
+public:
+    int pivotIndex(vector<int>& nums);
+    int pivotIndex02(vector<int>& nums);
+};
+
+// }

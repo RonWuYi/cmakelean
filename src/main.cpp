@@ -19,13 +19,16 @@
 
 #include "spdlog/sinks/basic_file_sink.h"
 
+#if 0
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 void *memset(void *, int, size_t);
 
 #ifdef __cplusplus
 }
+#endif 
 
 #endif
 
@@ -96,7 +99,6 @@ void workOnResource() {
 
 
 int main(){
-
     std::thread t(workOnResource);
     std::thread t2(workOnResource);
 

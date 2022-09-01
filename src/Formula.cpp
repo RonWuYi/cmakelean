@@ -13,6 +13,11 @@
 #include <vector>
 #include <array>
 
+// using namespace formula;
+
+// create color multi threaded logger
+auto console = spdlog::stdout_color_mt("console");    
+auto err_logger = spdlog::stderr_color_mt("stderr");    
 
 int sum(vector<int> v) {
     int sum = 0;
@@ -1957,4 +1962,46 @@ ListNode* SolutioninsertionSortList::insertionSortListII(ListNode* head) {
         }
     }
     return dummy.next;
+}
+
+int SolutionpivotIndex::pivotIndex(vector<int>& nums) {
+    int nums_sum = 0;
+    for (size_t i = 0; i < nums.size(); i++)
+    {
+        nums_sum += nums[i];
+    }
+    int temp = 0;
+    for (size_t i = 0; i < nums.size(); temp += nums[i++])
+    {
+        // temp += nums[i];
+        if (temp*2 == nums_sum - nums[i])
+        {
+            spdlog::get("console")->info("Index founded, return i");
+            return i;
+        }
+    }
+    spdlog::get("console")->info("no index found, return -1");
+
+    return -1;
+}
+
+int SolutionpivotIndex::pivotIndex02(vector<int>& nums) {
+    int nums_sum = 0;
+    for (size_t i = 0; i < nums.size(); i++)
+    {
+        nums_sum += nums[i];
+    }
+    int temp = 0;
+    for (size_t i = 0; i < nums.size(); ++i)
+    {
+        temp += nums[i];
+        if ((temp - nums[i])*2 == nums_sum - nums[i])
+        {
+            spdlog::get("console")->info("Index founded, return i");
+            return i;
+        }
+    }
+    spdlog::get("console")->info("no index found, return -1");
+
+    return -1;
 }

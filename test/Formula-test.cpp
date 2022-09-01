@@ -405,3 +405,11 @@ TEST(Solutioninsertionsort, test1)
     EXPECT_EQ(v, v_result);
     EXPECT_EQ(v2, v2_result);
 }
+
+TEST(SolutionpivotIndex, test1)
+{
+    SolutionpivotIndex s{};
+    std::vector<int> v_input{1,7,3,6,5,6};
+    EXPECT_EQ(s.pivotIndex(v_input), 3);
+    EXPECT_EQ(s.pivotIndex02(v_input), 3);
+}
