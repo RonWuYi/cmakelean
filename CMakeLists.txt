@@ -12,6 +12,11 @@ endif()
 
 include_directories(src)
 
+include(dependencies.cmake)
+
+# include()
+include_directories(${spdlog_SOURCE_DIR}/include)
+
 add_subdirectory(src)
 add_subdirectory(test)
 add_subdirectory(lib/googletest)

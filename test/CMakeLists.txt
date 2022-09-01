@@ -8,10 +8,14 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   set(gtest_force_shared_crt on)
 endif()
 
+# include(../dependencies.cmake)
+
 set(SOURCES ${TEST_SOURCES})
 
 add_executable(${BINARY} ${TEST_SOURCES})
 
 add_test(NAME ${BINARY} COMMAND ${BINARY})
+
+# target_include_directories(${BINARY} PRIVATE ${spdlog_SOURCE_DIR}/include)
 
 target_link_libraries(${BINARY} PUBLIC ${CMAKE_PROJECT_NAME}_lib gtest)

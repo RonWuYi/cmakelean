@@ -15,6 +15,9 @@
 #include <condition_variable>
 #include <atomic>
 
+// #include "spdlog/spdlog.h"
+
+#include "spdlog/sinks/basic_file_sink.h"
 
 #ifdef __cplusplus
 extern "C" {
