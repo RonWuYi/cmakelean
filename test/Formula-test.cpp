@@ -413,3 +413,12 @@ TEST(SolutionpivotIndex, test1)
     EXPECT_EQ(s.pivotIndex(v_input), 3);
     EXPECT_EQ(s.pivotIndex02(v_input), 3);
 }
+
+TEST(SolutiondominantIndex, test1)
+{
+    SolutiondominantIndex s{};
+    std::vector<int> v_input{1,2,3,4};
+    std::vector<int> v_input2{3,6,1,0};
+    EXPECT_EQ(s.dominantIndex(v_input), -1);
+    EXPECT_EQ(s.dominantIndex(v_input2), 1);
+}

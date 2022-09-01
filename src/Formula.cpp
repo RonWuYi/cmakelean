@@ -2005,3 +2005,39 @@ int SolutionpivotIndex::pivotIndex02(vector<int>& nums) {
 
     return -1;
 }
+
+int SolutiondominantIndex::dominantIndex(vector<int>& nums) {
+    int max_num = 0;
+    int result_index = 0;
+    for (size_t i = 0; i < nums.size(); i++)
+    {
+        if (max_num < nums[i])
+        {
+            max_num = nums[i];
+            result_index = i;
+        }
+    }
+    bool flag = true;
+    // int temp = 0;
+    // int result_index = 0;
+    for (size_t i = 0; i < nums.size(); i++)
+    {
+        if (nums[i] != max_num)
+        {
+            if (max_num < nums[i]*2)
+            {
+                flag = false;
+                break;
+            } 
+            // else if (temp < nums[i])
+            // {
+            //     temp = nums[i];
+            //     result_index = i;
+            // }
+        }
+    }
+    if (!flag)
+        return -1;
+    else
+        return result_index;
+}

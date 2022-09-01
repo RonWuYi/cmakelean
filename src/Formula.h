@@ -22,8 +22,6 @@
 
 using namespace std;
 
-// namespace formula {
-
 
 struct TreeNode {
     int val;
@@ -706,4 +704,8 @@ public:
     int pivotIndex02(vector<int>& nums);
 };
 
-// }
+
+class SolutiondominantIndex {
+public:
+    int dominantIndex(vector<int>& nums);
+};
