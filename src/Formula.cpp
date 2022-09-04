@@ -2018,8 +2018,6 @@ int SolutiondominantIndex::dominantIndex(vector<int>& nums) {
         }
     }
     bool flag = true;
-    // int temp = 0;
-    // int result_index = 0;
     for (size_t i = 0; i < nums.size(); i++)
     {
         if (nums[i] != max_num)
@@ -2029,11 +2027,6 @@ int SolutiondominantIndex::dominantIndex(vector<int>& nums) {
                 flag = false;
                 break;
             } 
-            // else if (temp < nums[i])
-            // {
-            //     temp = nums[i];
-            //     result_index = i;
-            // }
         }
     }
     if (!flag)
@@ -2041,3 +2034,55 @@ int SolutiondominantIndex::dominantIndex(vector<int>& nums) {
     else
         return result_index;
 }
+
+vector<int> SolutionplusOne::plusOne(vector<int>& digits) {
+    // int temp = 0;
+    // int carry = 0;
+
+    // for (size_t i = digits.size()-1; i > 0; i--)
+    // {
+    //     if (i == digits.size()-1) {
+    //         if ((digits[i] + 1) >= 10) {
+    //             carry = 1;
+    //             temp = (digits[i] + carry) % 10;
+    //         } else {
+    //                 temp = (digits[i] + carry);
+    //                 }
+    //     } else {
+    //         if ((digits[i] + carry) >= 10) {
+    //             carry = 1;
+    //             temp = (digits[i] + carry) % 10;
+    //         } else {
+    //             temp = (digits[i] + carry);
+    //         }
+    //     }
+    //     digits[i] = temp;
+    // }
+
+    // if (carry > 0)
+    // {
+    //     auto it = digits.begin();
+    //     digits.insert(it, carry);
+    // }
+    // return digits;
+
+        int n = digits.size() - 1;
+
+    for (int i = n; i >= 0; --i)
+    {
+        if (digits[i] == 9)
+        {
+            digits[i] = 0;
+        } else {
+            digits[i] += 1;
+            return digits;
+        }
+    }
+
+    digits.push_back(0);
+    digits[0] = 1;
+    return digits;
+    }
+
+
+

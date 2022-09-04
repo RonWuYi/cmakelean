@@ -422,3 +422,11 @@ TEST(SolutiondominantIndex, test1)
     EXPECT_EQ(s.dominantIndex(v_input), -1);
     EXPECT_EQ(s.dominantIndex(v_input2), 1);
 }
+
+TEST(SolutionplusOne, test1)
+{
+    SolutionplusOne s{};
+    std::vector<int> v_input{1,2,3};
+    std::vector<int> v_result{1,2,4};
+    EXPECT_EQ(s.plusOne(v_input), v_result);
+}

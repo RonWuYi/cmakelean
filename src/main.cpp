@@ -97,13 +97,52 @@ void workOnResource() {
     spin.unlock();
 }
 
+void print(int id, const std::vector<int>& container)
+{
+    std::cout << id << ". ";
 
-int main(){
-    std::thread t(workOnResource);
-    std::thread t2(workOnResource);
-
-    t.join();
-    t2.join();
+    for (const int x: container)
+    {
+        std::cout << x << ' ';
+    }
+    std::cout << '\n';
 }
 
+vector<int> plusOne(vector<int>& digits) {
+    int temp = 0;
+    int carry = 0;
 
+    for (size_t i = digits.size()-1; i > 0; i--)
+    {
+        if (i == digits.size()-1) {
+            if ((digits[i] + 1) >= 10) {
+                carry = 1;
+                temp = (digits[i] + 1) % 10;
+            } else {
+                    temp = (digits[i] + 1);
+                    }
+        } else {
+            if ((digits[i] + carry) >= 10) {
+                carry = 1;
+                temp = (digits[i] + carry) % 10;
+            } else {
+                temp = (digits[i] + carry);
+            }
+        }
+        digits[i] = temp;
+    }
+
+    if (carry > 0)
+    {
+        auto it = digits.begin();
+        digits.insert(it, carry);
+    }
+    return digits;
+}
+
+int main(){
+    std::vector<int> v_input{1,2,3};
+    std::vector<int> v_input2{9};
+    auto p = plusOne(v_input2);
+    int y = 0;
+}
