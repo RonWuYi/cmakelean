@@ -714,34 +714,4 @@ public:
 class SolutionplusOne {
 public:
     vector<int> plusOne(vector<int>& digits);
-    //     int temp = 0;
-    //     int carry = 0;
-
-    //     for (size_t i = digits.size()-1; i > 0; i--)
-    //     {
-    //         if (i == digits.size()-1) {
-    //             if ((digits[i] + 1) >= 10) {
-    //                 carry = 1;
-    //                 temp = (digits[i] + carry) % 10;
-    //             } else {
-    //                     temp = (digits[i] + carry);
-    //                     }
-    //         } else {
-    //             if ((digits[i] + carry) >= 10) {
-    //                 carry = 1;
-    //                 temp = (digits[i] + carry) % 10;
-    //             } else {
-    //                 temp = (digits[i] + carry);
-    //             }
-    //         }
-    //         digits[i] = temp;
-    //     }
-
-    //     if (carry > 0)
-    //     {
-    //         auto it = digits.begin();
-    //         digits.insert(it, carry);
-    //     }
-    //     return digits;
-    // }
 };
