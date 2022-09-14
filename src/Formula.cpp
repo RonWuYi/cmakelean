@@ -2036,53 +2036,28 @@ int SolutiondominantIndex::dominantIndex(vector<int>& nums) {
 }
 
 vector<int> SolutionplusOne::plusOne(vector<int>& digits) {
-    // int temp = 0;
-    // int carry = 0;
+    int carry = 0;
+    int sum = 0;
+    int n = digits.size() - 1;
 
-    // for (size_t i = digits.size()-1; i > 0; i--)
-    // {
-    //     if (i == digits.size()-1) {
-    //         if ((digits[i] + 1) >= 10) {
-    //             carry = 1;
-    //             temp = (digits[i] + carry) % 10;
-    //         } else {
-    //                 temp = (digits[i] + carry);
-    //                 }
-    //     } else {
-    //         if ((digits[i] + carry) >= 10) {
-    //             carry = 1;
-    //             temp = (digits[i] + carry) % 10;
-    //         } else {
-    //             temp = (digits[i] + carry);
-    //         }
-    //     }
-    //     digits[i] = temp;
-    // }
-
-    // if (carry > 0)
-    // {
-    //     auto it = digits.begin();
-    //     digits.insert(it, carry);
-    // }
-    // return digits;
-
-        int n = digits.size() - 1;
-
-    for (int i = n; i >= 0; --i)
+    for (int i = n; i >= 0; i--)
     {
-        if (digits[i] == 9)
-        {
-            digits[i] = 0;
+        if (i == n) {
+            carry = (digits[i] + sum + 1) / 10;
+            sum = (digits[i] + sum + 1) % 10;
+            digits[i] = sum;
+            sum = 0;
         } else {
-            digits[i] += 1;
-            return digits;
+            auto temp = carry;            
+            carry = (digits[i] + carry) / 10;
+            sum = (digits[i] + temp) % 10;
+            digits[i] = sum;
+            sum = 0;
         }
     }
-
-    digits.push_back(0);
-    digits[0] = 1;
-    return digits;
+    if (carry == 1) {
+        auto it = digits.begin();
+        it = digits.insert(it, 1);
     }
-
-
-
+    return digits;
+}
