@@ -61,7 +61,6 @@ private:
     vector<int> data;
     int p_start;
 
-
 public:
     MyQueue01() : p_start(0) {}
     bool enQueue(int x);
@@ -714,4 +713,16 @@ public:
 class SolutionplusOne {
 public:
     vector<int> plusOne(vector<int>& digits);
+};
+
+
+class SolutionfindDiagonalOrder {
+public:
+    vector<int> findDiagonalOrder(vector<vector<int>>& mat);
+};
+
+
+class SolutionaddBinary {
+public:
+    string addBinary(string a, string b);
 };

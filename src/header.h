@@ -805,3 +805,13 @@ namespace rvalue {
 //         return s.subspan(offset, offset + width <= s.size() ? width : 0U);
 //     }
 // }
+
+template <size_t n, size_t m>
+void printArray(int (&a)[n][m]) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+}

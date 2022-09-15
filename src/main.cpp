@@ -14,6 +14,7 @@
 #include <span>
 #include <condition_variable>
 #include <atomic>
+#include <typeinfo>
 
 // #include "spdlog/spdlog.h"
 
@@ -141,8 +142,23 @@ vector<int> plusOne(vector<int>& digits) {
 }
 
 int main(){
-    std::vector<int> v_input{1,2,3};
-    std::vector<int> v_input2{9};
-    auto p = plusOne(v_input2);
-    int y = 0;
+
+
+    string s1 = "Hello World";
+    // 1. concatenate
+    s1 += "!";
+    cout << s1 << endl;
+    // 2. find
+    cout << "The position of first 'o' is: " << s1.find('o') << endl;
+    cout << "The position of last 'o' is: " << s1.rfind('o') << endl;
+    // 3. get substr
+    cout << s1.substr(5, 5) << endl;
+    cout << "string part" << endl;
+    cout << typeid(s1[0]).name() << endl;  // int
+    cout << typeid(s1.substr(1,1)).name() << endl;  // int
+    cout << "################################" << endl;
+    std::vector<int> nums {1, 2, 4, 8, 16};
+
+    for (auto i = nums.rbegin(); i != nums.rend(); ++i)
+        std::cout << *i << endl; // int
 }

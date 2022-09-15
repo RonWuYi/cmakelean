@@ -435,3 +435,12 @@ TEST(SolutionplusOne, test1)
     EXPECT_EQ(s.plusOne(v_input), v_result);
     EXPECT_EQ(s.plusOne(v_input02), v_result02);
 }
+
+TEST(SolutionaddBinary, test1)
+{
+    SolutionaddBinary s{};
+    std::string s1{"11"};
+    std::string s2{"1"};
+    std::string result{"100"};
+    EXPECT_EQ(s.addBinary(s1, s2), result);
+}
