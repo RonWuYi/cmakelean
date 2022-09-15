@@ -384,14 +384,15 @@ TEST(SolutionsortColors, test1)
     EXPECT_EQ(v_input2, v_result2);
 }
 
-TEST(SolutionheightCheckerII, test1)
-{
-    SolutionheightCheckerII s{};
-    std::vector<int> v{1,1,4,2,1,3};
-    std::vector<int> v2{5,1,2,3,4};
-    EXPECT_EQ(s.heightChecker(v), 3);
-    EXPECT_EQ(s.heightChecker(v2), 5);
-}
+// vector out of scope
+// TEST(SolutionheightCheckerII, test1)
+// {
+//     SolutionheightCheckerII s{};
+//     std::vector<int> v{1,1,4,2,1,3};
+//     std::vector<int> v2{5,1,2,3,4};
+//     EXPECT_EQ(s.heightChecker(v), 3);
+//     EXPECT_EQ(s.heightChecker(v2), 5);
+// }
 
 TEST(Solutioninsertionsort, test1)
 {
@@ -428,5 +429,9 @@ TEST(SolutionplusOne, test1)
     SolutionplusOne s{};
     std::vector<int> v_input{1,2,3};
     std::vector<int> v_result{1,2,4};
+    //[8,9,9,9]    
+    std::vector<int> v_input02{8,9,9,9};
+    std::vector<int> v_result02{9,0,0,0};
     EXPECT_EQ(s.plusOne(v_input), v_result);
+    EXPECT_EQ(s.plusOne(v_input02), v_result02);
 }
