@@ -726,3 +726,19 @@ class SolutionaddBinary {
 public:
     string addBinary(string a, string b);
 };
+
+class SolutionthreeSum {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums);
+};
+
+class SolutionstrStr {
+public:
+    int strStr(string haystack, string needle); 
+};
+
+
+class SolutionlongestCommonPrefix {
+public:
+    string longestCommonPrefix(vector<string>& strs);
+};

@@ -2118,3 +2118,75 @@ string SolutionaddBinary::addBinary(string a, string b) {
     return result;
     
 }
+
+vector<vector<int>> SolutionthreeSum::threeSum(vector<int>& nums) {
+
+    vector<vector<int>> v{};
+    if (nums.size() == 3) {
+        int sum_of_elems{};
+        std::for_each(nums.begin(), nums.end(), [&] (int n) {
+            sum_of_elems += n;
+        });
+        // vector<vector<int>> v{};
+        if (sum_of_elems == 0) {
+            v.push_back(nums);
+        }
+        // return v;
+    }
+    else {
+        // vector<int> sub_result;
+        for (int i = 0; i < nums.size(); i++) {
+            auto temp = (nums[i] + nums[i+1])*(-1);
+            auto value_int_vec = std::find(nums.begin() + i + 1, nums.end(), temp);
+            // vector<int> sub_result{};
+            if(value_int_vec != nums.end()) {
+                vector<int> sub_result{};
+                sub_result.push_back(nums[i]);
+                sub_result.push_back(nums[i + 1]);
+                sub_result.push_back(*value_int_vec);
+                v.push_back(sub_result);
+            }         
+        }
+    }
+    return v;
+    
+}
+
+int SolutionstrStr::strStr(string haystack, string needle) {
+    auto v = haystack.find(needle);
+
+    if (v == std::string::npos) {
+        return -1;
+    }
+    else {
+        return v;
+    }
+    
+}
+
+string SolutionlongestCommonPrefix::longestCommonPrefix(vector<string>& strs) {
+    auto p = strs.size();
+    size_t str_size = strs[0].size();
+    for (auto &p : strs) {
+        if (p.size() < str_size) {
+            str_size = p.size();
+        }
+    }
+
+    std::unordered_set<char> char_set{};
+    size_t string_index = 0;
+    while (string_index < str_size) {
+        size_t index = 0;
+        while (index < p) {
+            char_set.insert(strs[index][string_index]);
+            index++;
+        }
+        if (char_set.size() > 1)
+            break;
+        else {
+            string_index++;
+            char_set.clear();
+        }
+    }
+    return strs[0].substr(0, string_index);
+}

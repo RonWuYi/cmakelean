@@ -161,4 +161,11 @@ int main(){
 
     for (auto i = nums.rbegin(); i != nums.rend(); ++i)
         std::cout << *i << endl; // int
+
+    vector<int> v{111, 222, 333, 456, 89};
+
+    auto p = std::find(v.begin(), v.end(), 456);
+
+    if (p != v.end())
+        cout << *p << endl; // int
 }

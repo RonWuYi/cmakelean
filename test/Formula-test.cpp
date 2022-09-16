@@ -444,3 +444,15 @@ TEST(SolutionaddBinary, test1)
     std::string result{"100"};
     EXPECT_EQ(s.addBinary(s1, s2), result);
 }
+
+TEST(SolutionlongestCommonPrefix, test1)
+{
+    SolutionlongestCommonPrefix s{};
+    std::vector<std::string> input{"flower","flow","flight"};
+    std::vector<std::string> input1{"aa", "ab"};
+    std::string s1{"fl"};
+    std::string s2{"a"};
+    // std::string result{"100"};
+    EXPECT_EQ(s.longestCommonPrefix(input), s1);
+    EXPECT_EQ(s.longestCommonPrefix(input1), s2);
+}
