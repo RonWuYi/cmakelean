@@ -741,4 +741,11 @@ public:
 class SolutionlongestCommonPrefix {
 public:
     string longestCommonPrefix(vector<string>& strs);
+    void reverse(int *v, int N);
+};
+
+
+class SolutionarrayPairSum {
+public:
+    int arrayPairSum(vector<int>& nums);
 };

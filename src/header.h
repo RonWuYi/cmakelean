@@ -815,3 +815,7 @@ void printArray(int (&a)[n][m]) {
         cout << endl;
     }
 }
+
+int partition(std::vector<int> &v, int begin, int end);
+
+void quickSort(std::vector<int> &v, int begin, int end);

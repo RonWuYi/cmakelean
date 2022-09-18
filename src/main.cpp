@@ -142,30 +142,18 @@ vector<int> plusOne(vector<int>& digits) {
 }
 
 int main(){
+    std::vector<int> digits{3,46,7,3,56,256};
+
+    std::sort(digits.begin(), digits.end());
+    for (auto & p : digits){
+        std::cout << p << std::endl;
+    }
+
+    std::sort(digits.begin(), digits.end(), std::greater<int>());
+    for (auto & p : digits){
+        std::cout << p << std::endl;
+    }
 
 
-    string s1 = "Hello World";
-    // 1. concatenate
-    s1 += "!";
-    cout << s1 << endl;
-    // 2. find
-    cout << "The position of first 'o' is: " << s1.find('o') << endl;
-    cout << "The position of last 'o' is: " << s1.rfind('o') << endl;
-    // 3. get substr
-    cout << s1.substr(5, 5) << endl;
-    cout << "string part" << endl;
-    cout << typeid(s1[0]).name() << endl;  // int
-    cout << typeid(s1.substr(1,1)).name() << endl;  // int
-    cout << "################################" << endl;
-    std::vector<int> nums {1, 2, 4, 8, 16};
 
-    for (auto i = nums.rbegin(); i != nums.rend(); ++i)
-        std::cout << *i << endl; // int
-
-    vector<int> v{111, 222, 333, 456, 89};
-
-    auto p = std::find(v.begin(), v.end(), 456);
-
-    if (p != v.end())
-        cout << *p << endl; // int
 }

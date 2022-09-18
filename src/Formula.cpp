@@ -2190,3 +2190,23 @@ string SolutionlongestCommonPrefix::longestCommonPrefix(vector<string>& strs) {
     }
     return strs[0].substr(0, string_index);
 }
+
+void SolutionlongestCommonPrefix::reverse(int *v, int N) {
+    int i = 0;
+    int j = N -1;
+    while (i < j) {
+        swap(v[i], v[j]);
+        i++;
+        j--;
+    }
+}
+
+int SolutionarrayPairSum::arrayPairSum(vector<int>& nums) {
+    std::sort(nums.begin(), nums.end());
+
+    int sum = 0;
+    for (int i = 0; i < nums.size(); i+=2) {
+        sum += std::min(nums[i], nums[i+1]);
+    }
+    return sum;
+}

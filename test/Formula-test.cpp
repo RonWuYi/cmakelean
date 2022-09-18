@@ -452,7 +452,21 @@ TEST(SolutionlongestCommonPrefix, test1)
     std::vector<std::string> input1{"aa", "ab"};
     std::string s1{"fl"};
     std::string s2{"a"};
-    // std::string result{"100"};
     EXPECT_EQ(s.longestCommonPrefix(input), s1);
     EXPECT_EQ(s.longestCommonPrefix(input1), s2);
+}
+
+TEST(SolutionarrayPairSum, test1)
+{
+    SolutionarrayPairSum s{};
+    std::vector<int> input{1, 4, 3, 2};
+    EXPECT_EQ(s.arrayPairSum(input), 4);
+}
+
+TEST(quickSort, test1)
+{
+    std::vector<int> input{1, 4, 3, 2};
+    std::vector<int> result{1, 2, 3, 4};
+    quickSort(input, 0, input.size() - 1);
+    EXPECT_EQ(input, result);
 }

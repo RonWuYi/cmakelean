@@ -165,3 +165,49 @@ const string rvalue::fourth()
 {
     return "fourth";
 }
+
+// void quickSort(std::vector<int> &a) {
+//     int i, j, t, temp;
+//     int left = 0;
+//     int right = a.size() - 1;
+//     if (left > right)
+//         return;
+//     temp = a[left];
+//     i = left;
+//     j = right;
+
+//     while (i != j) {
+
+//     }
+// }
+
+int partition(std::vector<int> &v, int begin, int end) {
+    int pivot = v[begin];
+    int left = begin + 1;
+    int right = end;
+    while (left < right) {
+        while (v[right] >= pivot) {
+            right--;
+        }
+        while (v[left] < pivot) {
+            left++;
+        }
+
+        std::swap(v[left], v[right]);
+    }
+    if(v[left] >= pivot) {
+        return begin;
+    }
+    v[begin] = v[left];
+    v[left] = pivot;
+    return left;
+}
+
+void quickSort(std::vector<int> &v, int begin, int end) {
+    if (begin >= end)
+        return;
+
+    int boundary = partition(v, begin, end);
+    quickSort(v, begin, boundary);
+    quickSort(v, boundary + 1, end);
+}
