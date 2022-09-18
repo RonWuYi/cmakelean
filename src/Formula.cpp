@@ -1976,7 +1976,7 @@ int SolutionpivotIndex::pivotIndex(vector<int>& nums) {
         // temp += nums[i];
         if (temp*2 == nums_sum - nums[i])
         {
-            spdlog::get("console")->info("Index founded, return i");
+            // spdlog::get("console")->info("Index founded, return i");
             return i;
         }
     }
@@ -2072,50 +2072,63 @@ vector<int> SolutionfindDiagonalOrder::findDiagonalOrder(vector<vector<int>>& ma
 }
 
 string SolutionaddBinary::addBinary(string a, string b) {
-    auto len = a.size() > b.size() ? b.size() : a.size();
-    auto isA = a.size() > b.size() ? false : true;
-    std::string result{};
-    std::vector<char> v_char{};
-    auto carry = 0;
-    char temp{};
-    for (int i = len; i > 0; --i) {
-        if (i == len) {
-            if (a[i] != b[i])
-                temp = '1';
-            else {
-                temp = '0';
-                if (a[i] == '1')
-                    carry == 1;
-                else
-                    carry = 0;
-            }
-        } else {
-            if (a[i] != b[i] && carry == 0)
-                temp = '1';
-            else if (a[i] != b[i] && carry == 1)
-                temp = '0';
-            else if (a[i] == b[i] == '0' && carry == 0)
-                temp = '0';            
-            else if (a[i] == b[i] == '0' && carry == 1)
-                temp = '1';
-            else if (a[i] == b[i] == '1' && carry == 0) {
-                temp = '0';
-                carry = 1;
-            }
-            else if (a[i] == b[i] == '1' && carry == 1) {
-                temp = '1';
-            }
-        }
-        v_char.push_back(temp);
-    }
+    string s = "";
 
-    if (isA)
-        result += b.substr(0, b.size() - a.size());
-    for (auto it = v_char.rbegin(); it != v_char.rend(); ++it) {
-        result += *it;
-    }
+    int c = 0, i = a.size() - 1, j = b.size() - 1;
 
-    return result;
+    while (i >= 0 || j >= 0 || c == 1)
+    {
+        c += i >= 0 ? a[i--] - '0' : 0;
+        c += j >= 0 ? b[j--] - '0' : 0;
+        s = char(c % 2 + '0') + s;
+        c /= 2;
+    }
+    return s;
+    
+    // auto len = a.size() > b.size() ? b.size() : a.size();
+    // auto isA = a.size() > b.size() ? false : true;
+    // std::string result{};
+    // std::vector<char> v_char{};
+    // auto carry = 0;
+    // char temp{};
+    // for (int i = len - 1; i >= 0; --i) {
+    //     if (i == len - 1) {
+    //         if (a[i] != b[i])
+    //             temp = '1';
+    //         else {
+    //             temp = '0';
+    //             if (a[i] == '1')
+    //                 carry == 1;
+    //             else
+    //                 carry = 0;
+    //         }
+    //     } else {
+    //         if (a[i] != b[i] && carry == 0)
+    //             temp = '1';
+    //         else if (a[i] != b[i] && carry == 1)
+    //             temp = '0';
+    //         else if (a[i] == b[i] == '0' && carry == 0)
+    //             temp = '0';            
+    //         else if (a[i] == b[i] == '0' && carry == 1)
+    //             temp = '1';
+    //         else if (a[i] == b[i] == '1' && carry == 0) {
+    //             temp = '0';
+    //             carry = 1;
+    //         }
+    //         else if (a[i] == b[i] == '1' && carry == 1) {
+    //             temp = '1';
+    //         }
+    //     }
+    //     v_char.push_back(temp);
+    // }
+
+    // if (isA)
+    //     result += b.substr(0, b.size() - a.size());
+    // for (auto it = v_char.rbegin(); it != v_char.rend(); ++it) {
+    //     result += *it;
+    // }
+
+    // return result;
     
 }
 
