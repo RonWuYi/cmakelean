@@ -357,18 +357,18 @@ TEST(Logger, test1)
     EXPECT_EQ(s.shouldPrintMessage(11, "foo"), true);
 }
 
-TEST(SolutiongroupAnagrams, test1)
+TEST(SolutiongroupAnagrams, test12)
 {
     SolutiongroupAnagrams s{};
     // vector<vector<string>> SolutiongroupAnagrams::groupAnagrams02(vector<string>& strs) {
-    vector<vector<string>> v_result{{"bat"}, {"tan", "nat"}, {"eat", "tea", "ate"}};
+    vector<vector<string>> v_result{{"bat"}, {"eat", "tea", "ate"}, {"tan", "nat"}};
     vector<string> v_input{"eat", "tea", "tan", "ate", "nat", "bat"}; 
     
     vector<vector<string>> v_result1{{""}};
     vector<string> v_input1{""};
 
-    EXPECT_EQ(s.groupAnagrams02(v_input), v_result);
-    EXPECT_EQ(s.groupAnagrams02(v_input1), v_result1);
+    EXPECT_EQ(s.groupAnagrams03(v_input), v_result);
+    EXPECT_EQ(s.groupAnagrams03(v_input1), v_result1);
 }
 
 TEST(SolutionsortColors, test1)

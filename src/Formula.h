@@ -16,6 +16,7 @@
 #include <limits>
 #include <limits.h>
 #include <list>
+#include <map>
 
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
@@ -640,6 +641,7 @@ class SolutiongroupAnagrams {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs);
     vector<vector<string>> groupAnagrams02(vector<string>& strs);
+    vector<vector<string>> groupAnagrams03(vector<string>& strs);
 };
 
 

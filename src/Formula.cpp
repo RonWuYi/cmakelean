@@ -1833,6 +1833,24 @@ vector<vector<string>> SolutiongroupAnagrams::groupAnagrams02(vector<string>& st
         return result;
 }
 
+vector<vector<string>> SolutiongroupAnagrams::groupAnagrams03(vector<string>& strs) {
+    std::map<string, vector<string>> mp;
+
+        for (string s : strs)
+        {
+            string t = s;
+            sort(t.begin(), t.end());
+            mp[t].push_back(s);
+        }
+
+        vector<vector<string>> result;
+
+        for (auto p : mp)
+            result.push_back(p.second);
+
+        return result;
+}
+
 void SolutionsortColors::sortColors(vector<int>& nums) {
     for (size_t i = 0; i < nums.size(); i++)
     {
