@@ -2241,3 +2241,20 @@ int SolutionarrayPairSum::arrayPairSum(vector<int>& nums) {
     }
     return sum;
 }
+
+int SolutionminSubArrayLen::minSubArrayLen(int target, vector<int>& nums) {
+    int n = nums.size();
+    int ans = INT_MAX;
+
+    int left = 0;
+    int sum_v = 0;
+
+    for (int i = 0; i < n; i++) {
+        sum_v += nums[i];
+        while (sum_v >= target) {
+            ans = min(ans, i + 1 - left);
+            sum_v -= nums[left++];
+        }
+    }
+    return (ans != INT_MAX) ? ans : 0;
+}

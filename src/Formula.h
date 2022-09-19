@@ -751,3 +751,9 @@ class SolutionarrayPairSum {
 public:
     int arrayPairSum(vector<int>& nums);
 };
+
+
+class SolutionminSubArrayLen {
+public:
+    int minSubArrayLen(int target, vector<int>& nums);
+};
