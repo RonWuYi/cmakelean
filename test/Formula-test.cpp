@@ -475,3 +475,14 @@ TEST(quickSort, test1)
     // myquicksort(input2, 0, input2.size() - 1);
     // EXPECT_EQ(input2, result2);
 }
+
+TEST(minSubArrayLen, test1)
+{
+    SolutionminSubArrayLen s{};
+    std::vector<int> input1{2,3,1,2,4,3};
+    std::vector<int> input2{1,4,4};
+    std::vector<int> input3{1,1,1,1,1,1,1,1};
+    EXPECT_EQ(s.minSubArrayLen(7, input1), 2);
+    EXPECT_EQ(s.minSubArrayLen(4, input2), 1);
+    EXPECT_EQ(s.minSubArrayLen(11, input3), 0);
+}
