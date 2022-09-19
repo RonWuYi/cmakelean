@@ -819,3 +819,31 @@ void printArray(int (&a)[n][m]) {
 int partition(std::vector<int> &v, int begin, int end);
 
 void quickSort(std::vector<int> &v, int begin, int end);
+
+
+template<typename datatype>
+void myquicksort(vector<datatype> &vec, int low, int heigh)
+{
+    if (low < heigh)
+    {
+        int l = low;
+        int r = heigh;
+
+        datatype key = vec[1];
+
+        while (l < r)
+        {
+            while (l < r && key <=vec[r])
+                --r;
+            vec[l]  = vec[r];
+            while (l < r && key > vec[1])
+                ++l;
+            vec[r] = vec[l];
+        }
+
+        vec[1] = key;
+        myquicksort(vec, low, l-1);
+        myquicksort(vec, r + 1, heigh);
+    }
+
+}

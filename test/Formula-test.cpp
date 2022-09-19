@@ -469,4 +469,9 @@ TEST(quickSort, test1)
     std::vector<int> result{1, 2, 3, 4};
     quickSort(input, 0, input.size() - 1);
     EXPECT_EQ(input, result);
+
+    // std::vector<int> input2{1, 4, 3, 2};
+    // std::vector<int> result2{1, 2, 3, 4};
+    // myquicksort(input2, 0, input2.size() - 1);
+    // EXPECT_EQ(input2, result2);
 }

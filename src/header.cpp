@@ -166,48 +166,42 @@ const string rvalue::fourth()
     return "fourth";
 }
 
-// void quickSort(std::vector<int> &a) {
-//     int i, j, t, temp;
-//     int left = 0;
-//     int right = a.size() - 1;
-//     if (left > right)
-//         return;
-//     temp = a[left];
-//     i = left;
-//     j = right;
-
-//     while (i != j) {
-
-//     }
-// }
-
 int partition(std::vector<int> &v, int begin, int end) {
     int pivot = v[begin];
-    int left = begin + 1;
-    int right = end;
-    while (left < right) {
-        while (v[right] >= pivot) {
-            right--;
+    int count = 0;
+    for (size_t i = begin + 1; i <= end; i++) {
+        if (v[i] <= pivot)
+            count++;
+    }
+    int pivotIndex = begin + count;
+    std::swap(v[pivotIndex], v[begin]);
+
+    int i = begin, j = end;
+
+    while (i < pivotIndex && j > pivotIndex)
+    {
+        while (v[i] <= pivot)
+        {
+            i++;
         }
-        while (v[left] < pivot) {
-            left++;
+        while (v[j] > pivot)
+        {
+            j--;
         }
 
-        std::swap(v[left], v[right]);
+        if (i < pivotIndex && j > pivotIndex)
+        {
+            std::swap(v[i++], v[j--]);
+        }
     }
-    if(v[left] >= pivot) {
-        return begin;
-    }
-    v[begin] = v[left];
-    v[left] = pivot;
-    return left;
+    return pivotIndex;
 }
 
 void quickSort(std::vector<int> &v, int begin, int end) {
     if (begin >= end)
         return;
 
-    int boundary = partition(v, begin, end);
-    quickSort(v, begin, boundary);
-    quickSort(v, boundary + 1, end);
+    int p = partition(v, begin, end);
+    quickSort(v, begin, p - 1);
+    quickSort(v, p + 1, end);
 }
