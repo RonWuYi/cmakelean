@@ -2258,3 +2258,28 @@ int SolutionminSubArrayLen::minSubArrayLen(int target, vector<int>& nums) {
     }
     return (ans != INT_MAX) ? ans : 0;
 }
+
+string SolutionaddBinary::addBinary02(string a, string b) {
+
+    int i = a.size() - 1;
+    int j = b.size() - 1;
+
+    std::string ans;
+    int carry = 0;
+
+    while (i >= 0 || j >= 0 || carry)
+    {
+        if (i >= 0) {
+            carry += a[i--] - '0';
+        }
+        if (j >= 0) {
+            carry += b[j--] - '0';
+        }
+
+        ans = char(carry%2 + '0') + ans;
+        carry /= 2;
+    }
+
+    return ans;
+    
+}

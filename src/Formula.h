@@ -727,6 +727,7 @@ public:
 class SolutionaddBinary {
 public:
     string addBinary(string a, string b);
+    string addBinary02(string a, string b);
 };
 
 class SolutionthreeSum {

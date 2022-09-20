@@ -441,8 +441,17 @@ TEST(SolutionaddBinary, test1)
     SolutionaddBinary s{};
     std::string s1{"11"};
     std::string s2{"1"};
-    std::string result{"100"};
+    std::string result{"100"};    
+
+    std::string s11{"1010"};
+    std::string s21{"1011"};
+    std::string result2{"10101"};
+
     EXPECT_EQ(s.addBinary(s1, s2), result);
+    EXPECT_EQ(s.addBinary02(s1, s2), result);
+
+    EXPECT_EQ(s.addBinary(s11, s21), result2);
+    EXPECT_EQ(s.addBinary02(s11, s21), result2);
 }
 
 TEST(SolutionlongestCommonPrefix, test1)
