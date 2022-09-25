@@ -154,6 +154,7 @@ int main(){
         std::cout << p << std::endl;
     }
 
-
+    int i_arr[5] {1, 3, 6};
+    std::cout << count(i_arr)  << std::endl;
 
 }

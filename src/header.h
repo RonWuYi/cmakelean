@@ -840,10 +840,32 @@ void myquicksort(vector<datatype> &vec, int low, int heigh)
                 ++l;
             vec[r] = vec[l];
         }
-
         vec[1] = key;
         myquicksort(vec, low, l-1);
         myquicksort(vec, r + 1, heigh);
     }
+}
 
+
+/* Filter abstract base-class template */
+template <typename T, size_t N>
+class Filter {
+public:
+    Filter() {}
+    ~Filter() = default;
+
+    virtual T operator+=(const T sample) = 0;
+    virtual operator T() const = 0;
+    virtual void clear() = 0;
+
+protected:
+    T samples[N];
+};
+
+template <typename T, size_t N>
+class BAC : public Filter<T, N> {};
+
+template <typename T>
+int count(T a[]) {
+    return sizeof(a) /sizeof(a[0]) - 1;
 }

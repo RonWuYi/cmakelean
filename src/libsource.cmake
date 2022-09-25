@@ -1,0 +1,1 @@
+set(libsoure ${CMAKE_CURRENT_LIST_DIR}/components.cpp)

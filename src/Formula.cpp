@@ -2283,3 +2283,43 @@ string SolutionaddBinary::addBinary02(string a, string b) {
     return ans;
     
 }
+void Solutionrotate::rotate(vector<int>& nums, int k) {
+    std::queue<int> int_q{};
+
+    if (k > nums.size())
+        k = k % nums.size();
+    while (k > 0)
+    {
+        /* code */
+
+        int_q.push(*(nums.end() - 1));
+        nums.erase(nums.end() - 1, nums.end());
+
+        k--;
+
+    }
+    while (!int_q.empty())
+    {
+        nums.insert(nums.begin(), int_q.front());
+        int_q.pop();
+    }
+    
+    // return nums;
+    
+}
+
+void Solutionrotate::rotate02(vector<int>& nums, int k) {
+    int index = 0;
+    if (k > nums.size())
+        k = k % nums.size();
+    while (k > 0)
+    {
+        nums.insert(nums.begin(), *(nums.end() - 1 - index));
+        k--;
+        index++;
+    }
+
+    nums.erase(nums.end() - k, nums.end());
+    
+    
+}

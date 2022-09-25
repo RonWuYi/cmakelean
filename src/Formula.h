@@ -758,3 +758,10 @@ class SolutionminSubArrayLen {
 public:
     int minSubArrayLen(int target, vector<int>& nums);
 };
+
+
+class Solutionrotate {
+public:
+    void rotate(vector<int>& nums, int k);
+    void rotate02(vector<int>& nums, int k);
+};
