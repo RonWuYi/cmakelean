@@ -2,16 +2,17 @@ set(BINARY ${CMAKE_PROJECT_NAME})
 
 # set(CMAKE_CXX_STANDARD 20)
 # set(CMAKE_CXX_STANDARD_REQUIRED ON)
+include(libsource.cmake)
+# file(GLOB_RECURSE SOURCES LIST_DIRECTORIES true *.h *.cpp)
 
-file(GLOB_RECURSE SOURCES LIST_DIRECTORIES true *.h *.cpp)
-
-set(SOURCES ${SOURCES})
+# set(SOURCES ${SOURCES})
 
 find_package(Threads REQUIRED)
 
-add_executable(${BINARY}_run ${SOURCES})
+add_executable(${BINARY}_run ${mainappsoure})
 
-add_library(${BINARY}_lib STATIC ${SOURCES})
+add_library(${BINARY}_lib STATIC ${libsoure})
+# add_library(${BINARY}_lib STATIC ${SOURCES})
 
 message(STATUS "From src spdlog source dir is ${spdlog_SOURCE_DIR}")
 
