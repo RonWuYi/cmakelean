@@ -492,6 +492,7 @@ class SolutiontwoSum {
 public:
     vector<int> twoSum01(vector<int>& nums, int target);
     vector<int> twoSum02(vector<int>& nums, int target);
+    vector<vector<int>> threeSum(vector<int>& nums);
 };
 
 enum State { q0, q1, q2, qd};

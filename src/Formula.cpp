@@ -2153,33 +2153,62 @@ string SolutionaddBinary::addBinary(string a, string b) {
 vector<vector<int>> SolutionthreeSum::threeSum(vector<int>& nums) {
 
     vector<vector<int>> v{};
-    if (nums.size() == 3) {
-        int sum_of_elems{};
-        std::for_each(nums.begin(), nums.end(), [&] (int n) {
-            sum_of_elems += n;
-        });
-        // vector<vector<int>> v{};
-        if (sum_of_elems == 0) {
-            v.push_back(nums);
+    vector<tuple<int, int, int>> tuple_index;
+    vector<pair<int, std::pair<int, int>>> pair_index;
+
+
+    for (int i = 0; i < nums.size(); i++) {
+        for (int j = i + 1; j < nums.size(); j++) {
+            if (i != j) {
+                auto temp = std::make_tuple(nums[i] + nums[j], i, j);
+                tuple_index.push_back(temp);
+            }
         }
-        // return v;
     }
-    else {
-        // vector<int> sub_result;
-        for (int i = 0; i < nums.size(); i++) {
-            auto temp = (nums[i] + nums[i+1])*(-1);
-            auto value_int_vec = std::find(nums.begin() + i + 1, nums.end(), temp);
-            // vector<int> sub_result{};
-            if(value_int_vec != nums.end()) {
-                vector<int> sub_result{};
-                sub_result.push_back(nums[i]);
-                sub_result.push_back(nums[i + 1]);
-                sub_result.push_back(*value_int_vec);
-                v.push_back(sub_result);
-            }         
+
+    for (int i = 0; i < nums.size(); i++) {
+        // auto temp = 0 - nums[i];
+        for (auto & p : tuple_index) {
+            if (nums[i] + std::get<0>(p) == 0 && i != std::get<1>(p) && i != std::get<2>(p)) {
+                vector<int> temp_v{nums[i], nums[std::get<1>(p)], nums[std::get<2>(p)]};
+                std::sort(temp_v.begin(), temp_v.end());
+                // v_set.insert(temp_v);
+                auto search = std::find(v.begin(), v.end(), temp_v);
+                if (search == v.end()) {
+                    v.push_back(temp_v);
+                    break;
+                }
+            }
         }
     }
     return v;
+    // if (nums.size() == 3) {
+    //     int sum_of_elems{};
+    //     std::for_each(nums.begin(), nums.end(), [&] (int n) {
+    //         sum_of_elems += n;
+    //     });
+    //     // vector<vector<int>> v{};
+    //     if (sum_of_elems == 0) {
+    //         v.push_back(nums);
+    //     }
+    //     // return v;
+    // }
+    // else {
+    //     // vector<int> sub_result;
+    //     for (int i = 0; i < nums.size(); i++) {
+    //         auto temp = (nums[i] + nums[i+1])*(-1);
+    //         auto value_int_vec = std::find(nums.begin() + i + 1, nums.end(), temp);
+    //         // vector<int> sub_result{};
+    //         if(value_int_vec != nums.end()) {
+    //             vector<int> sub_result{};
+    //             sub_result.push_back(nums[i]);
+    //             sub_result.push_back(nums[i + 1]);
+    //             sub_result.push_back(*value_int_vec);
+    //             v.push_back(sub_result);
+    //         }         
+    //     }
+    // }
+    // return v;
     
 }
 
@@ -2318,8 +2347,5 @@ void Solutionrotate::rotate02(vector<int>& nums, int k) {
         k--;
         index++;
     }
-
     nums.erase(nums.end() - k, nums.end());
-    
-    
 }
