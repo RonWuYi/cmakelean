@@ -17,7 +17,7 @@
 #include <limits.h>
 #include <list>
 #include <map>
-
+#include <set>
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
@@ -734,6 +734,10 @@ public:
 class SolutionthreeSum {
 public:
     vector<vector<int>> threeSum(vector<int>& nums);
+    vector<vector<int>> threeSum02(vector<int>& nums);
+    vector<vector<int>> threeSum03(vector<int>& nums);
+    vector<vector<int>> threeSum04NoSort(vector<int>& nums);
+    void twoSum(vector<int>& nums, int i, vector<vector<int>> &res);
 };
 
 class SolutionstrStr {

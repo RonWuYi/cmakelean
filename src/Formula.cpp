@@ -2349,3 +2349,54 @@ void Solutionrotate::rotate02(vector<int>& nums, int k) {
     }
     nums.erase(nums.end() - k, nums.end());
 }
+
+void SolutionthreeSum::twoSum(vector<int>& nums, int i, vector<vector<int>> &res) {
+    unordered_set<int> seen;
+    for (int j = i + 1; i < nums.size(); ++i) {
+        int complement = -nums[i] - nums[j];
+        if (seen.count(complement)) {
+            res.push_back({nums[i], complement, nums[j]});
+            while (j + 1 < nums.size() && nums[j] == nums[j + 1]) {
+                ++j;
+            }
+        }
+        seen.insert(nums[j]);
+    }
+}
+
+vector<vector<int>> SolutionthreeSum::threeSum03(vector<int>& nums) {
+    std::sort(nums.begin(), nums.end());
+    vector<vector<int>> res;
+
+    for (int i = 0; i < nums.size() && nums[i] <= 0; ++i)
+    {
+        if (i == 0 || nums[i - 1] != nums[i]) {
+            twoSum(nums, i, res);
+        }
+    }
+    return res; 
+}
+
+vector<vector<int>> SolutionthreeSum::threeSum04NoSort(vector<int>& nums) {
+    set<vector<int>> res;
+    unordered_set<int> dups;
+    unordered_map<int, int> seen;
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (dups.insert(nums[i]).second)
+        {
+            for (int j = i + 1; j < nums.size(); ++j) {
+                int complement = -nums[i] + nums[j];
+                auto it = seen.find(complement);
+                if (it != end(seen) && it->second == i) {
+                    vector<int> triplet = {nums[i], nums[j], complement};
+                    sort(begin(triplet), end(triplet));
+                    res.insert(triplet);
+                }
+                seen[nums[j]] = i;
+            }
+        }
+    }
+    return vector<vector<int>>(begin(res), end(res));
+}

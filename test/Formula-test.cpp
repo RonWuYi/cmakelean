@@ -5,6 +5,14 @@
 #include "header.h"
 #include "components.h"
 
+#include "gmock/gmock.h"
+
+using ::testing::AllOf;
+using ::testing::Gt;
+using ::testing::Lt;
+using ::testing::MatchesRegex;
+using ::testing::StartsWith;
+
 TEST(blaTest, test1) {
     //assert
     EXPECT_EQ(Formula::bla (0),  0);
@@ -492,8 +500,8 @@ TEST(SolutionthreeSum, test1)
     std::vector<int> input2{-1,0,1,2,-1,-4,-2,-3,3,0,4};
     std::vector<vector<int>> result1{{-1,-1,2}, {-1,0,1}};
     std::vector<vector<int>> result2{{-4,0,4},{-4,1,3},{-3,-1,4},{-3,0,3},{-3,1,2},{-2,-1,3},{-2,0,2},{-1,-1,2},{-1,0,1}};
-    EXPECT_EQ(s.threeSum(input1), result1);
-    EXPECT_EQ(s.threeSum(input2), result2);
+    EXPECT_EQ(s.threeSum03(input1), result1);
+    EXPECT_EQ(s.threeSum03(input2), result2);
 }
 
 

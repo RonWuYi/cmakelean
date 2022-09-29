@@ -16,6 +16,7 @@ add_executable(${BINARY} ${TEST_SOURCES})
 
 add_test(NAME ${BINARY} COMMAND ${BINARY})
 
-# target_include_directories(${BINARY} PRIVATE ${spdlog_SOURCE_DIR}/include)
+message(STATUS "from root cmake CMAKE_CURRENT_LIST_DIR is ${CMAKE_CURRENT_LIST_DIR}")
+target_include_directories(${BINARY} PRIVATE ${spdlog_SOURCE_DIR}/include )
 
-target_link_libraries(${BINARY} PUBLIC ${CMAKE_PROJECT_NAME}_lib gtest)
+target_link_libraries(${BINARY} PUBLIC ${CMAKE_PROJECT_NAME}_lib gtest gmock)
