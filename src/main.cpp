@@ -15,7 +15,7 @@
 #include <condition_variable>
 #include <atomic>
 #include <typeinfo>
-
+#include <utility>
 // #include "spdlog/spdlog.h"
 
 #include "spdlog/sinks/basic_file_sink.h"
@@ -140,6 +140,8 @@ vector<int> plusOne(vector<int>& digits) {
     }
     return digits;
 }
+
+struct X {};
 
 int main(){
     std::vector<int> digits{3,46,7,3,56,256};
