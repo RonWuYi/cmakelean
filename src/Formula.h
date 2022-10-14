@@ -1,4 +1,6 @@
-#pragma once
+#ifndef FORMULA_H_
+#define FORMULA_H_
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -15,8 +17,15 @@
 #include <climits>
 #include <limits>
 #include <limits.h>
+#include <list>
+#include <map>
+#include <set>
+
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 
 using namespace std;
+
 
 struct TreeNode {
     int val;
@@ -55,7 +64,6 @@ class MyQueue01 {
 private:
     vector<int> data;
     int p_start;
-
 
 public:
     MyQueue01() : p_start(0) {}
@@ -369,12 +377,6 @@ public:
     int climbStairs03(int n);
 };
 
-class SolutionminCostClimbingStairs
-{
-public:
-    int minCostClimbingStairs(vector<int>& cost);
-};
-
 class SolutionmaxArea02 {
 public:
     int maxArea(vector<int>& height);
@@ -487,6 +489,7 @@ class SolutiontwoSum {
 public:
     vector<int> twoSum01(vector<int>& nums, int target);
     vector<int> twoSum02(vector<int>& nums, int target);
+    vector<vector<int>> threeSum(vector<int>& nums);
 };
 
 enum State { q0, q1, q2, qd};
@@ -519,3 +522,260 @@ public:
     void reverseString(vector<char>& s);
     void reverseString02(vector<char>& s);
 };
+
+class SolutionfindMissingRanges {
+public:
+    string get_range(int start, int end);
+    vector<string> findMissingRanges(vector<int>& nums, int lower, int upper);
+    vector<string> findMissingRanges02(vector<int>& nums, int lower, int upper);
+};
+
+
+class MyHashMap {
+private:
+    std::vector<std::pair<int, int>> p;
+public:
+    MyHashMap();
+    void put(int key, int value);
+    int get(int key);
+    void remove(int key);
+};
+
+class MyHashMap02 {
+private:
+    std::vector<std::list<std::pair<int, int>>> m_data;
+    size_t m_size = 10000;
+
+public:
+    MyHashMap02();
+    void put(int key, int value);
+    int get(int key);
+    void remove(int key);
+};
+
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums);
+};
+
+
+class SolutionsingleNumber {
+public:
+    int singleNumber(vector<int>& nums);
+};
+
+
+class Solutionintersection {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2);
+    vector<int> intersection02(vector<int>& nums1, vector<int>& nums2);
+};
+
+class SolutionisHappy {
+public:
+    bool isHappy(int n);
+    int isHappy02(int n);
+    bool isHappy03(int n);
+private:
+    int digitSquareSum(int n);
+};
+
+class SolutionisIsomorphic {
+public:
+    bool isIsomorphic(string s, string t);
+    bool isIsomorphic02(string s, string t);
+private:
+    std::unordered_map<char, int> get_map(string t);
+};
+
+class SolutionaddDigits {
+public:
+    int addDigits(int num);
+};
+
+class SolutionfindRestaurant {
+public:
+    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2);
+    vector<string> findRestaurant02(vector<string>& list1, vector<string>& list2);
+};
+
+class SolutionfirstUniqChar {
+public:
+    int firstUniqChar(string s);
+};
+
+class SolutionintersectII {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2);
+    vector<int> intersect02(vector<int>& nums1, vector<int>& nums2);
+    vector<int> intersect03(vector<int>& nums1, vector<int>& nums2);
+};
+
+
+class SolutioncontainsNearbyDuplicate {
+public:
+    // bool containsNearbyDuplicate(vector<int>& nums, int k);
+    bool containsNearbyDuplicate02(vector<int>& nums, int k);
+};
+
+class LoggershouldPrintMessage {
+public:
+    LoggershouldPrintMessage();
+    bool shouldPrintMessage(int timestamp, string message);
+};
+
+
+class Logger {
+public:
+    Logger();
+    
+    bool shouldPrintMessage(int timestamp, string message);
+
+private:
+    std::unordered_map<std::string, int> temp;
+};
+
+class SolutiongroupAnagrams {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs);
+    vector<vector<string>> groupAnagrams02(vector<string>& strs);
+    vector<vector<string>> groupAnagrams03(vector<string>& strs);
+};
+
+
+class SolutionsortColors {
+public:
+    void sortColors(vector<int>& nums);
+    void sortColors02(vector<int>& nums);
+};
+
+
+class SolutionheightChecker {
+public:
+    SolutionheightChecker();
+    int heightChecker(vector<int>& heights);
+
+private:
+    void bubble_sort(vector<int>& heights);
+    vector<int> heights_copy;
+};
+
+
+class SolutionheightCheckerII {
+public:
+    int heightChecker(vector<int>& heights);
+};
+
+class Solutioninsertionsort {
+public:
+    void insertion_sort(vector<int>& heights);
+};
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+// class SolutionlevelOrderBottom {
+// public:
+//     vector<vector<int>> levelOrderBottom(TreeNode* root);
+// };
+
+
+
+class SolutioninsertionSortList {
+public:
+    ListNode* insertionSortList(ListNode* head);
+    ListNode* insertionSortListII(ListNode* head);
+};
+
+
+class SolutionpivotIndex {
+public:
+    int pivotIndex(vector<int>& nums);
+    int pivotIndex02(vector<int>& nums);
+};
+
+
+class SolutiondominantIndex {
+public:
+    int dominantIndex(vector<int>& nums);
+};
+
+
+class SolutionplusOne {
+public:
+    vector<int> plusOne(vector<int>& digits);
+};
+
+
+class SolutionfindDiagonalOrder {
+public:
+    vector<int> findDiagonalOrder(vector<vector<int>>& mat);
+};
+
+
+class SolutionaddBinary {
+public:
+    string addBinary(string a, string b);
+    string addBinary02(string a, string b);
+};
+
+class SolutionthreeSum {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums);
+    vector<vector<int>> threeSum02(vector<int>& nums);
+    vector<vector<int>> threeSum03(vector<int>& nums);
+    vector<vector<int>> threeSum04NoSort(vector<int>& nums);
+    void twoSum(vector<int>& nums, int i, vector<vector<int>> &res);
+};
+
+class SolutionstrStr {
+public:
+    int strStr(string haystack, string needle); 
+};
+
+
+class SolutionlongestCommonPrefix {
+public:
+    string longestCommonPrefix(vector<string>& strs);
+    void reverse(int *v, int N);
+};
+
+
+class SolutionarrayPairSum {
+public:
+    int arrayPairSum(vector<int>& nums);
+};
+
+
+class SolutionminSubArrayLen {
+public:
+    int minSubArrayLen(int target, vector<int>& nums);
+};
+
+
+class Solutionrotate {
+public:
+    void rotate(vector<int>& nums, int k);
+    void rotate02(vector<int>& nums, int k);
+};
+
+class SolutionminCostClimbingStairs {
+public:
+    using VI = vector<int>;
+    using fun = function<int(int)>;
+    int minCostClimbingStairs(vector<int>& cost);
+    int minCostClimbingStairs01(vector<int>& cost);
+    int minCostClimbingStairs02(vector<int>& cost);
+    int minCostClimbingStairs03(vector<int>& cost);
+};
+
+#endif

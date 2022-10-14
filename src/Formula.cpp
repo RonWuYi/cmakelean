@@ -1,4 +1,23 @@
 #include "Formula.h"
+#include <algorithm>
+#include <array>
+#include <cstddef>
+#include <iostream>
+#include <iterator>
+#include <list>
+#include <string>
+#include <type_traits>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
+#include <array>
+
+// using namespace formula;
+
+// create color multi threaded logger
+auto console = spdlog::stdout_color_mt("console");    
+auto err_logger = spdlog::stderr_color_mt("stderr");    
 
 int sum(vector<int> v) {
     int sum = 0;
@@ -74,7 +93,7 @@ vector<int> EasySolution::preorderTraversaliterative(TreeNode* root)
 
 vector<int> EasySolution::inorderTraversal(TreeNode* root) {
     vector<int> result;
-    if (root = nullptr)
+    if (root == nullptr)
     {
         return result;
     }
@@ -123,7 +142,8 @@ double MovingAverageVector::next(int val) {
         sum += p;
     }
     
-    return sum/capacity;
+    // return sum / static_cast<int>(capacity);
+    return static_cast<float>(sum) / capacity;
 }
 
 void Solutionislands::dfs(vector<vector<char>>& grid, int r, int c)
@@ -647,10 +667,10 @@ string SolutiondecodeString::decodeString(string s) {
 				}
 				// k--;
 			}
-        }
-		else {
+        } else {
 			mystack.push(s[i]);
 		}
+        // mystack.push(s[i]);
     }
 	string result{};
 	for (size_t i = mystack.size(); i > 0; i--) {
@@ -840,29 +860,12 @@ vector<int> SolutiontwoSum::twoSum02(vector<int>& nums, int target) {
     }
     
     return final_result;
-    // auto temp = std::vector<std::pair<int, int>>();
-    // for (int i = 0; i < nums.size(); i++)
-    // {
-    //     auto result = target - nums[i];
-    //     auto result_pair = std::pair<int, int>(result, i);
-    //     // if (nums[i] == target)
-    //     if (std::find(temp.begin(), temp.end(), result_pair) != temp.end())
-    //     {
-    //         return std::vector<int>(i, result_pair.second);
-    //     }
-    //     temp.push_back(result_pair);
-    // }
 }
 
 bool SolutionisPalindrome::isPalindrome(string s) {
     if (s.empty() || s.length() == 1) {
         return true;
     }
-    // else if (s.length() == 2) {
-    //     if (s[0] == s[1]) || s[0]
-    //         return true;
-    //     else if (s[0] == s[1])
-    // }
     auto flag = true;
     std::string temp{};
     for (auto p: s)
@@ -1104,4 +1107,1306 @@ void SolutionreverseString::reverseString02(vector<char>& s) {
         s[right--] = temp;
     }
     
+}
+
+vector<string> SolutionfindMissingRanges::findMissingRanges(vector<int>& nums, int lower, int upper) {
+    std::vector<std::string> v;
+    if (nums.empty())
+    {
+        return v;
+    }
+    if (nums.size() == upper + 1)
+        return v;
+    int left{};
+    int right{};
+    int pright{};
+    std::string s{"->"};
+    for(int i = lower; i <= upper; ++i)
+    {
+        if (std::find(nums.begin(), nums.end(), i-1) != nums.end() &&
+            std::find(nums.begin(), nums.end(), i) == nums.end() && 
+            std::find(nums.begin(), nums.end(), i+1) != nums.end())
+            {
+                v.push_back(std::to_string(i));
+            }        
+        
+        if (std::find(nums.begin(), nums.end(), i-1) != nums.end() &&
+            std::find(nums.begin(), nums.end(), i) == nums.end() && 
+            std::find(nums.begin(), nums.end(), i+1) == nums.end())
+            {
+                left = i;
+            }        
+        
+        if (std::find(nums.begin(), nums.end(), i-1) == nums.end() &&
+            std::find(nums.begin(), nums.end(), i) == nums.end() && 
+            std::find(nums.begin(), nums.end(), i+1) != nums.end())
+            {
+                right = i;
+                if (right!=pright)
+                {
+                    auto temp = to_string(left);
+                    temp.append(s);
+                    temp.append(to_string(right));
+                    v.push_back(temp);
+                    pright = right;
+                }
+            }
+    }
+    return v;
+}
+
+vector<string> SolutionfindMissingRanges::findMissingRanges02(vector<int>& nums, int lower, int upper) {
+    // string get_range(int start, int end)
+    vector<string> result;
+    int pre = lower - 1;
+    
+    for (int i = 0; i <= nums.size(); ++i)
+    {
+        int cur = (i==nums.size()? upper+1:nums[i]);
+        if (cur-pre>=2)
+        {
+            result.push_back(get_range(pre+1, cur-1));
+        }
+        pre = cur;
+    }
+    return result;
+}
+
+string SolutionfindMissingRanges::get_range(int start, int end) {
+    return start==end?to_string(start):to_string(start)+"->"+to_string(end);
+}
+
+MyHashMap::MyHashMap() {
+    
+}
+
+void MyHashMap::put(int key, int value) {
+    for (auto& t:p)
+    {
+        if (t.first == key)
+        {
+            t.second = value;
+            break;
+        }
+    }
+
+    auto temp = std::make_pair(key ,value);
+    p.push_back(temp);
+}
+
+int MyHashMap::get(int key) {
+    for (auto& t:p)
+    {
+        if (t.first == key)
+            return t.second;
+    }
+    return -1;
+}
+
+void MyHashMap::remove(int key) {
+    for (int i = 0; i< p.size(); ++i)
+    {
+        if (p[i].first == key)
+        {
+            p.erase(p.begin() + i);
+            break;
+        }
+    }
+}
+
+MyHashMap02::MyHashMap02() {
+    m_data.resize(m_size);
+}
+
+void MyHashMap02::put(int key, int value) {
+    auto& list = m_data[key % m_size];
+    for (auto & val: list)
+    {
+        if (val.first == key)
+        {
+            val.second = value;
+            return;
+        }
+    }
+    list.emplace_back(key, value);
+}
+
+int MyHashMap02::get(int key) {
+    const auto& list = m_data[key % m_size];
+    if (list.empty())
+    {
+        return -1;
+    }
+
+    for (const auto& val: list)
+    {
+        if (val.first == key)
+        {
+            return val.second;
+        }
+    }
+
+    return -1;
+}
+
+void MyHashMap02::remove(int key) {
+    auto& list = m_data[key % m_size];
+    list.remove_if([key](auto n) {return n.first == key;});
+    
+}
+
+bool Solution::containsDuplicate(vector<int>& nums) {
+    std::vector<int> l;
+    std::fill_n(std::back_inserter(l), nums.size(), 0);
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (std::find(nums.begin(), nums.end(), nums[i]) != nums.end())
+        {
+            l[i] += 1;
+        }
+    }
+
+    int sum_of_elems = 0;
+
+    std::for_each(l.begin(), l.end(), [&] (int n) {
+        sum_of_elems += n;
+    });
+
+    if (sum_of_elems > nums.size())
+    {
+        return true;
+    }
+    return false;
+}
+
+int SolutionsingleNumber::singleNumber(vector<int>& nums) {
+    if (nums.size() == 1)
+        return nums[0];
+    vector<std::pair<int, int>> v;
+    for (auto& p : nums)
+    {
+        auto temp = std::make_pair(p, 0);
+        if (std::find(v.begin(), v.end(), temp) != v.end())
+        {
+            for (int i = 0; i<v.size(); ++i)
+            {
+                if (v[i].first == p)
+                {
+                    v[i].second += 1;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            v.push_back(temp);
+        }
+    }
+
+    for (auto& p : v)
+    {
+        if (p.second == 0)
+            return p.first;
+    }
+    return -1;
+}
+
+vector<int> Solutionintersection::intersection(vector<int>& nums1, vector<int>& nums2) {
+    std::vector<int> v;
+    std::unordered_set<int> my_set1;
+    std::unordered_set<int> my_set2;
+    for (auto& p : nums1)
+    {
+        my_set1.insert(p);
+    }
+
+    for (auto& p: nums2)
+        my_set2.insert(p);
+
+    if (my_set2.size() < my_set1.size())
+    {
+        for(const auto& p: my_set2)
+        {
+            auto search = my_set1.find(p);
+            if (search != my_set1.end())
+                v.push_back(p);
+        }
+    }
+    else {
+        for(const auto& p: my_set1)
+        {
+            auto search = my_set2.find(p);
+            if (search != my_set2.end())
+                v.push_back(p);
+        }
+    }
+    return v;
+}
+
+bool SolutionisHappy::isHappy(int n) {
+    int slow, fast;
+
+    slow = fast = n;
+
+    do {
+        slow = digitSquareSum(slow);
+        fast = digitSquareSum(fast);
+        fast = digitSquareSum(fast);
+    } while (slow != fast);
+
+    if (slow == 1)
+        return true;
+    else return false;
+}
+
+int SolutionisHappy::isHappy02(int n) {
+    auto len = std::to_string(n).size();
+
+    int temp = 0;
+
+    for (int i = len; i >= 0; i--)
+    {
+        if (i-1 != 0)
+            temp += std::pow((n / ((i-1)*10)), 2);
+        // else
+        //     temp += std::pow(n/
+    }
+
+
+    std::cout << "temp = " << temp << std::endl;
+    return temp;
+}
+
+int SolutionisHappy::digitSquareSum(int n) {
+    int sum = 0, tmp;
+
+    while (n){ 
+        tmp = n % 10;
+        sum += tmp*tmp;
+        n /= 10;}
+    return sum;
+}
+
+bool SolutionisHappy::isHappy03(int n) {
+    std::unordered_set<int> temp{};
+    // [n, temp](){ temp.find(n)};
+    // auto search = example.find(2);
+    while (n!=1&&(temp.find(n)!=temp.end())) {
+        temp.insert(n);
+        n = digitSquareSum(n);
+    }
+    return n == 1;
+}
+
+vector<int> Solutionintersection::intersection02(vector<int>& nums1, vector<int>& nums2) {
+    auto tmp = std::unordered_set<int>(nums1.begin(), nums1.end());
+    vector<int> res;
+
+    for (auto a : nums2)
+    {
+        if (tmp.count(a))
+        {
+            res.push_back(a);
+            tmp.erase(a);
+        }
+    }
+    return res;
+}
+
+bool SolutionisIsomorphic::isIsomorphic(string s, string t) {
+    auto flag = true;
+    auto temp1 = get_map(s);
+    auto temp2 = get_map(t);
+
+    auto f = [](std::unordered_map<char, int> p) {
+        int result = 0;
+        for (auto& t: p)
+            result += t.second;
+        return result;
+    };
+    if (temp1.size() != temp2.size())
+        // return false;
+        flag = false;
+    else if (f(temp1)!=f(temp2))
+        // return false;
+        flag = false;
+
+    // for (int i = 0; i < temp1.size(); ++i)
+    // {
+    //     if (temp1[i].second )
+
+    // }
+
+    for (auto& ttt: temp1)
+    {
+        if (temp1.count(ttt.first) != temp2.count(ttt.first))
+            flag = false;
+    }
+    return flag;
+}
+
+bool SolutionisIsomorphic::isIsomorphic02(string s, string t) {
+    if (s.size() != t.size())
+        return false;
+    else {    
+        std::unordered_map<char, char> temp1;
+        std::unordered_map<char, char> temp2;
+        for (size_t i = 0; i < s.size(); ++i)
+        {
+            if (!temp1.empty() && (temp1.find(s[i]) != temp1.end()))
+            {
+                auto a1 = temp1.find(s[i]);
+                if (a1->second != t[i])
+                    return false;
+            }
+            
+            if (!temp2.empty() && (temp2.find(t[i]) != temp2.end()))
+            {
+                auto a1 = temp2.find(t[i]);
+                if (a1->second != s[i])
+                    return false;
+            }
+            temp1.emplace(s[i], t[i]);
+            temp2.emplace(t[i], s[i]);
+        }
+    }
+    return true;
+}
+ 
+std::unordered_map<char, int> SolutionisIsomorphic::get_map(string t) {
+    std::unordered_map<char, int> tmp;
+    for (auto& p: t)
+    {
+        if (!tmp.empty())
+        {
+            for (auto& tt: tmp)
+            {
+                if (tt.first == p)
+                {
+                    tt.second += 1;
+                    break;
+                }
+            }
+            tmp.emplace(p, 0);
+        }
+    }
+    return tmp;
+}
+
+// class SolutionaddDigits {
+// public:
+//     int addDigits(int num);
+int SolutionaddDigits::addDigits(int num)
+{
+    int digital_root = 0;
+    while (num > 0)
+    {
+        digital_root += num % 10;
+        num = num / 10;
+
+        if (num == 0 && digital_root > 9)
+        {
+            num = digital_root;
+            digital_root = 0;
+        }
+    }
+    return digital_root;
+}
+
+
+// class SolutionfindRestaurant {
+// public:
+//     vector<string> findRestaurant(vector<string>& list1, vector<string>& list2);
+
+vector<string> SolutionfindRestaurant::findRestaurant(vector<string>& list1, vector<string>& list2) {
+    vector<string> result{};
+    std::unordered_map<string, int> temp1;
+    std::unordered_map<string, int> temp2;
+    for (int i = 0; i<list1.size(); ++i)
+    {
+        temp1.emplace(list1[i], i);
+    }
+    for (int i = 0; i<list2.size(); ++i)
+    {
+        temp2.emplace(list2[i], i);
+    }
+    if (temp1.size() > temp2.size())
+    {
+        int index = temp1.size() + 1;
+
+        for (auto& p1: temp1)
+        {
+            if (temp2.find(p1.first) != temp2.end())
+            {
+                if (index > p1.second)
+                    index = p1.second;
+            }
+        }
+        for (auto& p2: temp1)
+        {     
+            if (temp2.find(p2.first)->second == index)
+            {
+                result.push_back(p2.first);
+            }
+        }
+
+    } else {
+        int index = temp2.size() + 1;
+        for (auto& p: temp2)
+        {
+            if (temp1.find(p.first) != temp1.end())
+            {
+                if (index > p.second)
+                    index = p.second;
+            }
+        }
+        for (auto& p: temp2)
+        {     
+            if (temp2.find(p.first)->second == index)
+            {
+                result.push_back(p.first);
+            }
+        }
+    }
+    return result;
+}
+
+vector<string> SolutionfindRestaurant::findRestaurant02(vector<string>& list1, vector<string>& list2) {
+    std::unordered_map<string, int> temp1;
+    std::unordered_map<string, int> temp2;
+
+    for (int i = 0; i < list1.size(); ++i)
+    {
+        if (std::find(list2.begin(), list2.end(), list1[i]) != list2.end())
+        {
+            temp1.emplace(list1[i], i);
+        }
+    }
+    for (int i = 0; i < list2.size(); ++i)
+    {
+        if (std::find(list1.begin(), list1.end(), list2[i]) != list1.end())
+        {
+            temp2.emplace(list2[i], temp1[list2[i]] + i);
+        }
+    }
+
+    std::vector<std::string> final_result;
+    if (temp2.size() == 1)
+    {    
+        for (auto& list : temp2)
+            final_result.push_back(list.first);
+    } else {
+        int lower_index = list1.size() + list2.size() - 1;
+        for (auto& p : temp2)
+        {
+            if (p.second < lower_index)
+                lower_index = p.second;
+        }
+        // std::vector<std::string> final_result;
+        for (auto& p : temp2)
+        {
+            if (p.second == lower_index)
+                final_result.push_back(p.first);
+        }
+    }
+    return final_result;
+}
+
+
+// class SolutionfirstUniqChar {
+// public:
+//     int firstUniqChar(string s);
+int SolutionfirstUniqChar::firstUniqChar(string s)
+{
+    std::unordered_map<char, int> temp;
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (temp.find(s[i]) != temp.end())
+        {
+            temp[s[i]] += 1;
+        } else {
+            temp.emplace(s[i], 1);
+        }
+    }
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (temp[s[i]] == 1)
+            return i;
+    }
+    return -1;
+}
+
+vector<int> SolutionintersectII::intersect(vector<int>& nums1, vector<int>& nums2) {
+    std::unordered_map<char, int> temp;
+    std::vector<int> result;
+    for (const auto& p : nums1)
+    {
+        if (temp.find(p) != temp.end())
+        {
+            temp[p] += 1;
+        } else {
+            temp.emplace(p, 1);
+        }
+    }
+
+    for (const auto& p : nums2)
+    {
+        if (temp.find(p) != temp.end())
+        {
+            if (temp[p] > 0)
+            {
+                result.push_back(p);
+                temp[p] -= 1;
+            }
+        }
+    }
+    return result;
+}
+
+vector<int> SolutionintersectII::intersect02(vector<int>& nums1, vector<int>& nums2) {
+    if (nums1.size() > nums2.size())
+    {
+        return intersect02(nums2, nums1);
+    }
+
+    unordered_map<int, int> m;
+    for (auto n: nums1)
+    {
+        ++m[n];
+    }
+    int k = 0;
+    for (auto n: nums2)
+    {
+        auto it = m.find(n);
+        if (it != end(m) && --it->second >= 0)
+        {
+            nums1[k++] = n;
+        }
+    }
+    return vector(begin(nums1), begin(nums1) + k);
+}
+
+vector<int> SolutionintersectII::intersect03(vector<int>& nums1, vector<int>& nums2) {
+    sort(begin(nums1), end(nums1));
+    sort(begin(nums2), end(nums2));
+    int i = 0, j = 0, k = 0;
+    while (i < nums1.size() && j < nums2.size()) {
+        if (nums1[i] < nums2[j]) {
+            ++i;
+        } else if (nums1[i] > nums2[j])
+            ++j;
+        else {
+            nums1[k++] = nums1[i++];
+            ++j;
+        }
+    }
+    return vector<int>(begin(nums1), begin(nums1) + k);
+}
+
+// bool SolutioncontainsNearbyDuplicate::containsNearbyDuplicate(vector<int>& nums, int k) {
+//     std::unordered_map<int, int> temp;
+//     // std::
+
+//     for (auto& p : nums)
+//     {
+//         if (temp.find(p) != temp.end())
+//             temp[p] += 1;
+//         else
+//             temp.emplace(p, 0);
+//     }
+
+//     for (auto& p : temp)
+//     {
+//         if (p.second == 1)
+//         {
+//             auto num_index_first = std::find(nums.begin(), nums.end(), p.first);
+//             auto num_index_second = std::find(num_index_first + 1, nums.end(), p.first);
+//             if (std::distance(num_index_second, num_index_first) <= k)
+//                 return true;
+//             else
+//                 return false;
+//         }
+//     }
+//     return false;
+// }
+
+bool SolutioncontainsNearbyDuplicate::containsNearbyDuplicate02(vector<int>& nums, int k) {
+    unordered_set<int> s;
+    if (k <= 0) 
+        return false;
+    if (k >= nums.size()) 
+        k = nums.size() -1;
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (i > k) 
+            s.erase(nums[i - k - 1]);
+        if (s.find(nums[i]) != s.end())
+            return true;
+        s.insert(nums[i]);
+    }
+
+    return false;
+}
+
+Logger::Logger() {
+    temp = {};
+}
+
+bool Logger::shouldPrintMessage(int timestamp, string message) {
+    if (temp.find(message) == temp.end())
+    {
+        temp.emplace(message, timestamp);
+        return true;
+    }
+    auto p = temp[message];
+    if (timestamp - temp[message] >= 10)
+    {
+        temp[message] = timestamp;
+        return true;
+    }
+    return false;
+}
+
+vector<vector<string>> SolutiongroupAnagrams::groupAnagrams(vector<string>& strs) {
+    if (strs.size() <= 1)
+    {
+        vector<vector<string>> v;
+        v.push_back(strs);
+        return v;
+    }
+
+    vector<vector<string>> v_result{}; 
+    // std::unordered_map
+    std::vector<std::unordered_set<char>> vector_char;
+    for (auto& p : strs)
+    {
+        std::unordered_set<char> inside_set{};
+        for (size_t i = 0; i < p.size(); i++)
+        {
+            inside_set.insert(p[i]);
+        }
+        auto search = std::find(vector_char.begin(), vector_char.end(), inside_set);
+        if (search != vector_char.end())
+            vector_char.push_back(inside_set);
+    }
+
+    v_result.resize(vector_char.size());
+    for (auto& p : strs)
+    {
+        std::unordered_set<char> inside_set{};
+        for (size_t i = 0; i < p.size(); i++)
+        {
+            inside_set.insert(p[i]);
+        }
+        // vector_char.push_back(inside_set);
+
+        for (size_t i = 0; i < vector_char.size(); i++)
+        {
+            if (inside_set == vector_char[i])
+            {
+                v_result[i].push_back(p);
+                break;
+            }
+        }
+        
+    }
+
+    return v_result;
+}
+
+vector<vector<string>> SolutiongroupAnagrams::groupAnagrams02(vector<string>& strs) {
+    unordered_map<string, vector<string>> mp;
+
+        for (string s : strs)
+        {
+            string t = s;
+            sort(t.begin(), t.end());
+            mp[t].push_back(s);
+        }
+
+        vector<vector<string>> result;
+
+        for (auto p : mp)
+            result.push_back(p.second);
+
+        return result;
+}
+
+vector<vector<string>> SolutiongroupAnagrams::groupAnagrams03(vector<string>& strs) {
+    std::map<string, vector<string>> mp;
+
+        for (string s : strs)
+        {
+            string t = s;
+            sort(t.begin(), t.end());
+            mp[t].push_back(s);
+        }
+
+        vector<vector<string>> result;
+
+        for (auto p : mp)
+            result.push_back(p.second);
+
+        return result;
+}
+
+void SolutionsortColors::sortColors(vector<int>& nums) {
+    for (size_t i = 0; i < nums.size(); i++)
+    {
+        size_t min_index = i;
+        for (size_t j = i + 1; j < nums.size(); j++)
+        {
+            if (nums[j] < nums[min_index])
+                min_index = j;
+        }
+        std::swap(nums[i], nums[min_index]);
+    }
+}
+
+void SolutionsortColors::sortColors02(vector<int>& nums) {
+    int p0 = 0, curr = 0;
+    int p2 = nums.size() - 1;
+
+    while (curr <= p2)
+    {
+        if (nums[curr] == 0)
+        {
+            std::swap(nums[curr++], nums[p0++]);
+        } else if (nums[curr] == 2){
+            std::swap(nums[curr],nums[p2--]);
+        }
+        else curr++;
+    }
+}
+
+void SolutionheightChecker::bubble_sort(vector<int>& heights) {
+
+    
+}
+
+SolutionheightChecker::SolutionheightChecker() {
+    
+    
+}
+
+int SolutionheightCheckerII::heightChecker(vector<int>& heights) {
+    std::vector<int> v_temp{heights};
+    bool changed = false;
+
+    while (!changed)
+    {
+        changed = true;
+        for (size_t i = 0; i < heights.size(); i++)
+        {
+            if (heights[i] > heights[i+1])
+            {
+                std::swap(heights[i+1], heights[i]);
+                changed = false;
+            }
+        }
+    }
+    int result = 0;
+    for (size_t i = 0; i < heights.size(); i++)
+    {
+        if (v_temp[i] != heights[i])
+            result += 1;
+    }
+    return result;
+}
+
+void Solutioninsertionsort::insertion_sort(vector<int>& heights) {
+    for (auto i = 1; i < heights.size(); i++)
+    {
+        int current_index = i;
+        while (current_index > 0 && heights[current_index-1] > heights[current_index])
+        {
+            std::swap(heights[current_index], heights[current_index-1]);
+            current_index -= 1;
+        }
+    }
+}
+
+
+ListNode* SolutioninsertionSortList::insertionSortList(ListNode* head) {
+    ListNode* dummy = new ListNode(0);
+    dummy->next = head;
+    ListNode* pre = dummy;
+    ListNode* cur = head;
+
+    while (cur)
+    {
+        if((cur->next)&&(cur->next->val < cur->val))
+        {
+            while ((pre->next)&& (pre->next->val < cur->next->val))
+            {
+                pre = pre->next;
+            }
+            ListNode* temp = pre->next;
+            pre->next = cur->next;
+            cur->next = cur->next->next;
+            pre->next->next = temp;
+            pre = dummy;
+        }
+        else {
+            cur = cur->next;
+        }
+    }
+    return dummy->next;
+}
+
+ListNode* SolutioninsertionSortList::insertionSortListII(ListNode* head) {
+    ListNode dummy(INT_MIN), *pre(&dummy), *next(nullptr);
+
+    dummy.next  = head;
+
+    while (head)
+    {
+        pre = &dummy;
+        if (head && head->next && head->val > head->next->val)
+        {
+            while (pre && pre->next && pre->next->val < head->next->val)
+            {
+                pre = pre->next;
+            }
+
+            next = pre->next;
+            pre->next = head->next;
+            head->next = head->next->next;
+            pre->next->next = next; 
+            
+        } else {
+            head = head->next;
+        }
+    }
+    return dummy.next;
+}
+
+int SolutionpivotIndex::pivotIndex(vector<int>& nums) {
+    int nums_sum = 0;
+    for (size_t i = 0; i < nums.size(); i++)
+    {
+        nums_sum += nums[i];
+    }
+    int temp = 0;
+    for (size_t i = 0; i < nums.size(); temp += nums[i++])
+    {
+        // temp += nums[i];
+        if (temp*2 == nums_sum - nums[i])
+        {
+            // spdlog::get("console")->info("Index founded, return i");
+            return i;
+        }
+    }
+    spdlog::get("console")->info("no index found, return -1");
+
+    return -1;
+}
+
+int SolutionpivotIndex::pivotIndex02(vector<int>& nums) {
+    int nums_sum = 0;
+    for (size_t i = 0; i < nums.size(); i++)
+    {
+        nums_sum += nums[i];
+    }
+    int temp = 0;
+    for (size_t i = 0; i < nums.size(); ++i)
+    {
+        temp += nums[i];
+        if ((temp - nums[i])*2 == nums_sum - nums[i])
+        {
+            spdlog::get("console")->info("Index founded, return i");
+            return i;
+        }
+    }
+    spdlog::get("console")->info("no index found, return -1");
+
+    return -1;
+}
+
+int SolutiondominantIndex::dominantIndex(vector<int>& nums) {
+    int max_num = 0;
+    int result_index = 0;
+    for (size_t i = 0; i < nums.size(); i++)
+    {
+        if (max_num < nums[i])
+        {
+            max_num = nums[i];
+            result_index = i;
+        }
+    }
+    bool flag = true;
+    for (size_t i = 0; i < nums.size(); i++)
+    {
+        if (nums[i] != max_num)
+        {
+            if (max_num < nums[i]*2)
+            {
+                flag = false;
+                break;
+            } 
+        }
+    }
+    if (!flag)
+        return -1;
+    else
+        return result_index;
+}
+
+vector<int> SolutionplusOne::plusOne(vector<int>& digits) {
+    int carry = 0;
+    int sum = 0;
+    int n = digits.size() - 1;
+
+    for (int i = n; i >= 0; i--)
+    {
+        if (i == n) {
+            carry = (digits[i] + sum + 1) / 10;
+            sum = (digits[i] + sum + 1) % 10;
+            digits[i] = sum;
+            sum = 0;
+        } else {
+            auto temp = carry;            
+            carry = (digits[i] + carry) / 10;
+            sum = (digits[i] + temp) % 10;
+            digits[i] = sum;
+            sum = 0;
+        }
+    }
+    if (carry == 1) {
+        auto it = digits.begin();
+        it = digits.insert(it, 1);
+    }
+    return digits;
+}
+
+vector<int> SolutionfindDiagonalOrder::findDiagonalOrder(vector<vector<int>>& mat) {
+    vector<int> result{};
+    // for (int i = 0; i < mat[0].size(); i++) {
+
+    // }
+    return result;
+    
+}
+
+string SolutionaddBinary::addBinary(string a, string b) {
+    string s = "";
+
+    int c = 0, i = a.size() - 1, j = b.size() - 1;
+
+    while (i >= 0 || j >= 0 || c == 1)
+    {
+        c += i >= 0 ? a[i--] - '0' : 0;
+        c += j >= 0 ? b[j--] - '0' : 0;
+        s = char(c % 2 + '0') + s;
+        c /= 2;
+    }
+    return s;
+    
+    // auto len = a.size() > b.size() ? b.size() : a.size();
+    // auto isA = a.size() > b.size() ? false : true;
+    // std::string result{};
+    // std::vector<char> v_char{};
+    // auto carry = 0;
+    // char temp{};
+    // for (int i = len - 1; i >= 0; --i) {
+    //     if (i == len - 1) {
+    //         if (a[i] != b[i])
+    //             temp = '1';
+    //         else {
+    //             temp = '0';
+    //             if (a[i] == '1')
+    //                 carry == 1;
+    //             else
+    //                 carry = 0;
+    //         }
+    //     } else {
+    //         if (a[i] != b[i] && carry == 0)
+    //             temp = '1';
+    //         else if (a[i] != b[i] && carry == 1)
+    //             temp = '0';
+    //         else if (a[i] == b[i] == '0' && carry == 0)
+    //             temp = '0';            
+    //         else if (a[i] == b[i] == '0' && carry == 1)
+    //             temp = '1';
+    //         else if (a[i] == b[i] == '1' && carry == 0) {
+    //             temp = '0';
+    //             carry = 1;
+    //         }
+    //         else if (a[i] == b[i] == '1' && carry == 1) {
+    //             temp = '1';
+    //         }
+    //     }
+    //     v_char.push_back(temp);
+    // }
+
+    // if (isA)
+    //     result += b.substr(0, b.size() - a.size());
+    // for (auto it = v_char.rbegin(); it != v_char.rend(); ++it) {
+    //     result += *it;
+    // }
+
+    // return result;
+    
+}
+
+vector<vector<int>> SolutionthreeSum::threeSum(vector<int>& nums) {
+
+    vector<vector<int>> v{};
+    vector<tuple<int, int, int>> tuple_index;
+    vector<pair<int, std::pair<int, int>>> pair_index;
+
+
+    for (int i = 0; i < nums.size(); i++) {
+        for (int j = i + 1; j < nums.size(); j++) {
+            if (i != j) {
+                auto temp = std::make_tuple(nums[i] + nums[j], i, j);
+                tuple_index.push_back(temp);
+            }
+        }
+    }
+
+    for (int i = 0; i < nums.size(); i++) {
+        // auto temp = 0 - nums[i];
+        for (auto & p : tuple_index) {
+            if (nums[i] + std::get<0>(p) == 0 && i != std::get<1>(p) && i != std::get<2>(p)) {
+                vector<int> temp_v{nums[i], nums[std::get<1>(p)], nums[std::get<2>(p)]};
+                std::sort(temp_v.begin(), temp_v.end());
+                // v_set.insert(temp_v);
+                auto search = std::find(v.begin(), v.end(), temp_v);
+                if (search == v.end()) {
+                    v.push_back(temp_v);
+                    break;
+                }
+            }
+        }
+    }
+    return v;
+    // if (nums.size() == 3) {
+    //     int sum_of_elems{};
+    //     std::for_each(nums.begin(), nums.end(), [&] (int n) {
+    //         sum_of_elems += n;
+    //     });
+    //     // vector<vector<int>> v{};
+    //     if (sum_of_elems == 0) {
+    //         v.push_back(nums);
+    //     }
+    //     // return v;
+    // }
+    // else {
+    //     // vector<int> sub_result;
+    //     for (int i = 0; i < nums.size(); i++) {
+    //         auto temp = (nums[i] + nums[i+1])*(-1);
+    //         auto value_int_vec = std::find(nums.begin() + i + 1, nums.end(), temp);
+    //         // vector<int> sub_result{};
+    //         if(value_int_vec != nums.end()) {
+    //             vector<int> sub_result{};
+    //             sub_result.push_back(nums[i]);
+    //             sub_result.push_back(nums[i + 1]);
+    //             sub_result.push_back(*value_int_vec);
+    //             v.push_back(sub_result);
+    //         }         
+    //     }
+    // }
+    // return v;
+    
+}
+
+int SolutionstrStr::strStr(string haystack, string needle) {
+    auto v = haystack.find(needle);
+
+    if (v == std::string::npos) {
+        return -1;
+    }
+    else {
+        return v;
+    }
+    
+}
+
+string SolutionlongestCommonPrefix::longestCommonPrefix(vector<string>& strs) {
+    auto p = strs.size();
+    size_t str_size = strs[0].size();
+    for (auto &p : strs) {
+        if (p.size() < str_size) {
+            str_size = p.size();
+        }
+    }
+
+    std::unordered_set<char> char_set{};
+    size_t string_index = 0;
+    while (string_index < str_size) {
+        size_t index = 0;
+        while (index < p) {
+            char_set.insert(strs[index][string_index]);
+            index++;
+        }
+        if (char_set.size() > 1)
+            break;
+        else {
+            string_index++;
+            char_set.clear();
+        }
+    }
+    return strs[0].substr(0, string_index);
+}
+
+void SolutionlongestCommonPrefix::reverse(int *v, int N) {
+    int i = 0;
+    int j = N -1;
+    while (i < j) {
+        swap(v[i], v[j]);
+        i++;
+        j--;
+    }
+}
+
+int SolutionarrayPairSum::arrayPairSum(vector<int>& nums) {
+    std::sort(nums.begin(), nums.end());
+
+    int sum = 0;
+    for (int i = 0; i < nums.size(); i+=2) {
+        sum += std::min(nums[i], nums[i+1]);
+    }
+    return sum;
+}
+
+int SolutionminSubArrayLen::minSubArrayLen(int target, vector<int>& nums) {
+    int n = nums.size();
+    int ans = INT_MAX;
+
+    int left = 0;
+    int sum_v = 0;
+
+    for (int i = 0; i < n; i++) {
+        sum_v += nums[i];
+        while (sum_v >= target) {
+            ans = min(ans, i + 1 - left);
+            sum_v -= nums[left++];
+        }
+    }
+    return (ans != INT_MAX) ? ans : 0;
+}
+
+string SolutionaddBinary::addBinary02(string a, string b) {
+
+    int i = a.size() - 1;
+    int j = b.size() - 1;
+
+    std::string ans;
+    int carry = 0;
+
+    while (i >= 0 || j >= 0 || carry)
+    {
+        if (i >= 0) {
+            carry += a[i--] - '0';
+        }
+        if (j >= 0) {
+            carry += b[j--] - '0';
+        }
+
+        ans = char(carry%2 + '0') + ans;
+        carry /= 2;
+    }
+
+    return ans;
+    
+}
+void Solutionrotate::rotate(vector<int>& nums, int k) {
+    std::queue<int> int_q{};
+
+    if (k > nums.size())
+        k = k % nums.size();
+    while (k > 0)
+    {
+        /* code */
+
+        int_q.push(*(nums.end() - 1));
+        nums.erase(nums.end() - 1, nums.end());
+
+        k--;
+
+    }
+    while (!int_q.empty())
+    {
+        nums.insert(nums.begin(), int_q.front());
+        int_q.pop();
+    }
+    
+    // return nums;
+    
+}
+
+void Solutionrotate::rotate02(vector<int>& nums, int k) {
+    int index = 0;
+    if (k > nums.size())
+        k = k % nums.size();
+    while (k > 0)
+    {
+        nums.insert(nums.begin(), *(nums.end() - 1 - index));
+        k--;
+        index++;
+    }
+    nums.erase(nums.end() - k, nums.end());
+}
+
+void SolutionthreeSum::twoSum(vector<int>& nums, int i, vector<vector<int>> &res) {
+    unordered_set<int> seen;
+    for (int j = i + 1; i < nums.size(); ++i) {
+        int complement = -nums[i] - nums[j];
+        if (seen.count(complement)) {
+            res.push_back({nums[i], complement, nums[j]});
+            while (j + 1 < nums.size() && nums[j] == nums[j + 1]) {
+                ++j;
+            }
+        }
+        seen.insert(nums[j]);
+    }
+}
+
+vector<vector<int>> SolutionthreeSum::threeSum03(vector<int>& nums) {
+    std::sort(nums.begin(), nums.end());
+    vector<vector<int>> res;
+
+    for (int i = 0; i < nums.size() && nums[i] <= 0; ++i)
+    {
+        if (i == 0 || nums[i - 1] != nums[i]) {
+            twoSum(nums, i, res);
+        }
+    }
+    return res; 
+}
+
+vector<vector<int>> SolutionthreeSum::threeSum04NoSort(vector<int>& nums) {
+    set<vector<int>> res;
+    unordered_set<int> dups;
+    unordered_map<int, int> seen;
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (dups.insert(nums[i]).second)
+        {
+            for (int j = i + 1; j < nums.size(); ++j) {
+                int complement = -nums[i] + nums[j];
+                auto it = seen.find(complement);
+                if (it != end(seen) && it->second == i) {
+                    vector<int> triplet = {nums[i], nums[j], complement};
+                    sort(begin(triplet), end(triplet));
+                    res.insert(triplet);
+                }
+                seen[nums[j]] = i;
+            }
+        }
+    }
+    return vector<vector<int>>(begin(res), end(res));
+}
+
+int SolutionminCostClimbingStairs::minCostClimbingStairs01(vector<int>& cost) {
+    auto N = cost.size();
+    fun go = [&](auto i) {
+        if (N <= i)
+            return 0;
+        return cost[i] + min(go(i + 1), go(i + 2));
+    };
+    return min(go(0), go(1));
 }

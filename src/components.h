@@ -3,6 +3,7 @@
 #include <unordered_set>
 #include <string>
 #include <functional>
+#include <array>
 
 namespace node {
 	struct TreeNode
@@ -158,7 +159,35 @@ namespace cpp20
 } 
 
 namespace leetcode {
+
+	class Node {
+		Node(int pvalue, Node* pNode);
+		int val;
+		Node* next;	
+	};
+
+	class Bucket {
+		public:
+			Bucket();
+		private:
+			Node* head;
+	};
+
 	class MyHashSet {
 		public:
-	}
+			static const int keyRange{769};
+
+			MyHashSet();
+			void add(int key);
+			void remove(int key);
+			bool contains(int key);
+		private:
+			std::array<Bucket, keyRange> bucketArray;
+
+			int hash(int key);
+	};
+
+	// class Bucket{
+
+	// };
 }

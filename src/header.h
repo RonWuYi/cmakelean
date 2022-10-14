@@ -1,5 +1,7 @@
-#pragma once
+#ifndef HEADER_H_
+#define HEADER_H_
 
+#include <climits>
 #include <cstdint> //or <stdint.h>
 #include <limits>
 #include <array>
@@ -20,6 +22,11 @@
 #include <utility>
 #include <list>
 #include <bitset>
+#include <cmath>
+#include <unordered_set>
+#include <cstddef>
+// #include <span>
+
 
 using namespace std;
 using charQueue = std::queue<std::unique_ptr<std::array<char, 100>>>;
@@ -525,14 +532,49 @@ namespace tree {
         Node* right;
     };
 
-void preOrder(tree::Node *root);
-void preOrderNoRecursive(tree::Node *root);
+    void preOrder(tree::Node *root);
+    void preOrderNoRecursive(tree::Node *root);
 
-void inOrder(tree::Node *root);
-void postOrder(tree::Node *root);
+    void inOrder(tree::Node *root);
+    void postOrder(tree::Node *root);
 
 }
 
+// namespace interviewNew {
+//     class A {
+//     private:
+//         const int a;  
+//     public:
+//         A() : a(0) {};
+//         A(int x) : a(x) {};
+
+//         int getValue();
+//         int getValue() const;
+//     };
+
+//     void function()
+//     {
+//         A b;
+//         const A a;
+//         const A *p = &a;
+//         const A &q = a;
+//     }
+
+//     class Base {
+//     public:
+//         inline virtual void who() {
+//             std::cout << "Base\n";
+//         };
+//         virtual ~Base() {};
+//     };
+
+//     class Derived : public Base {
+//     public:
+//         inline void who() override {
+//             std::cout << "Derived\n";
+//         }
+//     };
+// }
 // void preOrder(tree::Node *root);
 // void preOrder(tree::Node *root) {
 //     std::cout << root->data;
@@ -569,3 +611,265 @@ void postOrder(tree::Node *root);
 //     preOrder(root->right);
 //     std::cout << root->data;
 // }
+namespace interviewNew01 {
+    class A {
+    private:
+        const int a;  
+    public:
+        A() : a(0) {};
+        A(int x) : a(x) {};
+
+        int getValue();
+        int getValue() const;
+    };
+
+    class Base {
+    public:
+        inline virtual void who() {
+            std::cout << "Base\n";
+        };
+        virtual ~Base() {};
+    };
+
+    class Derived : public Base {
+        public:
+            inline void who() override {
+                std::cout << "Derived\n";
+            }
+    };
+
+    struct AA {
+        AA(int a) {}
+        operator bool() const { return true; }
+    };
+
+    struct BB {
+        explicit BB(int b) {}
+        explicit operator bool() const { return true; }
+    };
+}
+
+namespace interviewNew02 {
+    // int count = 11;
+
+    // class A {
+    // public:
+    //     static int count;
+    // };
+    // int A::count = 21;
+
+    // void func01();
+    template<typename It>
+    auto fcn(It beg, It end) -> decltype(*beg) {
+        return *beg;
+    }
+
+    template<typename It>
+    auto func2(It beg, It end) -> typename remove_reference<decltype(*beg)>::type {
+        return *beg;
+    }
+
+    template<class T>
+    struct S {
+        std::vector<T> v;
+        S(std::initializer_list<T> l) : v(l) {
+            std::cout << "constructed with a " << l.size() << "-element initializer list\n";
+        }
+
+        void append(std::initializer_list<T> l) {
+            v.insert(v.end(), l.begin(), l.end());
+        }
+
+        std::pair<const T*, std::size_t> c_arr() const {
+            return {&v[0], v.size()};
+        }
+    };
+
+    template<typename T>
+    void templated_fn(T) {}
+}
+
+namespace polymorphism {
+    class AAA {
+    public:
+        void doabcd(int a);
+        void doabcd(int a, int b);
+    };
+}
+
+namespace lambda {
+    template<typename T>
+    bool findDuplicates(vector<T>& vec) {
+        std::unordered_set<T> s;
+        for(T key: vec) {
+            if(s.find(key) != s.end()) {
+                return true;
+            }
+            s.insert(key);
+        }
+        return false;
+    }
+}
+
+namespace rvalue {
+    struct W {
+        W(int&, int&) {}
+    };
+
+    struct X {
+        X(const int&, int&) {}
+    };
+
+    struct Y {
+        Y(int&, const int&) {}
+    };
+
+    struct Z {
+        Z(const int&, const int&) {}
+    };
+
+    struct A {
+        A(int&& n);
+        A(int& n);
+    };
+
+    class B {
+    public:
+        template<class T1, class T2, class T3>
+        B(T1&& t1, T2&& t2, T3&& t3) :
+            a1_{std::forward<T1>(t1)},
+            a2_{std::forward<T2>(t2)},
+            a3_{std::forward<T3>(t3)}
+        {
+        }
+    private:
+        A a1_;
+        A a2_;
+        A a3_;
+    };
+
+    template<class T, class U>
+    std::unique_ptr<T> make_unique1(U&& u) {
+        return std::unique_ptr<T>(new T(std::forward<U>(u)));
+    }
+
+    template<class T, class... U>
+    std::unique_ptr<T> make_unique2(U&&... u) {
+        return std::unique_ptr<T>(new T(std::forward<U>(u)...));
+    }
+
+    class MemoryBlock{};
+
+    void f(const MemoryBlock&);
+    void f(MemoryBlock&&);
+
+    template<typename T> struct S;
+
+    template<typename T> struct S<T&> {
+        static void print(T& t)
+        {
+            cout << "print<T&>: " << t << endl;
+        }
+    };
+
+    template<typename T> struct S<const T&> {
+        static void print(T& t)
+        {
+            cout << "print<csont T&>: " << t << endl;
+        }
+    };
+
+    template<typename T> struct S<T&&> {
+        static void print(T&& t)
+        {
+            cout << "print<T&&>: " << t << endl;
+        }
+    };
+
+    template<typename T> struct S<const T&&> {
+        static void print(T&& t)
+        {
+            cout << "print<const T&&>: " << t << endl;
+        }
+    };
+
+    template <typename T> void print_type_and_value(T&& t) {
+        // S<decltype(t)>::print(std::forward<T>(t));
+        S<T&&>::print(std::forward<T>(t));
+    }
+
+    const string fourth();
+}
+
+// namespace cppreference {
+//     template<class T, std::size_t N> [[nodiscard]] 
+//     constexpr auto slide(std::span<T, N> s, std::size_t offset, std::size_t width) {
+//         return s.subspan(offset, offset + width <= s.size() ? width : 0U);
+//     }
+// }
+
+template <size_t n, size_t m>
+void printArray(int (&a)[n][m]) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int partition(std::vector<int> &v, int begin, int end);
+
+void quickSort(std::vector<int> &v, int begin, int end);
+
+
+template<typename datatype>
+void myquicksort(vector<datatype> &vec, int low, int heigh)
+{
+    if (low < heigh)
+    {
+        int l = low;
+        int r = heigh;
+
+        datatype key = vec[1];
+
+        while (l < r)
+        {
+            while (l < r && key <=vec[r])
+                --r;
+            vec[l]  = vec[r];
+            while (l < r && key > vec[1])
+                ++l;
+            vec[r] = vec[l];
+        }
+        vec[1] = key;
+        myquicksort(vec, low, l-1);
+        myquicksort(vec, r + 1, heigh);
+    }
+}
+
+
+/* Filter abstract base-class template */
+template <typename T, size_t N>
+class Filter {
+public:
+    Filter() {}
+    ~Filter() = default;
+
+    virtual T operator+=(const T sample) = 0;
+    virtual operator T() const = 0;
+    virtual void clear() = 0;
+
+protected:
+    T samples[N];
+};
+
+template <typename T, size_t N>
+class BAC : public Filter<T, N> {};
+
+// template <typename T>
+// int count(T a[]) {
+//     return sizeof(a) /sizeof(a[0]) - 1;
+// }
+
+#endif

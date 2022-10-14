@@ -1,4 +1,5 @@
 #include "header.h"
+#include <iostream>
 
 std::mutex g_pages_mutex;
 
@@ -146,4 +147,61 @@ void tree::postOrder(tree::Node *root) {
     tree::preOrder(root->left);
     tree::preOrder(root->right);
     std::cout << root->data;
+}
+
+rvalue::A::A(int&& n) {std::cout << "rvalue::A::A(int&& n)" << n <<std::endl;}
+rvalue::A::A(int& n) {std::cout << "lvalue::A::A(int& n)" << n <<std::endl;}
+
+void rvalue::f(const rvalue::MemoryBlock&)
+{
+    std::cout << "rvalue::f(const rvalue::MemoryBlock&)" << endl;
+}
+void rvalue::f(rvalue::MemoryBlock&&)
+{
+    std::cout << "rvalue::f(rvalue::MemoryBlock&&)" << endl;
+}
+
+const string rvalue::fourth()
+{
+    return "fourth";
+}
+
+int partition(std::vector<int> &v, int begin, int end) {
+    int pivot = v[begin];
+    int count = 0;
+    for (size_t i = begin + 1; i <= end; i++) {
+        if (v[i] <= pivot)
+            count++;
+    }
+    int pivotIndex = begin + count;
+    std::swap(v[pivotIndex], v[begin]);
+
+    int i = begin, j = end;
+
+    while (i < pivotIndex && j > pivotIndex)
+    {
+        while (v[i] <= pivot)
+        {
+            i++;
+        }
+        while (v[j] > pivot)
+        {
+            j--;
+        }
+
+        if (i < pivotIndex && j > pivotIndex)
+        {
+            std::swap(v[i++], v[j--]);
+        }
+    }
+    return pivotIndex;
+}
+
+void quickSort(std::vector<int> &v, int begin, int end) {
+    if (begin >= end)
+        return;
+
+    int p = partition(v, begin, end);
+    quickSort(v, begin, p - 1);
+    quickSort(v, p + 1, end);
 }

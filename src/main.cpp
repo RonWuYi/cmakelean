@@ -4,59 +4,144 @@
 #include "Formula.h"
 #include "header.h"
 #include "components.h"
+#include <assert.h>
+#include <ostream>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
+#include <memory>
+#include <condition_variable>
+#include <atomic>
+#include <typeinfo>
+#include <utility>
+// #include "spdlog/spdlog.h"
+
+#include "spdlog/sinks/basic_file_sink.h"
+
+#if 0
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void *memset(void *, int, size_t);
+
+#ifdef __cplusplus
+}
+#endif 
+
+#endif
+
+std::mutex m;
+std::condition_variable cv;
+std::string string_data;
+
+bool ready = false;
+bool processed = false;
+
+void worker_thread()
+{
+    std::unique_lock lk(m);
+    cv.wait(lk, []{return ready;});
+
+    std::cout << "worker thread is processing data\n";
+
+    string_data += "after processing";
+    processed = true;
+
+    std::cout << "Worker thread signals data processing completed\n";
+    lk.unlock();    
+    cv.notify_one();
+}
+
+void worker_thread_no_cv()
+{
+    std::unique_lock lk(m);
+    // cv.wait(lk, []{return ready;});
+
+    std::cout << "worker thread no cv is processing data\n";
+
+    string_data += "after processing no cv ";
+    processed = true;
+
+    std::cout << "Worker thread no cv signals data processing completed\n";
+    lk.unlock();    
+    // cv.notify_one();
+}
+
+struct S {
+    char a;
+    int b : 5;
+    int e;
+    double f;
+    std::string g;
+};
+
+class Spinlock {
+    std::atomic_flag flag = ATOMIC_FLAG_INIT;
+
+public:
+    void lock() {
+        while (flag.test_and_set());
+    }
+
+    void unlock() {
+        flag.clear();
+    }
+};
+
+Spinlock spin;
+
+void workOnResource() {
+    spin.lock();
+    spin.unlock();
+}
+
+void print(int id, const std::vector<int>& container)
+{
+    std::cout << id << ". ";
+
+    for (const int x: container)
+    {
+        std::cout << x << ' ';
+    }
+    std::cout << '\n';
+}
+
+vector<int> plusOne(vector<int>& digits) {
+    int temp = 0;
+    int carry = 0;
+
+    for (size_t i = digits.size()-1; i > 0; i--)
+    {
+        if (i == digits.size()-1) {
+            if ((digits[i] + 1) >= 10) {
+                carry = 1;
+                temp = (digits[i] + 1) % 10;
+            } else {
+                    temp = (digits[i] + 1);
+                    }
+        } else {
+            if ((digits[i] + carry) >= 10) {
+                carry = 1;
+                temp = (digits[i] + carry) % 10;
+            } else {
+                temp = (digits[i] + carry);
+            }
+        }
+        digits[i] = temp;
+    }
+
+    if (carry > 0)
+    {
+        auto it = digits.begin();
+        digits.insert(it, carry);
+    }
+    return digits;
+}
+
+struct X {};
 
 int main(){
-    for (std::string_view const str : {"1234", "15 foo", "bar", " 42", "43  ", "5000000000"}) {
-        std::cout << "String: " <<std::quoted(str) << ". ";
-
-        int result{};
-
-        auto [ptr, ec] {std::from_chars(str.data(), str.data() + str.size(), result)};
-
-        if (ec == std::errc())
-        {
-            // std::cout << "Result: " << result
-
-            std::cout << "Result: " << result << ", ptr -> " << std::quoted(ptr) << '\n';
-        }
-        else if (ec == std::errc::invalid_argument)
-        {
-            std::cout << "it is not a number\n";
-        }
-
-        else if (ec == std::errc::result_out_of_range)
-        {
-            std::cout << "this number is larger than an int\n";
-        }
-    }
-    // auto t = cpp17::str("1234"s);
-
-    std::vector<cpp20::Task> tasks {
-        {"clean up my room", 10}, {"finish work", 5}, {"go to sleep", 0}, {"buy new monitor", 12}
-    };
-
-    auto print = [](cpp20::Task& t) {
-        std::cout << "Task: " << t.desc << ", priority: " << t.priority << '\n';
-    };
-
-    std::ranges::sort(tasks, std::ranges::greater{},
-    &cpp20::Task::priority);
-
-    std::cout << "my next priorities: \n";
-    std::ranges::for_each(tasks, print);
-
-    std::vector v {1, 2, 3, 4, 5};
-    cpp20::CallOnRange(v, [](int& i) {
-        std::cout << "i: " << i << '\n';
-    });
-
-    std::cout << std::endl;
-    cpp20::GameActor actor { "robot", "a friendly type" };
-    std::cout << "actor is: " << std::invoke(&cpp20::GameActor::name, actor) << '\n';
-    std::cout << "desc is: " << std::invoke(&cpp20::GameActor::desc, actor) << '\n';
-    
-    auto ptr = std::make_unique<cpp20::GameActor>("space ship", "slow");
-    std::cout << "actor is: " << std::invoke(&cpp20::GameActor::name, ptr) << '\n';
-
-    return 0;
+    std::cout << "hello clang" << std::endl;
 }

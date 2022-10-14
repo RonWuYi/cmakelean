@@ -12,9 +12,15 @@ endif()
 
 include_directories(src)
 
+include(dependencies.cmake)
+
+# include()
+include_directories(${spdlog_SOURCE_DIR}/include)
+
 add_subdirectory(src)
 add_subdirectory(test)
 add_subdirectory(lib/googletest)
+# add_subdirectory(lib/googlemock)
 # cmake_minimum_required(VERSION 4.0.0)
 
 # # if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
