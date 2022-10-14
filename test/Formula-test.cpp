@@ -1,12 +1,11 @@
 #include "gtest/gtest.h"
+#include "gmock/gmock.h"
 
 #include <string>
 #include <type_traits>
 #include "Formula.h"
 #include "header.h"
 #include "components.h"
-
-#include "gmock/gmock.h"
 
 // using ::testing::Lt;
 // using ::testing::MatchesRegex;
@@ -492,7 +491,7 @@ TEST(quickSort, test1)
     // EXPECT_EQ(input2, result2);
 }
 
-TEST(SolutionthreeSum, test1)
+TEST(SolutionthreeSum, DISABLED_Test1)
 {
     SolutionthreeSum s{};
     std::vector<int> input1{-1,0,1,2,-1,-4};
@@ -513,4 +512,15 @@ TEST(minSubArrayLen, test1)
     EXPECT_EQ(s.minSubArrayLen(7, input1), 2);
     EXPECT_EQ(s.minSubArrayLen(4, input2), 1);
     EXPECT_EQ(s.minSubArrayLen(11, input3), 0);
+}
+
+TEST(SolutionminCostClimbingStairs, test1)
+{
+    SolutionminCostClimbingStairs s{};
+    std::vector<int> input1{10,15,20};
+    // std::vector<int> input2{1,4,4};
+    // std::vector<int> input3{1,1,1,1,1,1,1,1};
+    EXPECT_EQ(s.minCostClimbingStairs01(input1), 15);
+    // EXPECT_EQ(s.minSubArrayLen(4, input2), 1);
+    // EXPECT_EQ(s.minSubArrayLen(11, input3), 0);
 }

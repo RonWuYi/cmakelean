@@ -1,4 +1,6 @@
-#pragma once
+#ifndef FORMULA_H_
+#define FORMULA_H_
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -18,6 +20,7 @@
 #include <list>
 #include <map>
 #include <set>
+
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
@@ -372,12 +375,6 @@ public:
     int climbStairs(int n);
     int climbStairs02(int n);
     int climbStairs03(int n);
-};
-
-class SolutionminCostClimbingStairs
-{
-public:
-    int minCostClimbingStairs(vector<int>& cost);
 };
 
 class SolutionmaxArea02 {
@@ -770,3 +767,15 @@ public:
     void rotate(vector<int>& nums, int k);
     void rotate02(vector<int>& nums, int k);
 };
+
+class SolutionminCostClimbingStairs {
+public:
+    using VI = vector<int>;
+    using fun = function<int(int)>;
+    int minCostClimbingStairs(vector<int>& cost);
+    int minCostClimbingStairs01(vector<int>& cost);
+    int minCostClimbingStairs02(vector<int>& cost);
+    int minCostClimbingStairs03(vector<int>& cost);
+};
+
+#endif

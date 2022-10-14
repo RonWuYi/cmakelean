@@ -2400,3 +2400,13 @@ vector<vector<int>> SolutionthreeSum::threeSum04NoSort(vector<int>& nums) {
     }
     return vector<vector<int>>(begin(res), end(res));
 }
+
+int SolutionminCostClimbingStairs::minCostClimbingStairs01(vector<int>& cost) {
+    auto N = cost.size();
+    fun go = [&](auto i) {
+        if (N <= i)
+            return 0;
+        return cost[i] + min(go(i + 1), go(i + 2));
+    };
+    return min(go(0), go(1));
+}
