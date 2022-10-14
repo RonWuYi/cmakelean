@@ -34,6 +34,7 @@
 # Other
 .idea/
 .vscode/
+.cache/
 build/
 cmake-build-debug/CMakeFiles/CMakeError.log
 cmake-build-debug/googletest-build/
