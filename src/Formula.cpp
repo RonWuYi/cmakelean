@@ -555,24 +555,14 @@ You can either start from the step with index 0, or the step with index 1.
 Return the minimum cost to reach the top of the floor.
 */
 int SolutionminCostClimbingStairs::minCostClimbingStairs(vector<int>& cost) {
-    std::unordered_map<int, int> cache;
-    if (cache.find(cost.size()) != cache.end())
-        return cache[cost.size()];
-
-    int result = 0;
-    if (cost.size() == 0) result = 0;
-    else if (cost.size() == 1) result = cost[1];
-    else if (cost.size() == 2) result = min(cost[1],cost[2]);
-    else {
-        result = cost[0] + min(cost[1], cost[2]);
-        for (int i = 3; i < cost.size(); i++)
-        {
-            result = cost[i] + min(result, cache[i-1] + cache[i-2]);
-        }
+    int n = cost.size();
+    vector<int> dp(n+1);
+    for (int i = 2; i <= n; i++) {
+        int oneStep = dp[i - 1] + cost[i - 1];
+        int twoStep = dp[i - 2] + cost[i - 2];
+        dp[i] = min(oneStep, twoStep);
     }
-    cache[cost.size()] = result;
-    return result;
-    
+    return dp[n];
 }
 
 int SolutionmaxArea02::maxArea(vector<int>& height) {
@@ -1998,7 +1988,7 @@ int SolutionpivotIndex::pivotIndex(vector<int>& nums) {
             return i;
         }
     }
-    spdlog::get("console")->info("no index found, return -1");
+    // spdlog::get("console")->info("no index found, return -1");
 
     return -1;
 }
@@ -2015,11 +2005,11 @@ int SolutionpivotIndex::pivotIndex02(vector<int>& nums) {
         temp += nums[i];
         if ((temp - nums[i])*2 == nums_sum - nums[i])
         {
-            spdlog::get("console")->info("Index founded, return i");
+            // spdlog::get("console")->info("Index founded, return i");
             return i;
         }
     }
-    spdlog::get("console")->info("no index found, return -1");
+    // spdlog::get("console")->info("no index found, return -1");
 
     return -1;
 }
@@ -2409,4 +2399,33 @@ int SolutionminCostClimbingStairs::minCostClimbingStairs01(vector<int>& cost) {
         return cost[i] + min(go(i + 1), go(i + 2));
     };
     return min(go(0), go(1));
+}
+
+int SolutionminCostClimbingStairs::minCostClimbingStairs02(vector<int>& cost) {
+    int n = cost.size();
+    vector<int> dp(3);
+    for (int i = 2; i <= n; i++) {
+        int oneStep = dp[(i-1) % 3] + cost[i - 1];
+        int twoStep = dp[(i-2) % 3] + cost[i - 2];
+
+        dp[i % 3] = min(oneStep, twoStep);
+    }
+
+    return dp[n % 3];
+}
+
+int SolutionminCostClimbingStairs::minCostClimbingStairs03(vector<int>& cost) {
+    int n = cost.size();
+    int dp = 0;
+    int dp1 = 0;
+    int dp2 = 0;
+
+    for (int i = 2; i <= n; i++) {
+        int oneStep = dp1 + cost[i - 1];
+        int twoStep = dp2 + cost[i - 2];
+        dp = min(oneStep, twoStep); 
+        dp2 = dp1;
+        dp1 = dp;
+    }
+    return dp1;
 }

@@ -518,9 +518,13 @@ TEST(SolutionminCostClimbingStairs, test1)
 {
     SolutionminCostClimbingStairs s{};
     std::vector<int> input1{10,15,20};
-    // std::vector<int> input2{1,4,4};
-    // std::vector<int> input3{1,1,1,1,1,1,1,1};
+    std::vector<int> input2{1,100,1,1,1,100,1,1,100,1};
     EXPECT_EQ(s.minCostClimbingStairs01(input1), 15);
-    // EXPECT_EQ(s.minSubArrayLen(4, input2), 1);
-    // EXPECT_EQ(s.minSubArrayLen(11, input3), 0);
+    EXPECT_EQ(s.minCostClimbingStairs(input1), 15);
+    EXPECT_EQ(s.minCostClimbingStairs01(input2), 6);
+    EXPECT_EQ(s.minCostClimbingStairs(input2), 6);
+    EXPECT_EQ(s.minCostClimbingStairs03(input1), 15);
+    EXPECT_EQ(s.minCostClimbingStairs03(input2), 6);
+    EXPECT_EQ(s.minCostClimbingStairs02(input1), 15);
+    EXPECT_EQ(s.minCostClimbingStairs02(input2), 6);
 }
