@@ -11,7 +11,6 @@
 #include <unordered_set>
 #include <vector>
 #include <memory>
-#include <span>
 #include <condition_variable>
 #include <atomic>
 #include <typeinfo>

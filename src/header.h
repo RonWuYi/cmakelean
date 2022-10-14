@@ -1,5 +1,7 @@
-#pragma once
+#ifndef HEADER_H_
+#define HEADER_H_
 
+#include <climits>
 #include <cstdint> //or <stdint.h>
 #include <limits>
 #include <array>
@@ -865,7 +867,9 @@ protected:
 template <typename T, size_t N>
 class BAC : public Filter<T, N> {};
 
-template <typename T>
-int count(T a[]) {
-    return sizeof(a) /sizeof(a[0]) - 1;
-}
+// template <typename T>
+// int count(T a[]) {
+//     return sizeof(a) /sizeof(a[0]) - 1;
+// }
+
+#endif
