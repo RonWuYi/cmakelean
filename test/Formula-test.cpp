@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+
 #include <string>
 #include <type_traits>
 #include "Formula.h"
@@ -7,11 +8,9 @@
 
 #include "gmock/gmock.h"
 
-using ::testing::AllOf;
-using ::testing::Gt;
-using ::testing::Lt;
-using ::testing::MatchesRegex;
-using ::testing::StartsWith;
+// using ::testing::Lt;
+// using ::testing::MatchesRegex;
+// using ::testing::StartsWith;
 
 TEST(blaTest, test1) {
     //assert

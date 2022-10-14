@@ -144,19 +144,5 @@ vector<int> plusOne(vector<int>& digits) {
 struct X {};
 
 int main(){
-    std::vector<int> digits{3,46,7,3,56,256};
-
-    std::sort(digits.begin(), digits.end());
-    for (auto & p : digits){
-        std::cout << p << std::endl;
-    }
-
-    std::sort(digits.begin(), digits.end(), std::greater<int>());
-    for (auto & p : digits){
-        std::cout << p << std::endl;
-    }
-
-    int i_arr[5] {1, 3, 6};
-    std::cout << count(i_arr)  << std::endl;
-
+    std::cout << "hello clang" << std::endl;
 }
