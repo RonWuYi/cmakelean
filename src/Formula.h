@@ -778,4 +778,14 @@ public:
     int minCostClimbingStairs03(vector<int>& cost);
 };
 
+class SolutionhammingWeight {
+public:
+    virtual int hammingWeight(uint32_t n);
+};
+
+class SolutionhammingWeightNew : public SolutionhammingWeight{
+public:
+    virtual int hammingWeight(uint32_t n) override;
+};
+
 #endif

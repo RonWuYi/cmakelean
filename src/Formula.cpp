@@ -2429,3 +2429,26 @@ int SolutionminCostClimbingStairs::minCostClimbingStairs03(vector<int>& cost) {
     }
     return dp1;
 }
+
+int SolutionhammingWeight::hammingWeight(uint32_t n) {
+    int sum = 0;
+
+    while (n)
+    {
+        n &= (n-1);
+        sum++;
+    }
+    return sum;
+}
+
+int SolutionhammingWeightNew::hammingWeight(uint32_t n) {
+    int sum = 0;
+
+    while (n)
+    {
+        if ((n&1) > 0)
+            ++sum;
+        n=n>>1;
+    }
+    return sum;
+}

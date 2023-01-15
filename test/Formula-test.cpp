@@ -528,3 +528,28 @@ TEST(SolutionminCostClimbingStairs, test1)
     EXPECT_EQ(s.minCostClimbingStairs02(input1), 15);
     EXPECT_EQ(s.minCostClimbingStairs02(input2), 6);
 }
+
+
+TEST(SolutionhammingWeight, test01)
+{
+    SolutionhammingWeight s{};
+    EXPECT_EQ(s.hammingWeight(11), 3);
+}
+
+TEST(SolutionhammingWeight, test02)
+{
+    SolutionhammingWeight s{};
+    EXPECT_EQ(s.hammingWeight(128), 1);
+}
+
+TEST(SolutionhammingWeightNew, test01)
+{
+    SolutionhammingWeightNew s{};
+    EXPECT_EQ(s.hammingWeight(11), 3);
+}
+
+TEST(SolutionhammingWeightNew, test02)
+{
+    SolutionhammingWeightNew s{};
+    EXPECT_EQ(s.hammingWeight(128), 1);
+}
