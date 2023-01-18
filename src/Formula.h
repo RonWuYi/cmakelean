@@ -788,4 +788,10 @@ public:
     virtual int hammingWeight(uint32_t n) override;
 };
 
+
+class SolutiongetIntersectionNode {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB);
+};
+
 #endif

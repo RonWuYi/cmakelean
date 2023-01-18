@@ -2452,3 +2452,36 @@ int SolutionhammingWeightNew::hammingWeight(uint32_t n) {
     }
     return sum;
 }
+
+ListNode* SolutiongetIntersectionNode::getIntersectionNode(ListNode *headA, ListNode *headB) {
+
+    ListNode* temp;
+    temp = headA;
+    std::unordered_set<ListNode*> nodeSet;
+    while (temp)
+    {
+        nodeSet.insert(temp);
+        temp = temp->next;
+    }
+
+    ListNode* temp1;
+    temp1 = headB;
+    ListNode* result;
+    bool finded = false;
+    while (temp1 && !finded)
+    {
+        if (nodeSet.count(temp1) == 1)
+        {
+            result = temp1;
+            finded = true;
+        }
+        temp1 = temp1->next;
+    }
+
+    if (finded)
+    {
+        return result;
+    }
+    else 
+        return nullptr;
+}
