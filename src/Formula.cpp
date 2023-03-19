@@ -2485,3 +2485,8 @@ ListNode* SolutiongetIntersectionNode::getIntersectionNode(ListNode *headA, List
     else 
         return nullptr;
 }
+
+int SolutionuniquePaths::uniquePaths(int m, int n) {
+    return 0;
+    
+}

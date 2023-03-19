@@ -142,6 +142,51 @@ vector<int> plusOne(vector<int>& digits) {
 
 struct X {};
 
+class ticker_cache
+{
+public:
+    double get_opening_price(const std::string& ticker) const;
+};
+
+// const 
+
+const ticker_cache& get_cache();
+
+class price_comparator
+{
+public:
+    price_comparator(const ticker_cache& cache) : m_cache(cache)
+    {}
+
+    bool operator()(const std::string& lhs,
+                    const std::string& rhs) const
+                    {
+                        return m_cache.get_opening_price(lhs) < m_cache.get_opening_price(rhs);
+                    }
+
+private:
+    const ticker_cache& m_cache;
+};
+
+
+void sort_by_price(std::vector<std::string>& tickers)
+{
+  std::sort(std::begin(tickers), std::end(tickers),
+            price_comparator(get_cache()));
+}
+
+
 int main(){
+
+    std::vector<std::string> tickers = { "FDS", "AAPL", "TSLA", "X", "GOOG", "F", "BA" };
+    std::sort(std::begin(tickers), std::end(tickers));
+
+    for (auto& p : tickers)
+    {
+        /* code */
+
+        std::cout << p << std::endl;
+    }
+    
     std::cout << "hello clang" << std::endl;
 }

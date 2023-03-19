@@ -794,4 +794,11 @@ public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB);
 };
 
+class SolutionuniquePaths {
+public:
+    virtual int uniquePaths(int m, int n);
+
+private:
+    
+};
 #endif
