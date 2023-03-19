@@ -43,3 +43,5 @@ cmake-build-debug/googletest-src/
 cmake-build-debug/bin/
 .cache/
 ./lib/googletest
+hello.pdb
+*.pdb
